@@ -45,8 +45,15 @@
           </div>
         </div>
       </div><!-- /.container -->
+      <a href="<?php echo site_url('site/spreadsheet_format')?>" target="_blank">Tải kết quả</a>
+
+      <form action="<?php echo site_url('site/spreadsheet_import')?>" method="post" enctype="multipart/form-data">
+        <input type="text" name="made" id="made" placeholder="Nhập mã đề" class="form-control">
+        <input type="file" name="upload_file" id="upload_file" class="form-control" placeholder="Enter file">
+        <input type="submit" value="Tải lên" name="submit" class="btn btn-primary">
+    </form>
     </section>
-      
+     
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
