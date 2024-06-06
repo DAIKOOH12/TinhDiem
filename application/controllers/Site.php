@@ -37,17 +37,17 @@ class Site extends CI_Controller
 			$total_record = 0;
 			$data = array();
 			for ($i = 0; $i < $number_of_files; $i++) {
-				// $_FILES['file']['name'] = $files['file']['name'][$i];
-				// $_FILES['file']['type'] = $files['file']['type'][$i];
-				// $_FILES['file']['tmp_name'] = $files['file']['tmp_name'][$i];
-				// $_FILES['file']['error'] = $files['file']['error'][$i];
-				// $_FILES['file']['size'] = $files['file']['size'][$i];
+				$_FILES['file']['name'] = $files['file']['name'][$i];
+				$_FILES['file']['type'] = $files['file']['type'][$i];
+				$_FILES['file']['tmp_name'] = $files['file']['tmp_name'][$i];
+				$_FILES['file']['error'] = $files['file']['error'][$i];
+				$_FILES['file']['size'] = $files['file']['size'][$i];
 
 				// we have to initialize before upload
 
-				// if (!$this->upload->do_upload("file")) {
-				// 	$errors++;
-				// }
+				if (!$this->upload->do_upload("file")) {
+					$errors++;
+				}
 				$spreadsheet = $reader->load($files['file']['tmp_name'][$i]);
 				$sheetdata = $spreadsheet->getActiveSheet()->toArray();
 				// $this->showArr($sheetdata);
@@ -150,7 +150,7 @@ class Site extends CI_Controller
 				$sheetcount=count($sheetdata);
 			}
 			// $this->showArr($data);
-			$this->Msite->insert_sv_answer($data);
+			// $this->Msite->insert_sv_answer($data);
 			// $this->showArr($total_data_files);
 
 			if ($errors > 0) {
@@ -169,6 +169,7 @@ class Site extends CI_Controller
 		$this->load->helper('file');
 		$files = get_filenames("./assets/uploads");
 		echo json_encode($files);
+		exit;
 	}
 
 	public function spreadsheet_format()

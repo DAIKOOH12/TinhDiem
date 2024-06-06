@@ -23,12 +23,12 @@ $(function () {
 					data: formDataKey,
 					processData: false,
 					contentType: false,
-					success: function() {
+					success: function () {
 						alert("Thêm file đáp án thành công");
 					}
 				});
 			}
-			if(fileToUpload==null){
+			if (fileToUpload == null) {
 				alert('Chưa thêm file hoặc sai định dạng');
 			}
 		}
@@ -57,6 +57,7 @@ $(function () {
 				contentType: false,
 				success: function () {
 					listFilesOnServer();
+					$('#btn-save-result').show();
 				},
 				xhr: function () {
 					var xhr = new XMLHttpRequest();
@@ -86,6 +87,9 @@ $(function () {
 			data: { file_to_remove: me.attr('data-file') },
 			success: function () {
 				me.closest('li').remove();
+				$('.progress').hide();
+				progressBar.text("0%");
+				progressBar.css({ width: "0%" });
 			}
 		});
 
@@ -93,7 +97,6 @@ $(function () {
 
 	function listFilesOnServer() {
 		var items = [];
-
 		$.getJSON(uploadURI, function (data) {
 			$.each(data, function (index, element) {
 				items.push('<li class="list-group-item">' + element + '<div class="pull-right"><a href="#" data-file="' + element + '" class="remove-file"><i class="glyphicon glyphicon-remove"></i></a></div></li>');

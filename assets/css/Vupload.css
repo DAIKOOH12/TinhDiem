@@ -1488,9 +1488,12 @@ h1 {
 	height: 40px;
 	background: rgb(0, 90, 200);
 	color: #fff;
-	border-radius: 3px;
 	font-size: 14px;
-
+}
+.btn-file{
+	border-radius:5px;
+	width: 100%;
+	
 }
 
 input:hover {
@@ -1524,13 +1527,28 @@ input:hover {
 	display: flex;
 	min-height: 300px;
 	flex-wrap: wrap;
-	max-width: 300px;
+	max-width: 400px;
+	justify-content: center;
 }
 
 #iiwo{
 	display: flex;
 	flex-wrap: wrap;
+	width: 100%;
+	justify-content: space-evenly;
 }
 #file:hover{
 	cursor: pointer;
+}
+#btn-save-result{
+	display: none;
+}
+.list-group{
+	width: 100%;
+}
+.opt-files{
+	display: flex;
+	width: 100%;
+	height: fit-content;
+	flex-wrap: wrap;
 }

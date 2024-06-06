@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -179,11 +180,11 @@
 
                 <div class="menu_contact">
                   <div class="menu_contact_item">
-                    <div class="menu_contact_icon"><img src="images/phone_white.png" alt=""></div>
+                    <div class="menu_contact_icon"><img src="" alt=""></div>
                     +38 068 005 3570
                   </div>
                   <div class="menu_contact_item">
-                    <div class="menu_contact_icon"><img src="images/mail_white.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a>
+                    <div class="menu_contact_icon"><img src="" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a>
                   </div>
                 </div>
               </div>
@@ -223,9 +224,12 @@
             <div class="fileinput fileinput-new input-group form-ctrl" data-provides="fileinput" id="iiwo">
               <div class="form-control" data-trigger="fileinput" style="width: 100%;"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename">Định dạng file hỗ trợ: .xlsx</span></div>
               <div class="opt-files">
-                <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new"><i class="glyphicon glyphicon-paperclip"></i> Thêm các tệp tin</span><span class="fileinput-exists"><i class="glyphicon glyphicon-repeat"></i> Thay đổi</span><input type="file" name="file[]" multiple id="file" placeholder="Định dạng file hỗ trợ: .xlsx"></span>
-                <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput"><i class="glyphicon glyphicon-remove"></i> Xóa</a>
-                <a href="#" id="upload-btn" class="input-group-addon btn btn-success fileinput-exists"><i class="glyphicon glyphicon-open"></i> Tính điểm</a>
+                <span class="input-group-addon btn-outline-primary btn-file"><span class="fileinput-new"><i class="glyphicon glyphicon-paperclip"></i> Thêm các tệp tin</span><span class="fileinput-exists"><i class="glyphicon glyphicon-repeat"></i> Thay đổi</span><input type="file" name="file[]" multiple id="file" placeholder="Định dạng file hỗ trợ: .xlsx"></span>
+                <div class="btn-tacvu" style="width: 100%;display: flex;">
+                  <a href="#" class="btn btn-outline-danger fileinput-exists" data-dismiss="fileinput"><i class="glyphicon glyphicon-remove"></i> Xóa</a>
+                  <a href="#" id="upload-btn" class="input-group-addon btn btn-outline-warning fileinput-exists"><i class="glyphicon glyphicon-open"></i> Tải file lên</a>
+                  <a href="#" id="cal-btn" class="input-group-addon btn btn-outline-success fileinput-exists"><i class="fa-solid fa-calculator"></i> Tính điểm</a>
+                </div>
               </div>
             </div>
           </form>
@@ -237,9 +241,8 @@
             </div>
           </div>
 
-          <ul class="list-group">
-            <ul>
-              <a href="<?php echo site_url('site/spreadsheet_format') ?>" target="_blank" class="btn btn-outline-info">Tải kết quả</a>
+          <ul class="list-group"></ul>
+          <a href="<?php echo site_url('site/spreadsheet_format') ?>" target="_blank" class="btn btn-outline-info" id="btn-save-result">Tải kết quả</a>
         </div><!-- /.container -->
       </div>
     </div>
