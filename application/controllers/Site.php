@@ -185,7 +185,8 @@ class Site extends CI_Controller
 
 	public function spreadsheet_import()
 	{
-		$upload_file = $_FILES['upload_file']['name'];
+		$this->showArr($_FILES);
+		$upload_file = $_FILES['upload_file_key']['name'];
 		$extension = pathinfo($upload_file, PATHINFO_EXTENSION);
 		if ($extension == 'csv') {
 			$reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
@@ -196,7 +197,7 @@ class Site extends CI_Controller
 		}
 		$made = $this->input->post('made');
 		// $this->showArr($upload_file);
-		$spreadsheet = $reader->load($_FILES['upload_file']['tmp_name']);
+		$spreadsheet = $reader->load($_FILES['upload_file_key']['tmp_name']);
 		$sheetdata = $spreadsheet->getActiveSheet()->toArray();
 		// $this->showArr($sheetdata);
 		$sheetcount = count($sheetdata);
