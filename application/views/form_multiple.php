@@ -80,27 +80,17 @@
                         <div class="input_wrap">
                             <input type="submit" value="Tải lên" name="submit" class="btn btn-primary" id="upload-btn">
                         </div>
+                        <ul class="list-group"></ul>
                     </div>
 
                 </form>
-                <ul class="list-group"></ul>
+                
             </div>
             <div class="form_3 data_info" style="display: none;">
-                <h2>Professional Info</h2>
-                <form action="<?php echo site_url("site/upload") ?>">
-                    <div class="form_container">
-                        <div class="input_wrap">
-                            <label for="company">Current Company</label>
-                            <input type="text" name="Current Company" class="input" id="company">
-                        </div>
-                        <div class="input_wrap">
-                            <label for="experience">Total Experience</label>
-                            <input type="text" name="Total Experience" class="input" id="experience">
-                        </div>
-                        <div class="input_wrap">
-                            <label for="designation">Designation</label>
-                            <input type="text" name="Designation" class="input" id="designation">
-                        </div>
+                <h2>Đang xử lí.....</h2>
+                <form action="<?php echo site_url("site/upload") ?>" id="form-upload-key">
+                    <div class="input_wrap" style="display: flex;justify-content: center;">
+                        <div class="loader"></div>
                     </div>
                 </form>
             </div>

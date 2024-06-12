@@ -24,6 +24,7 @@ $(function () {
 	var form_3_progessbar = document.querySelector(".form_3_progessbar");
 
 	var btn_done = document.querySelector(".btn_done");
+	var btn_back = document.querySelector(".btn_back");
 	var modal_wrapper = document.querySelector(".modal_wrapper");
 	var shadow = document.querySelector(".shadow");
 
@@ -51,10 +52,13 @@ $(function () {
 		form_2.style.display = "none";
 		form_3.style.display = "block";
 
-		form_3_btns.style.display = "flex";
+		form_3_btns.style.display = "none";
 		form_2_btns.style.display = "none";
 
+		
+		
 		form_3_progessbar.classList.add("active");
+		
 	});
 
 	form_3_back_btn.addEventListener("click", function () {
