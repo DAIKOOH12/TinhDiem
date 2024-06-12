@@ -246,8 +246,6 @@
         </div><!-- /.container -->
       </div>
     </div>
-
-
   </section>
   <footer class="bg-dark text-center text-lg-start text-white">
     <!-- Grid container -->

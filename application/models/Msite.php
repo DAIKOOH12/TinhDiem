@@ -9,7 +9,7 @@ class Msite extends CI_Model
     }
     public function insert_data($data)
     {
-        $this->db->insert_batch('tbl_dapan', $data);
+        $this->db->insert_batch('tbldapan', $data);
     }
     public function insert_sv_answer($data)
     {
