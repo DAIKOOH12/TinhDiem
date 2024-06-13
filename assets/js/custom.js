@@ -5,12 +5,15 @@ $(function () {
 	var inputFileKey = $('input[name=upload_file_key]');
 	var uploadURIKey = $('#form-upload-key').attr('action');
 
-
+	
 	$('#btn-upload-key').on('click', function (even) {
 		var made = $('#made').val();
 		even.preventDefault();
 		if (made == "") {
 			alert("Bạn cần nhập mã đề");
+		}
+		if (mamon == "" || mamon == null) {
+			alert("Mã môn không được để trống");
 		}
 		else {
 			var fileToUpload = inputFileKey[0].files[0];

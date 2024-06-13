@@ -1519,7 +1519,6 @@ input:hover {
 .form-ctrl,#form-upload {
 	display: flex !important;
 	flex-wrap: wrap;
-	max-height: 300px;
 	width: 300px;
 }
 
@@ -1650,6 +1649,7 @@ body{
 
 .wrapper .form_wrap{
 	margin-bottom: 35px;
+	background-color: #f9f9f9;
 }
 
 .wrapper .form_wrap h2{
@@ -1816,3 +1816,21 @@ body{
 	0% { transform: rotate(0deg); }
 	100% { transform: rotate(360deg); }
   }
+  .list-group-item{
+	background-color: rgb(255, 255, 255);
+	padding: 10px;
+	color: black;
+	box-shadow: 1px 1px 1px 1px rgb(0 0 0 / 6%);
+	margin-bottom: 10px;
+  }
+#upload_file,#file{
+	border: 1px solid rgba(0, 0, 0, 0.13);
+	border-radius: 0;
+	width: 100%;
+	font-size: 15px;
+	padding: 10px;
+}
+#btn-upload-key:hover{
+	cursor: pointer;
+	opacity: 0.8;
+}

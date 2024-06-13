@@ -55,10 +55,10 @@ $(function () {
 		form_3_btns.style.display = "none";
 		form_2_btns.style.display = "none";
 
-		
-		
+
+
 		form_3_progessbar.classList.add("active");
-		
+
 	});
 
 	form_3_back_btn.addEventListener("click", function () {
@@ -81,9 +81,13 @@ $(function () {
 
 	$('#btn-upload-key').on('click', function (even) {
 		var made = $('#made').val();
+		var mamon = $('#mamon').val();
 		even.preventDefault();
 		if (made == "") {
 			alert("Bạn cần nhập mã đề");
+		}
+		if(mamon == "" || made == null){
+			alert("Mã môn không được để trống");
 		}
 		else {
 			var fileToUpload = inputFileKey[0].files[0];
@@ -120,7 +124,7 @@ $(function () {
 				var file = filesToUpload[i];
 
 				formData.append("file[]", file, file.name);
-				}
+			}
 
 			// now upload the file using $.ajax
 			$.ajax({
@@ -173,7 +177,7 @@ $(function () {
 		var items = [];
 		$.getJSON(uploadURI, function (data) {
 			$.each(data, function (index, element) {
-				items.push('<li class="list-group-item">' + element + '<div class="pull-right"><a href="#" data-file="' + element + '" class="remove-file"><i class="glyphicon glyphicon-remove"></i></a></div></li>');
+				items.push('<li class="list-group-item"><i class="fa-solid fa-file" style="margin-right: 10px;"></i>' + element + '<div class="pull-right"><a href="#" data-file="' + element + '" class="remove-file"><i class="fa-solid fa-x" style="color: #ff0000;"></i></a></div>');
 			});
 			$('.list-group').html("").html(items.join(""));
 		});

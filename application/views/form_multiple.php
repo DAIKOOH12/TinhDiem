@@ -6,15 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo base_url() . 'assets/css/Vupload.css'; ?>">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="<?php echo base_url() . 'assets/fontawesome/css/all.min.css'; ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>Document</title>
 </head>
 
 <body>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-
     <div class="wrapper">
         <div class="header">
             <ul>
@@ -52,8 +50,8 @@
                             <label class="mr-2">Nhập bộ đáp án</label>
                             <input type="file" name="upload_file_key" id="upload_file" class="form-control" placeholder="Enter file">
                         </div>
-                        <div class="input_wrap">
-                            <input type="submit" value="Tải lên" name="submit" class="btn btn-primary" id="btn-upload-key">
+                        <div class="input_wrap" style="display: flex;justify-content: center;">
+                            <button class="btn btn-primary" id="btn-upload-key"><i class="fa-solid fa-file-arrow-up" style="color: #ffffff;margin-right: 10px;"></i>Tải lên</button>
                         </div>
                     </div>
                 </form>
@@ -77,14 +75,22 @@
                         <div class="input_wrap">
                             <span class="input-group-addon btn-outline-primary btn-file"><span class="fileinput-new"><i class="glyphicon glyphicon-paperclip"></i> Thêm các tệp tin</span><input type="file" name="file[]" multiple id="file" placeholder="Định dạng file hỗ trợ: .xlsx"></span>
                         </div>
-                        <div class="input_wrap">
-                            <input type="submit" value="Tải lên" name="submit" class="btn btn-primary" id="upload-btn">
+                        <div class="input_wrap"  style="display: flex;justify-content: center;">
+                        <button class="btn btn-primary" id="upload-btn"><i class="fa-solid fa-file-arrow-up" style="color: #ffffff;margin-right: 10px;"></i>Tải lên</button>
                         </div>
-                        <ul class="list-group"></ul>
+                        <div class="progress" style="display:none;width: 100%;">
+                            <div id="progress-bar" class="progress-bar progress-bar-success progress-bar-striped " role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+                                20%
+                            </div>
+                        </div>
+                        <h4>Các file đã thêm</h4>
+                        <ul class="list-group">
+
+                        </ul>
                     </div>
 
                 </form>
-                
+
             </div>
             <div class="form_3 data_info" style="display: none;">
                 <h2>Đang xử lí.....</h2>
@@ -137,5 +143,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 
 </html>
