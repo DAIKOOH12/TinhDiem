@@ -4,7 +4,7 @@ $(function () {
 	var progressBar = $('#progress-bar');
 	var inputFileKey = $('input[name=upload_file_key]');
 	var uploadURIKey = $('#form-upload-key').attr('action');
-	
+
 
 	var form_1 = document.querySelector(".form_1");
 	var form_2 = document.querySelector(".form_2");
@@ -87,8 +87,14 @@ $(function () {
 		form_3_btns.style.display = "none";
 		form_3_btns.style.display = "none";
 
-		if($('#cbSendEmail').is(":checked")){
+		if ($('#cbSendEmail').is(":checked")) {
 			$(".form_4").html('<div class="input_wrap" style="display: flex;justify-content: center;width:120%;"><h2>Kết quả sẽ được gửi qua email!!!</h2></div>')
+		}
+		else {
+			setTimeout(function () {
+				$(".form_4").html('<h2>Hoàn thành!!!</h2><div class="input_wrap" style="display: flex;justify-content: center;"><div class="input_wrap" style="display: flex;justify-content: center;"><label for="file" id="lb-downloadfile"><i class="fa-solid fa-file-arrow-down fa-2xl" style="color: white;margin-right: 10px"></i>Tải file xuống</label></div></div>');
+			}, 5000);
+			
 		}
 		form_4_progessbar.classList.add("active");
 
@@ -102,7 +108,7 @@ $(function () {
 	// 	modal_wrapper.classList.remove("active");
 	// })
 
-	$('.btn-add-files').on('click',function(e){
+	$('.btn-add-files').on('click', function (e) {
 		// console.log($('add-files-group'));
 		$('.add-files-group').append('<div class="input-group" style="display: flex;width:100%;align-items: center;"><input type="text" name="" id="" class="input input-made" placeholder="Định dạng file hỗ trợ .xlsx"><label for="upload_file" id="lbinput-file"><i class="fa-solid fa-file-circle-plus fa-2xl" style="color: #f19b38;margin-left: 10px"></i></label><input type="file" name="upload_file_key" id="upload_file" class="form-control" placeholder="Enter file"></div>');
 	})
@@ -114,7 +120,7 @@ $(function () {
 		if (made == "") {
 			alert("Bạn cần nhập mã đề");
 		}
-		if(mamon == "" || made == null){
+		if (mamon == "" || made == null) {
 			alert("Mã môn không được để trống");
 		}
 		else {
@@ -139,7 +145,7 @@ $(function () {
 		}
 	});
 
-	$('#file').on('change',function(event){
+	$('#file').on('change', function (event) {
 		var filesToUpload = inputFile[0].files;
 		var filesToUpload = inputFile[0].files;
 		// event.preventDefault();

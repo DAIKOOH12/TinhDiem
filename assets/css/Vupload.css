@@ -343,3 +343,13 @@ body {
 #cbSendEmail{
 	zoom: 1.5;
 }
+#lb-downloadfile{
+	background-color: #8DA84F;
+	color: white;
+	border-radius: 5px;
+	padding: 20px;
+}
+#lb-downloadfile:hover{
+	cursor: pointer;
+	opacity: 0.7;
+}

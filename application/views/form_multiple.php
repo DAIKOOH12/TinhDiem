@@ -118,6 +118,7 @@
                 <div class="input_wrap" style="display: flex;justify-content: center;">
                     <div class="loader"></div>
                 </div>
+                
             </div>
         </div>
         <div class="btns_wrap">
