@@ -105,7 +105,23 @@ $(function () {
   }
 
   function check() {
-    console.log("done");
+    setTimeout(() => {
+      $.ajax({
+        url: "http://localhost/tinhdiem/index.php/Caculation/get_status",
+        type: "get",
+        success: function($res) {
+          // $response == JSON.parse(res);
+          if($res == "Done") {
+            console.log("done");
+            $('.loader').hide();
+            $('#btn_taiXuong').show()
+          }
+          else {
+            check();
+          }
+        }
+      })
+    }, 3000);
   }
   
   form_4_progessbar.addEventListener("", function(){})

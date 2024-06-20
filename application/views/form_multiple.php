@@ -121,8 +121,11 @@
                 <h2>Đang xử lí.....</h2>
                 <div class="input_wrap" style="display: flex;justify-content: center;">
                     <div class="loader"></div>
+                    <form action="<?php echo site_url("Caculation/get_excel") ?>" method="post" id="form-TaiXuong">
+                        <button type="submit" id="btn_taiXuong" style="display: none;">Tải xuống kết quả</button>
+                    </form>
                 </div>
-                
+
             </div>
         </div>
         <div class="btns_wrap">

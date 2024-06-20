@@ -11,7 +11,7 @@ class CPhieuTraLoi extends CI_Controller
 	}
 
 	public function index() {
-		file_put_contents("E:\\xampp\htdocs\TinhDiem\check.json", "OK");
+		
 		$this->load->model("MPhieuTraLoi");
 		$this->MPhieuTraLoi->import();
 	}
@@ -79,4 +79,6 @@ class CPhieuTraLoi extends CI_Controller
 		$file_to_remove = $this->input->post("file_to_remove");
 		unlink("./assets/uploadSV/" . $file_to_remove);
 	}
+
+	
 }
