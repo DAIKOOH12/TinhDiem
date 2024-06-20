@@ -62,6 +62,12 @@
                             <label for="email">Nhập tên môn</label>
                             <input type="text" name="mamon" class="input" id="mamon">
                         </div>
+                        <div class="input_wrap">
+                            <div class="btn-add-files" id="add-mamon">
+                                <i class="fa-solid fa-plus fa-xl" style="color: white;"></i>
+                                <span style="color:white;">Thêm mã đề</span>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -118,7 +124,7 @@
                 <div class="input_wrap" style="display: flex;justify-content: center;">
                     <div class="loader"></div>
                 </div>
-                
+
             </div>
         </div>
         <div class="btns_wrap">
