@@ -99,8 +99,12 @@
                             <input type="file" name="file[]" multiple id="file" placeholder="Định dạng file hỗ trợ: .xlsx" style="display: none;">
                             <!-- <button class="btn btn-primary" id="upload-btn"><i class="fa-solid fa-file-arrow-up" style="color: #ffffff;margin-right: 10px;"></i>Tải lên</button> -->
                         </div>
-                        <div class="input_wrap" style="display: flex;justify-content: center;">
+                        <div class="input_wrap" style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
                             <h4>Các file đã thêm</h4>
+                            <ul id="listFiles">
+
+
+                            </ul>
                         </div>
                         <!-- <div class="progress" style="display:none;width: 100%;">
                             <div id="progress-bar" class="progress-bar progress-bar-success progress-bar-striped " role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
