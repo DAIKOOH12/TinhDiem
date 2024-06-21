@@ -43,29 +43,28 @@
         <div class="form_wrap">
             <div class="form_1 data_info">
                 <h2>Nhập thông tin môn thi</h2>
-                <form action="<?php echo site_url('site/spreadsheet_import') ?>" method="post" enctype="multipart/form-data" id="form-upload-key">
+                <form action="<?php echo site_url('site/addMonHoc') ?>" method="post" enctype="multipart/form-data" id="form-upload-key">
                     <div class="form_container">
                         <div class="input_wrap">
                             <label for="email">Danh sách môn đã có</label>
                             <select name="" id="dsmon">
-                                <option value="">Kinh tế - Chính trị (7E13000)</option>
-                                <option value="">Tiếng Anh cơ bản 3 (7E13203)</option>
-                                <option value="">Triết học Mác - Lenin (7E32910)</option>
-                                <option value="">Tiếng Anh cơ bản 1 (7E20304)</option>
+                                <?php for ($i = 0; $i < count($dsmon); $i++) { ?>
+                                    <option value="<?php echo $dsmon[$i]['idMon'] ?>"><?php echo $dsmon[$i]['sTenMon'] . " (" . $dsmon[$i]['idMon'] . ")"; ?></option>
+                                <?php } ?>
                             </select>
                         </div>
                         <div class="input_wrap">
-                            <label for="email">Nhập mã môn</label>
-                            <input type="text" name="made" class="input" id="made">
+                            <label for="mamon">Nhập mã môn</label>
+                            <input type="text" name="mamon" class="input" id="mamon">
                         </div>
                         <div class="input_wrap">
-                            <label for="email">Nhập tên môn</label>
-                            <input type="text" name="mamon" class="input" id="mamon">
+                            <label for="tenmon">Nhập tên môn</label>
+                            <input type="text" name="tenmon" class="input" id="tenmon">
                         </div>
                         <div class="input_wrap">
                             <div class="btn-add-files" id="add-mamon">
                                 <i class="fa-solid fa-plus fa-xl" style="color: white;"></i>
-                                <span style="color:white;">Thêm mã đề</span>
+                                <span style="color:white;">Thêm môn</span>
                             </div>
                         </div>
                     </div>
@@ -76,12 +75,13 @@
                 <form action="<?php echo site_url('site/spreadsheet_import') ?>" method="post" enctype="multipart/form-data" id="form-upload-key">
                     <div class="form_container">
                         <div class="input_wrap">
+                            <h4 id="current-mon"></h4>
                             <label for="input-made">Nhập mã đề</label>
                             <div class="add-files-group">
                                 <div class="input-group">
-                                    <input type="text" name="" id="" class="input input-made" placeholder="Định dạng file hỗ trợ .xlsx">
-                                    <label for="upload_file" id="lbinput-file"><i class="fa-solid fa-file-circle-plus fa-2xl" style="color: #f19b38;margin-left: 10px"></i></label>
-                                    <input type="file" name="upload_file_key" id="upload_file" class="form-control" placeholder="Enter file">
+                                    <input type="text" name="" id="" class="input input-made" placeholder="Định dạng hỗ trợ .xlsx">
+                                    <label for="upload_file" class="lbinput-file"></label>
+                                    <input type="file" name="upload_file_key" class="upload_file" class="form-control" placeholder="Enter file">
                                 </div>
                             </div>
                             <div class="btn-add-files">

@@ -14,9 +14,17 @@ class Site extends CI_Controller
 
 	public function index()
 	{
-		$this->load->view("form_multiple");
+		echo "Xin chào";
+		$data["dsmon"]=$this->Msite->get_dsmon();
+		$this->load->view("form_multiple",$data);
 	}
 
+	public function addMonHoc(){
+		$this->showArr($this->input->post());
+		$monhoc['idMon']=$this->input->post('mamon');
+		$monhoc['sTenMon']=$this->input->post('tenmon');
+		$this->Msite->insert_mon($monhoc);
+	}
 	public function upload()
 	{
 		if (!empty($_FILES)) {
@@ -92,9 +100,8 @@ class Site extends CI_Controller
 		$writer->save("php://output");
 	}
 
-	public function spreadsheet_import()
+	public function themdapan()
 	{
-		$this->showArr($_FILES);
 		$upload_file = $_FILES['upload_file_key']['name'];
 		$extension = pathinfo($upload_file, PATHINFO_EXTENSION);
 		if ($extension == 'csv') {
@@ -104,30 +111,28 @@ class Site extends CI_Controller
 		} else if ($extension == 'xlsx') {
 			$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
 		}
-		$made = $this->input->post('made');
-		// $this->showArr($upload_file);
 		$spreadsheet = $reader->load($_FILES['upload_file_key']['tmp_name']);
 		$sheetdata = $spreadsheet->getActiveSheet()->toArray();
-		// $this->showArr($sheetdata);
-		$sheetcount = count($sheetdata);
-		if ($sheetcount > 1) {
-			$data = array();
-			for ($i = 1; $i < $sheetcount; $i++) {
-				$stt = $sheetdata[$i][0];
-				$dapan = $sheetdata[$i][1];
-				$noidung = $sheetdata[$i][2];
-				$macau = $sheetdata[$i][3];
-				$data[] = array(
-					'STT' => $stt,
-					'sMaDe' => $made,
-					'DapAn' => $dapan,
-					'NoiDung' => $noidung,
-					'sMaCau' => $macau
-				);
-			}
-			// $this->showArr($data);
-			$this->Msite->insert_data($data);
-		}
+		$this->showArr($sheetdata);
+		// $sheetcount = count($sheetdata);
+		// if ($sheetcount > 1) {
+		// 	$data = array();
+		// 	for ($i = 1; $i < $sheetcount; $i++) {
+		// 		$stt = $sheetdata[$i][0];
+		// 		$dapan = $sheetdata[$i][1];
+		// 		$noidung = $sheetdata[$i][2];
+		// 		$macau = $sheetdata[$i][3];
+		// 		$data[] = array(
+		// 			'STT' => $stt,
+		// 			'sMaDe' => $made,
+		// 			'DapAn' => $dapan,
+		// 			'NoiDung' => $noidung,
+		// 			'sMaCau' => $macau
+		// 		);
+		// 	}
+		// 	// $this->showArr($data);
+		// 	$this->Msite->insert_data($data);
+		// }
 	}
 	public function showArr($arr)
 	{

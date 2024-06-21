@@ -51,5 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'Site';
 $route['site'] = 'Site';
+$route['themmon'] = 'Site/addMonHoc';
+$route['themdapan'] = 'Site/themdapan';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
