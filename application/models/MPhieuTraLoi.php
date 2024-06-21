@@ -1,26 +1,29 @@
-<?php 
+<?php
 
-defined("BASEPATH") OR exit("No direct script access allowed");
+defined("BASEPATH") or exit("No direct script access allowed");
 require FCPATH . 'vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-class MPhieuTraLoi extends CI_Model {
+
+class MPhieuTraLoi extends CI_Model
+{
 
     public $data_excel = array();
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         $this->load->database();
     }
 
-    public function import() {
+    public function import()
+    {
 
-        $da = $this->db->get("tblDapAn");
-        $dataDA = $da->result_array();
+
         // file_put_contents("E:\\xampp\htdocs\TinhDiem\check.json", json_encode($dataDA));
-        
+
         $this->load->helper('file');
         $files = get_filenames("./assets/uploadSV");
         // file_put_contents('E:\xampp\htdocs\tinhdiem\result.json', "fdsf");
@@ -39,7 +42,7 @@ class MPhieuTraLoi extends CI_Model {
                 $sheetdata = $spreadsheet->getActiveSheet()->toArray();
                 $sheetcount = count($sheetdata);
 
-                
+
                 // $data_key = ["ma_sv", "ho_ten", "nam_sinh", "que_quan"];
                 // $data_key = ["iSTT", "sMaDe", "sDapAn", "sNoiDung", "sMaCauHoi"];
 
@@ -56,24 +59,30 @@ class MPhieuTraLoi extends CI_Model {
                                 $listDA .= $sheetdata[$i][$j] . "/";
                         }
                         // for ($o = 0; $o < count($dataDA); $o++) {
-                            $SoCH = "";
-                            $count = 0;
-                            // log_message("dk","DS01" .$sheetdata[$i][5]);
-                            // file_put_contents('E:\xampp\htdocs\tinhdiem\result.json', "DS01" . $sheetdata[$i][5]);
-                            if ("DS01" == $sheetdata[$i][5]) {
-                                // file_put_contents('E:\xampp\htdocs\TinhDiem\status.txt', json_encode($listDA));
-                                $list1 = explode("/", $dataDA[0]["sDapAn"]);
-                                $list2 = explode("/", $listDA);
-                                $listMCH = explode("/", $dataDA[0]["sMaCauHoi"]);
+                        $SoCH = "";
+                        $count = 0;
+
+                        $this->db->like("pk_DeMon", "M1" . "-" . $sheetdata[$i][5]);
+                        $da = $this->db->get("tblDapAn");
+                        $dataDA = $da->result_array();
+                        file_put_contents("E:\\xampp\htdocs\TinhDiem\\result2.json",json_encode($dataDA), false);
+
+                        // if ($dataDA[0]["pk_DeMon"] == $sheetdata[$i][5]) {
+                            // file_put_contents('E:\xampp\htdocs\TinhDiem\status.txt', json_encode($listDA));
+                            $list1 = explode("/", $dataDA[0]["sDapAn"]);
+                            $list2 = explode("/", $listDA);
+                            $listMCH = explode("/", $dataDA[0]["sMaCauHoi"]);
 
 
-                                for ($q = 0; $q < count($list1) - 1; $q++) {
-                                    if ($list1[$q] == $list2[$q]) {
-                                        $count++;
-                                        $SoCH .= $listMCH[$q] . "/";
-                                    }
+                            for ($q = 0; $q < count($list1) - 1; $q++) {
+                                if ($list1[$q] == $list2[$q]) {
+                                    $count++;
+                                    $SoCH .= $listMCH[$q] . "/";
                                 }
                             }
+                        // }
+
+
                         // }
 
                         $dataCH = array(
@@ -93,7 +102,7 @@ class MPhieuTraLoi extends CI_Model {
                     }
 
 
-                    $this->data_excel = $data_res;
+                    // $this->data_excel = $data_res;
                     // session_start();
                     // $_SESSION['data_result']=$data_res;
                     // session_write_close();
@@ -117,10 +126,4 @@ class MPhieuTraLoi extends CI_Model {
             }
         }
     }
-
-    public function get_result() {
-        return $this->data_excel;
-    }
-    
-
 }
