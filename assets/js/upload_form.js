@@ -155,7 +155,7 @@ $(function () {
 	$(".btn-add-files").on("click", function (e) {
 		// console.log($('add-files-group'));
 		$(".add-files-group").append(
-			'<div class="input-group"><input type="text" class="input input-made" placeholder="Định dạng file hỗ trợ .xlsx"><input type="file" name="upload_file_key" class="upload_file" class="form-control" placeholder="Enter file"></div>'
+			'<div class="input-group"><input type="text" class="input input-made" placeholder="Định dạng file hỗ trợ .xlsx"><input type="file" name="upload_file_key" class="upload_file form-control" placeholder="Enter file"></div>'
 		);
 	});
 
