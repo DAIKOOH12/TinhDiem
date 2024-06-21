@@ -14,15 +14,15 @@ class Site extends CI_Controller
 
 	public function index()
 	{
-		echo "Xin chào";
-		$data["dsmon"]=$this->Msite->get_dsmon();
-		$this->load->view("form_multiple",$data);
+		$data["dsmon"] = $this->Msite->get_dsmon();
+		$this->load->view("form_multiple", $data);
 	}
 
-	public function addMonHoc(){
+	public function addMonHoc()
+	{
 		$this->showArr($this->input->post());
-		$monhoc['idMon']=$this->input->post('mamon');
-		$monhoc['sTenMon']=$this->input->post('tenmon');
+		$monhoc['idMon'] = $this->input->post('mamon');
+		$monhoc['sTenMon'] = $this->input->post('tenmon');
 		$this->Msite->insert_mon($monhoc);
 	}
 	public function upload()
@@ -59,11 +59,10 @@ class Site extends CI_Controller
 				$sheetdata = $spreadsheet->getActiveSheet()->toArray();
 				// $this->showArr($sheetdata);
 				$sheetcount = count($sheetdata);
-				$total_record += $sheetcount; 
+				$total_record += $sheetcount;
 				if ($sheetcount > 1) {
-					
 				}
-				$sheetcount=count($sheetdata);
+				$sheetcount = count($sheetdata);
 			}
 			// $this->showArr($data);
 			// $this->Msite->insert_sv_answer($data);
@@ -102,6 +101,18 @@ class Site extends CI_Controller
 
 	public function themdapan()
 	{
+		// $this->showArr($_FILES);
+		$made = $this->input->post('made') . "-" . date('d/m/Y') . "-" . date('h:i:s');
+		$mamon = $this->input->post('mamon');
+		$newDe['idDe'] = $made;
+		$newDe['sMaDe'] = $this->input->post('made');
+		$newDe['fk_mon'] = $mamon;
+		$newDe['dThoiGianTao'] = date('d/m/Y') . "-" . date('h:i:s');
+		$newDe['sTrangThai'] = "active";
+		$this->Msite->insert_de($newDe);
+
+
+
 		$upload_file = $_FILES['upload_file_key']['name'];
 		$extension = pathinfo($upload_file, PATHINFO_EXTENSION);
 		if ($extension == 'csv') {
@@ -113,26 +124,28 @@ class Site extends CI_Controller
 		}
 		$spreadsheet = $reader->load($_FILES['upload_file_key']['tmp_name']);
 		$sheetdata = $spreadsheet->getActiveSheet()->toArray();
-		$this->showArr($sheetdata);
-		// $sheetcount = count($sheetdata);
-		// if ($sheetcount > 1) {
-		// 	$data = array();
-		// 	for ($i = 1; $i < $sheetcount; $i++) {
-		// 		$stt = $sheetdata[$i][0];
-		// 		$dapan = $sheetdata[$i][1];
-		// 		$noidung = $sheetdata[$i][2];
-		// 		$macau = $sheetdata[$i][3];
-		// 		$data[] = array(
-		// 			'STT' => $stt,
-		// 			'sMaDe' => $made,
-		// 			'DapAn' => $dapan,
-		// 			'NoiDung' => $noidung,
-		// 			'sMaCau' => $macau
-		// 		);
-		// 	}
-		// 	// $this->showArr($data);
-		// 	$this->Msite->insert_data($data);
-		// }
+		// $this->showArr($sheetdata);
+		$sheetcount = count($sheetdata);
+		$dsDapAn['pk_DeMon'] = $mamon . "-" . $made . "-" . date('d/m/Y') . "-" . date('h:i:sa');
+		$dsDapAn['fk_idde']=$made;
+		$dsDapAn['fk_idmon']=$mamon;
+		$dsDapAn['fk_idThuMuc']='tm1';
+		$dsDapAn['sDapAn']="";
+		$dsDapAn['sMaCauHoi']="";
+		$dsDapAn['iSoLuongCau']=$sheetcount-1;
+		if ($sheetcount > 1) {
+			for($i=1;$i<$sheetcount;$i++){
+				if($i==1){
+					$dsDapAn['sDapAn'].=$sheetdata[$i][1];
+					$dsDapAn['sMaCauHoi']=$sheetdata[$i][3];
+				}
+				$dsDapAn['sDapAn']=$dsDapAn['sDapAn']."/".$sheetdata[$i][1];
+				$dsDapAn['sMaCauHoi']=$dsDapAn['sMaCauHoi']."/".$sheetdata[$i][3];
+			}
+			
+			// $this->showArr($dsDapAn);
+			$this->Msite->insert_dapan($dsDapAn);
+		}
 	}
 	public function showArr($arr)
 	{

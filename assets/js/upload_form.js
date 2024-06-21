@@ -64,6 +64,19 @@ $(function () {
 		form_2_btns.style.display = "none";
 
 		form_3_progessbar.classList.add("active");
+		// var formData = new FormData($('#form-upload-dapan')[0]);
+		// console.log(formData);
+		// $.ajax({
+		// 	url: window.location.href + "/themdapan",
+		// 	type: 'POST',
+		// 	data: formData,
+		// 	success: function (data) {
+		// 		alert("Thành công");
+		// 	},
+		// 	cache: false,
+		// 	contentType: false,
+		// 	processData: false
+		// });
 	});
 
 	form_3_back_btn.addEventListener("click", function () {
@@ -142,22 +155,26 @@ $(function () {
 	$(".btn-add-files").on("click", function (e) {
 		// console.log($('add-files-group'));
 		$(".add-files-group").append(
-			'<div class="input-group"><input type="text" name="" id="" class="input input-made" placeholder="Định dạng file hỗ trợ .xlsx"><label for="upload_file" class="lbinput-file"></label><input type="file" name="upload_file_key" class="upload_file" class="form-control" placeholder="Enter file"></div>'
+			'<div class="input-group"><input type="text" class="input input-made" placeholder="Định dạng file hỗ trợ .xlsx"><input type="file" name="upload_file_key" class="upload_file" class="form-control" placeholder="Enter file"></div>'
 		);
 	});
 
-	$(".upload_file").on("change", function (even) {
+	$(document).on("change", '.upload_file', function (even) {
 		var fileToUpload = inputFileKey[0].files[0];
+		var formDapAn = new FormData($('#form-upload-key')[0]);
+
 		var mamon = $('#dsmon').children("option:selected").val();
 		var made = $('.input-made').val();
 		if (made == "" || made == null) {
 			alert('Bạn chưa nhập mã đề');
-			$(".upload_file").val('');
+			$(this).val('');
 		}
 		else {
 			if (fileToUpload != "undefined") {
 				var formDataKey = new FormData();
 				formDataKey.append("upload_file_key", fileToUpload);
+				formDataKey.append("made",made);
+				formDataKey.append("mamon",mamon);
 				$.ajax({
 					url: window.location.href + "/themdapan",
 					type: "post",
@@ -284,7 +301,7 @@ $(function () {
 
 				formData.append("file[]", file, file.name);
 			}
-
+			z
 			// now upload the file using $.ajax
 			$.ajax({
 				url: uploadURI,

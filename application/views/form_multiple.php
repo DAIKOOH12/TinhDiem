@@ -72,15 +72,14 @@
             </div>
             <div class="form_2 data_info" style="display: none;">
                 <h2>Nhập đáp án</h2>
-                <form action="<?php echo site_url('site/spreadsheet_import') ?>" method="post" enctype="multipart/form-data" id="form-upload-key">
+                <form action="<?php echo site_url('site/spreadsheet_import') ?>" method="post" enctype="multipart/form-data" id="form-upload-dapan">
                     <div class="form_container">
                         <div class="input_wrap">
                             <h4 id="current-mon"></h4>
                             <label for="input-made">Nhập mã đề</label>
                             <div class="add-files-group">
                                 <div class="input-group">
-                                    <input type="text" name="" id="" class="input input-made" placeholder="Định dạng hỗ trợ .xlsx">
-                                    <label for="upload_file" class="lbinput-file"></label>
+                                    <input type="text" class="input input-made" placeholder="Định dạng hỗ trợ .xlsx">
                                     <input type="file" name="upload_file_key" class="upload_file" class="form-control" placeholder="Enter file">
                                 </div>
                             </div>
@@ -144,7 +143,7 @@
                 <button type="button" class="btn_back"><span class="icon">
                         <ion-icon name="arrow-back-sharp"></ion-icon>
                     </span>Quay lại</button>
-                <button type="button" class="btn_next">Lưu đáp án <span class="icon">
+                <button type="button" class="btn_next" id="btn-save-dapan">Lưu đáp án <span class="icon">
                         <ion-icon name="arrow-forward-sharp"></ion-icon>
                     </span></button>
             </div>
