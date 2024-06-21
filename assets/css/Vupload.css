@@ -326,26 +326,31 @@ body {
 	align-items: center;
 	margin-bottom: 10px;
 }
-#lb-filedapan{
+
+#lb-filedapan {
 	padding: 20px;
 	background-color: #004C8E;
 	color: white;
 	border-radius: 5px;
 }
-#lb-filedapan:hover{
+
+#lb-filedapan:hover {
 	cursor: pointer;
 	opacity: 0.7;
 }
-#cbSendEmail{
+
+#cbSendEmail {
 	zoom: 1.5;
 }
-#lb-downloadfile{
+
+#lb-downloadfile {
 	background-color: #8DA84F;
 	color: white;
 	border-radius: 5px;
 	padding: 20px;
 }
-#lb-downloadfile:hover{
+
+#lb-downloadfile:hover {
 	cursor: pointer;
 	opacity: 0.7;
 }

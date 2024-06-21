@@ -80,7 +80,7 @@
                             <div class="add-files-group">
                                 <div class="input-group">
                                     <input type="text" class="input input-made" placeholder="Định dạng hỗ trợ .xlsx">
-                                    <input type="file" name="upload_file_key" class="upload_file" class="form-control" placeholder="Enter file">
+                                    <input type="file" name="upload_file_key" class="upload_file" class="form-control" placeholder="Enter file" >
                                 </div>
                             </div>
                             <div class="btn-add-files">

@@ -159,18 +159,19 @@ $(function () {
 		);
 	});
 
+	
 	$(document).on("change", '.upload_file', function (even) {
-		var fileToUpload = inputFileKey[0].files[0];
-		var formDapAn = new FormData($('#form-upload-key')[0]);
-
+		var fileToUpload = even.target.files[0];
+		// console.log(fileToUpload);
 		var mamon = $('#dsmon').children("option:selected").val();
-		var made = $('.input-made').val();
+		var made = $(this).siblings('.input-made').val();
 		if (made == "" || made == null) {
 			alert('Bạn chưa nhập mã đề');
 			$(this).val('');
 		}
 		else {
 			if (fileToUpload != "undefined") {
+				$(this).parents('.input-group').append('<i class="fa-solid fa-circle-check fa-2xl" style="color: #009e6f;margin-left:10px;"></i>');
 				var formDataKey = new FormData();
 				formDataKey.append("upload_file_key", fileToUpload);
 				formDataKey.append("made",made);
@@ -182,7 +183,8 @@ $(function () {
 					processData: false,
 					contentType: false,
 					success: function () {
-						alert("Thêm file đáp án thành công");
+						$('.upload_file').hide();
+						console.log("Thêm thành công");
 					},
 				});
 			}
@@ -393,3 +395,4 @@ $(function () {
 		});
 	})
 });
+

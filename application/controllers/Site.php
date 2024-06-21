@@ -28,12 +28,12 @@ class Site extends CI_Controller
 	public function upload()
 	{
 		if (!empty($_FILES)) {
-			$config['upload_path'] = "./assets/uploads";
-			$config['allowed_types'] = 'xlsx';
+			$config2['upload_path'] = "./assets/uploads/traloi";
+			$config2['allowed_types'] = 'xlsx';
 
 			$this->load->library('upload');
 			$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-			$this->upload->initialize($config);
+			$this->upload->initialize($config2);
 
 			$files = $_FILES;
 			$number_of_files = count($_FILES['file']['name']);
@@ -101,50 +101,73 @@ class Site extends CI_Controller
 
 	public function themdapan()
 	{
-		// $this->showArr($_FILES);
-		$made = $this->input->post('made') . "-" . date('d/m/Y') . "-" . date('h:i:s');
-		$mamon = $this->input->post('mamon');
-		$newDe['idDe'] = $made;
-		$newDe['sMaDe'] = $this->input->post('made');
-		$newDe['fk_mon'] = $mamon;
-		$newDe['dThoiGianTao'] = date('d/m/Y') . "-" . date('h:i:s');
-		$newDe['sTrangThai'] = "active";
-		$this->Msite->insert_de($newDe);
+		$this->showArr($_POST);
+		$this->showArr($_FILES);
+		if (!empty($_FILES)) {
+			$errors = 0;
+			$config1['upload_path'] = "./assets/uploads/dapan";
+			$config1['allowed_types'] = 'xlsx';
 
-
-
-		$upload_file = $_FILES['upload_file_key']['name'];
-		$extension = pathinfo($upload_file, PATHINFO_EXTENSION);
-		if ($extension == 'csv') {
-			$reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
-		} else if ($extension == 'xls') {
-			$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-		} else if ($extension == 'xlsx') {
+			$this->load->library('upload');
 			$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
-		}
-		$spreadsheet = $reader->load($_FILES['upload_file_key']['tmp_name']);
-		$sheetdata = $spreadsheet->getActiveSheet()->toArray();
-		// $this->showArr($sheetdata);
-		$sheetcount = count($sheetdata);
-		$dsDapAn['pk_DeMon'] = $mamon . "-" . $made . "-" . date('d/m/Y') . "-" . date('h:i:sa');
-		$dsDapAn['fk_idde']=$made;
-		$dsDapAn['fk_idmon']=$mamon;
-		$dsDapAn['fk_idThuMuc']='tm1';
-		$dsDapAn['sDapAn']="";
-		$dsDapAn['sMaCauHoi']="";
-		$dsDapAn['iSoLuongCau']=$sheetcount-1;
-		if ($sheetcount > 1) {
-			for($i=1;$i<$sheetcount;$i++){
-				if($i==1){
-					$dsDapAn['sDapAn'].=$sheetdata[$i][1];
-					$dsDapAn['sMaCauHoi']=$sheetdata[$i][3];
-				}
-				$dsDapAn['sDapAn']=$dsDapAn['sDapAn']."/".$sheetdata[$i][1];
-				$dsDapAn['sMaCauHoi']=$dsDapAn['sMaCauHoi']."/".$sheetdata[$i][3];
+			$this->upload->initialize($config1);
+			if (!$this->upload->do_upload("upload_file_key")) {
+				$errors++;
 			}
-			
-			// $this->showArr($dsDapAn);
-			$this->Msite->insert_dapan($dsDapAn);
+			// $file_name=$_FILES();
+			$thumucdapan = "/assets/uploads/dapan/" . $_FILES['upload_file_key']['full_path'];
+			$dapan['idThuMuc'] = $_FILES['upload_file_key']['full_path'] . date('d/m/Y')."-".date('h:i:s');
+			$dapan['fk_idNguoiDung'] = 'nd1';
+			$dapan['sDuongDan'] = $thumucdapan;
+			$dapan['sTenFile'] = $_FILES['upload_file_key']['full_path'];
+			$dapan['dThoiGian'] = date('d/m/Y') . "-" . date('h:i:s');
+			$this->Msite->insert_dapan_to_folder($dapan);
+
+			$made = $this->input->post('made') . "-" . date('d/m/Y') . "-" . date('h:i:s');
+			$mamon = $this->input->post('mamon');
+			$newDe['idDe'] = $made;
+			$newDe['sMaDe'] = $this->input->post('made');
+			$newDe['fk_mon'] = $mamon;
+			$newDe['dThoiGianTao'] = date('d/m/Y') . "-" . date('h:i:s');
+			$newDe['sTrangThai'] = "active";
+			$this->Msite->insert_de($newDe);
+
+
+
+			$upload_file = $_FILES['upload_file_key']['name'];
+			$extension = pathinfo($upload_file, PATHINFO_EXTENSION);
+			if ($extension == 'csv') {
+				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
+			} else if ($extension == 'xls') {
+				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+			} else if ($extension == 'xlsx') {
+				$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+			}
+			$spreadsheet = $reader->load($_FILES['upload_file_key']['tmp_name']);
+			$sheetdata = $spreadsheet->getActiveSheet()->toArray();
+			// $this->showArr($sheetdata);
+			$sheetcount = count($sheetdata);
+			$dsDapAn['pk_DeMon'] = $mamon . "-" . $made . "-" . date('d/m/Y') . "-" . date('h:i:sa');
+			$dsDapAn['fk_idde'] = $made;
+			$dsDapAn['fk_idmon'] = $mamon;
+			$dsDapAn['fk_idThuMuc'] = 'tm1';
+			$dsDapAn['sDapAn'] = "";
+			$dsDapAn['sMaCauHoi'] = "";
+			$dsDapAn['iSoLuongCau'] = $sheetcount - 1;
+			if ($sheetcount > 1) {
+				for ($i = 1; $i < $sheetcount; $i++) {
+					if ($i == 1) {
+						$dsDapAn['sDapAn'] .= $sheetdata[$i][1];
+						$dsDapAn['sMaCauHoi'] = $sheetdata[$i][3];
+					} else {
+						$dsDapAn['sDapAn'] = $dsDapAn['sDapAn'] . "/" . $sheetdata[$i][1];
+						$dsDapAn['sMaCauHoi'] = $dsDapAn['sMaCauHoi'] . "/" . $sheetdata[$i][3];
+					}
+				}
+
+				// $this->showArr($dsDapAn);
+				$this->Msite->insert_dapan($dsDapAn);
+			}
 		}
 	}
 	public function showArr($arr)
