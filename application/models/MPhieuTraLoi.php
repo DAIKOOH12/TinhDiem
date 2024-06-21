@@ -18,7 +18,7 @@ class MPhieuTraLoi extends CI_Model
         $this->load->database();
     }
 
-    public function import()
+    public function import($mamon)
     {
 
 
@@ -62,7 +62,7 @@ class MPhieuTraLoi extends CI_Model
                         $SoCH = "";
                         $count = 0;
 
-                        $this->db->like("pk_DeMon", "M1" . "-" . $sheetdata[$i][5]);
+                        $this->db->like("pk_DeMon", $mamon . "-" . $sheetdata[$i][5]);
                         $da = $this->db->get("tblDapAn");
                         $dataDA = $da->result_array();
                         file_put_contents("E:\\xampp\htdocs\TinhDiem\\result2.json",json_encode($dataDA), false);
@@ -92,10 +92,11 @@ class MPhieuTraLoi extends CI_Model
                             "sLop" => $sheetdata[$i][4],
                             "sNgaySinh" => $sheetdata[$i][3],
                             "sDapAn" => $listDA,
-                            "fk_demon" => "fk",
+                            "fk_demon" => $mamon. "-" . $sheetdata[$i][5],
                             "iSoLuongCau" => 40,
                             "iSoCauDung" => $count,
                             "sMaCauDung" => $SoCH,
+                            // "sMaDe" => $sheetdata[$i][5],
                         );
 
                         array_push($data_res, $dataCH);
@@ -107,6 +108,7 @@ class MPhieuTraLoi extends CI_Model
                     // $_SESSION['data_result']=$data_res;
                     // session_write_close();
                     file_put_contents('E:\xampp\htdocs\tinhdiem\result.json', json_encode($data_res));
+                    $this->db->insert_batch("tblphieutraloi", $data_res);
                     // $this->get_excel($data_res);
                     // $this->import_tblDapAn($dataDA);
                     // $this->load->model("Msite");

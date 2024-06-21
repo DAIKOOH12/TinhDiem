@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 require FCPATH . 'vendor/autoload.php';
 
 
@@ -11,33 +11,40 @@ class Caculation extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        session_start();
     }
 
     public function start_cal()
     {
-        shell_exec('php index.php CPhieuTraLoi index');
+        if (isset($_POST['mamon'])) {
+            $this->load->model("MPhieuTraLoi");
+            $this->MPhieuTraLoi->import($_POST['mamon']);
+            file_put_contents("E:\\xampp\htdocs\TinhDiem\status.txt", "Done");
+        }
+
     }
 
 
-    public function process_cal() {
+    public function process_cal()
+    {
         $this->load->library('../controllers/CPhieuTraLoi');
         $this->CPhieuTraLoi->index();
     }
 
-    public function get_status() {
-		$res = file_get_contents("E:\\xampp\htdocs\TinhDiem\status.txt");
-		echo ($res);
-		exit;
-	}
+    public function get_status()
+    {
+        $res = file_get_contents("E:\\xampp\htdocs\TinhDiem\status.txt");
+        echo ($res);
+        exit;
+    }
 
-    public function get_excel() {
+    public function get_excel()
+    {
         // echo "haha";
         // exit;
-        
+
         // $productlist = array();
         // file_put_contents('E:\xampp\htdocs\tinhdiem\result2.json', json_encode($_SESSION['data_result']));
-        
+
         $productlist = json_decode(file_get_contents("E:\\xampp\htdocs\TinhDiem\\result.json"), true);
         // if(isset($_SESSION['data_result']))
         //     $productlist = $_SESSION['data_result'];
@@ -62,10 +69,11 @@ class Caculation extends CI_Controller
         $sheet->setCellValue('A1', mb_convert_encoding("SBD", 'UTF-8'));
         $sheet->setCellValue('B1', mb_convert_encoding('Họ Tên', 'UTF-8'));
         $sheet->setCellValue('C1', mb_convert_encoding("Ngày sinh", 'UTF-8'));
-        $sheet->setCellValue('D1', mb_convert_encoding("Số lượng câu", 'UTF-8'));
-        $sheet->setCellValue('E1', mb_convert_encoding("Số câu đúng", 'UTF-8'));
-        $sheet->setCellValue('F1', mb_convert_encoding("Các câu đúng", 'UTF-8'));
-        
+        $sheet->setCellValue('D1', mb_convert_encoding("Mã đề", "UTF-8"));
+        $sheet->setCellValue('E1', mb_convert_encoding("Số lượng câu", 'UTF-8'));
+        $sheet->setCellValue('F1', mb_convert_encoding("Số câu đúng", 'UTF-8'));
+        $sheet->setCellValue('G1', mb_convert_encoding("Các câu đúng", 'UTF-8'));
+
 
 
         $sn = 2;
@@ -79,10 +87,11 @@ class Caculation extends CI_Controller
             $sheet->setCellValue('A' . $sn, $prod["sSBD"]);
             $sheet->setCellValue('B' . $sn, $prod["sHoTen"]);
             $sheet->setCellValue('C' . $sn, $prod["sNgaySinh"]);
-            $sheet->setCellValue('D' . $sn, $prod["iSoLuongCau"]);
-            $sheet->setCellValue('E' . $sn, $prod["iSoCauDung"]);
-            $sheet->setCellValue('F' . $sn, $prod["sMaCauDung"]);
-            
+            $sheet->setCellValue('D' . $sn, $prod["sMaDe"]);
+            $sheet->setCellValue('E' . $sn, $prod["iSoLuongCau"]);
+            $sheet->setCellValue('F' . $sn, $prod["iSoCauDung"]);
+            $sheet->setCellValue('G' . $sn, $prod["sMaCauDung"]);
+
 
 
             // echo $prod["sp_length"];

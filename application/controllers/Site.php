@@ -123,9 +123,10 @@ class Site extends CI_Controller
 			$dapan['dThoiGian'] = date('d/m/Y') . "-" . date('h:i:s');
 			$this->Msite->insert_dapan_to_folder($dapan);
 
-			$made = $this->input->post('made') . "-" . date('d/m/Y') . "-" . date('h:i:s');
+			// $made = $this->input->post('made') . "-" . date('d/m/Y') . "-" . date('h:i:s');
+			$made = $this->input->post('made');
 			$mamon = $this->input->post('mamon');
-			$newDe['idDe'] = $made;
+			$newDe['idDe'] = $made. "-" . date('d/m/Y') . "-" . date('h:i:s');
 			$newDe['sMaDe'] = $this->input->post('made');
 			$newDe['fk_mon'] = $mamon;
 			$newDe['dThoiGianTao'] = date('d/m/Y') . "-" . date('h:i:s');
@@ -147,8 +148,9 @@ class Site extends CI_Controller
 			$sheetdata = $spreadsheet->getActiveSheet()->toArray();
 			// $this->showArr($sheetdata);
 			$sheetcount = count($sheetdata);
-			$dsDapAn['pk_DeMon'] = $mamon . "-" . $made . "-" . date('d/m/Y') . "-" . date('h:i:sa');
-			$dsDapAn['fk_idde'] = $made;
+			// $dsDapAn['pk_DeMon'] = $mamon . "-" . $made . "-" . date('d/m/Y') . "-" . date('h:i:sa');
+			$dsDapAn['pk_DeMon'] = $mamon . "-" . $made;
+			$dsDapAn['fk_idde'] = $made. "-" . date('d/m/Y') . "-" . date('h:i:s');
 			$dsDapAn['fk_idmon'] = $mamon;
 			$dsDapAn['fk_idThuMuc'] = 'tm1';
 			$dsDapAn['sDapAn'] = "";
