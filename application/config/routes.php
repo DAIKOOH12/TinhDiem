@@ -54,5 +54,6 @@ $route['site'] = 'Site';
 $route['themmon'] = 'Site/addMonHoc';
 $route['themdapan'] = 'Site/themdapan';
 $route['admin'] = 'Cadmin';
+$route['startcal'] = 'Caculation/start_cal';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
