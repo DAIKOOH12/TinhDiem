@@ -53,5 +53,6 @@ $route['default_controller'] = 'Site';
 $route['site'] = 'Site';
 $route['themmon'] = 'Site/addMonHoc';
 $route['themdapan'] = 'Site/themdapan';
+$route['admin'] = 'Cadmin';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
