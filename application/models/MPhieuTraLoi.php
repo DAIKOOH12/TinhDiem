@@ -50,12 +50,20 @@ class MPhieuTraLoi extends CI_Model
                 // file_put_contents('E:\xampp\htdocs\tinhdiem\result.json', $sheetcount);
                 if ($sheetcount > 1) {
 
-                    for ($i = 1; $i < $sheetcount; $i++) {
+                    for ($i = 8; $i < $sheetcount; $i++) {
+                        if($sheetdata[$i][0] == "Số bài thi:") {
+                            break;
+                        }
                         $listDA = "";
-                        for ($j = 0; $j < count($sheetdata[$i]); $j++) {
+                        for ($j = 6; $j < count($sheetdata[$i]); $j++) {
 
                             // file_put_contents('E:\xampp\htdocs\tinhdiem\result.json', $sheetdata[$i][$j]);
-                            if ($j > 5)
+                            
+                            if($sheetdata[7][$j] == "Số câu đúng") {
+                                break;
+                            }
+
+                            // if ($j > 5 )
                                 $listDA .= $sheetdata[$i][$j] . "/";
                         }
                         // for ($o = 0; $o < count($dataDA); $o++) {
@@ -108,7 +116,7 @@ class MPhieuTraLoi extends CI_Model
                     // $_SESSION['data_result']=$data_res;
                     // session_write_close();
                     file_put_contents('E:\xampp\htdocs\tinhdiem\result.json', json_encode($data_res));
-                    $this->db->insert_batch("tblphieutraloi", $data_res);
+                    // $this->db->insert_batch("tblphieutraloi", $data_res);
                     // $this->get_excel($data_res);
                     // $this->import_tblDapAn($dataDA);
                     // $this->load->model("Msite");
