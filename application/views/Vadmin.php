@@ -15,140 +15,58 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
-<body>
-    <div class="content">
+<body class="hero-anime">
+    <div class="navigation-wrap bg-light start-header start-style" style="background-color: white !important;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="card-box">
-                        <div class="row">
-                            <div class="col-lg-6 col-xl-6">
-                                <h4 class="header-title m-b-30">My Files</h4>
-                            </div>
+                    <nav class="navbar navbar-expand-md navbar-light" style="background-color: white;">
+
+                        <a class="navbar-brand" href="https://front.codes/" target="_blank"><img src="https://hou.edu.vn/assets/frontend/img/dhmohn.png" alt=""></a>
+
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto py-4 py-md-0">
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" href="#">Portfolio</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" href="#">Agency</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Services</a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" href="#">Journal</a>
+                                </li>
+                                <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                    <a class="nav-link" href="#">Contact</a>
+                                </li>
+                            </ul>
                         </div>
 
-                        <div class="row">
-                            <div class="col-lg-3 col-xl-2">
-                                <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
-                                    <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/pdf.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
-                                    <div class="file-man-title">
-                                        <h5 class="mb-0 text-overflow">invoice_project.pdf</h5>
-                                        <p class="mb-0"><small>568.8 kb</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-xl-2">
-                                <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
-                                    <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/bmp.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
-                                    <div class="file-man-title">
-                                        <h5 class="mb-0 text-overflow">Bmpfile.bmp</h5>
-                                        <p class="mb-0"><small>845.8 mb</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-xl-2">
-                                <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
-                                    <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/psd.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
-                                    <div class="file-man-title">
-                                        <h5 class="mb-0 text-overflow">Photoshop_file.ps</h5>
-                                        <p class="mb-0"><small>684.8 kb</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-xl-2">
-                                <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
-                                    <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/avi.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
-                                    <div class="file-man-title">
-                                        <h5 class="mb-0 text-overflow">Avifile.avi</h5>
-                                        <p class="mb-0"><small>5.9 mb</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-xl-2">
-                                <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
-                                    <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/cad.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
-                                    <div class="file-man-title">
-                                        <h5 class="mb-0 text-overflow">Cadfile.cad</h5>
-                                        <p class="mb-0"><small>95.8 mb</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-xl-2">
-                                <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
-                                    <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/txt.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
-                                    <div class="file-man-title">
-                                        <h5 class="mb-0 text-overflow">Mytextfile.txt</h5>
-                                        <p class="mb-0"><small>568.8 kb</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-3 col-xl-2">
-                                <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
-                                    <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/eps.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
-                                    <div class="file-man-title">
-                                        <h5 class="mb-0 text-overflow">Epsfile.eps</h5>
-                                        <p class="mb-0"><small>568.8 kb</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-xl-2">
-                                <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
-                                    <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/dll.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
-                                    <div class="file-man-title">
-                                        <h5 class="mb-0 text-overflow">Project_file.dll</h5>
-                                        <p class="mb-0"><small>684.3 kb</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-xl-2">
-                                <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
-                                    <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/sql.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
-                                    <div class="file-man-title">
-                                        <h5 class="mb-0 text-overflow">Website_file.sql</h5>
-                                        <p class="mb-0"><small>457.8 kb</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-xl-2">
-                                <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
-                                    <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/zip.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
-                                    <div class="file-man-title">
-                                        <h5 class="mb-0 text-overflow">invoice_project.pdf</h5>
-                                        <p class="mb-0"><small>568.8 kb</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-xl-2">
-                                <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
-                                    <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/ps.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
-                                    <div class="file-man-title">
-                                        <h5 class="mb-0 text-overflow">invoice_project.pdf</h5>
-                                        <p class="mb-0"><small>568.8 kb</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-xl-2">
-                                <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
-                                    <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/png.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
-                                    <div class="file-man-title">
-                                        <h5 class="mb-0 text-overflow">invoice_project.pdf</h5>
-                                        <p class="mb-0"><small>568.8 kb</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center mt-3">
-                            <button type="button" class="btn btn-outline-danger w-md waves-effect waves-light"><i class="mdi mdi-refresh"></i> Load More Files</button>
-                        </div>
-                    </div>
+                    </nav>
                 </div>
-                <!-- end col -->
             </div>
-            <!-- end row -->
         </div>
-        <!-- container -->
     </div>
 </body>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -156,7 +74,7 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jasny-bootstrap.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/admin.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
