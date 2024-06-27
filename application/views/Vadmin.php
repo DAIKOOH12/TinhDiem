@@ -12,236 +12,143 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="panel panel-dark-outline tabs-panel">
-                    <div class="panel-heading">
-                        <ul class="nav nav-tabs pull-left type-document">
-                            <li class="active"><a data-toggle="tab" href=".documents-panel" aria-expanded="true"><i class="fa fa-file"></i> Bộ đáp án</a></li>
-                            <li class=""><a data-toggle="tab" href=".images-panel" aria-expanded="false"><i class="fa fa-file"></i> Bộ câu trả lờ<i></i> </a></li>
-                        </ul>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="panel-body tab-content">
-                        <div class="tab-pane active documents-panel">
-                            <h4 class="no-margin-top"> Folders</h4>
-                            <ul class="folders list-unstyled">
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-folder"></i> Web projects
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-folder"></i> Presentation files
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-folder"></i> Books
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-folder"></i> Contest
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-folder"></i> Our Projects
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-folder"></i> Our Music
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-folder"></i> Messenger sounds
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="v-spacing-xs"></div>
-                            <a class="btn btn-block btn-success"> <i class="fa fa-plus"> </i> Upload</a>
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card-box">
+                        <div class="row">
+                            <div class="col-lg-6 col-xl-6">
+                                <h4 class="header-title m-b-30">My Files</h4>
+                            </div>
                         </div>
-                        <div class="tab-pane images-panel">
-                            <h4 class="no-margin-top"> Folders</h4>
-                            <ul class="folders list-unstyled">
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-folder"></i> April meeting
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-folder"></i> Application presentation
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-folder"></i> Staff profile pictures
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-folder"></i> Trip to Yosemite
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="v-spacing-xs"></div>
-                            <a class="btn btn-block btn-success"> <i class="fa fa-plus"> </i> Upload</a>
+
+                        <div class="row">
+                            <div class="col-lg-3 col-xl-2">
+                                <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
+                                    <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/pdf.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
+                                    <div class="file-man-title">
+                                        <h5 class="mb-0 text-overflow">invoice_project.pdf</h5>
+                                        <p class="mb-0"><small>568.8 kb</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-xl-2">
+                                <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
+                                    <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/bmp.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
+                                    <div class="file-man-title">
+                                        <h5 class="mb-0 text-overflow">Bmpfile.bmp</h5>
+                                        <p class="mb-0"><small>845.8 mb</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-xl-2">
+                                <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
+                                    <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/psd.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
+                                    <div class="file-man-title">
+                                        <h5 class="mb-0 text-overflow">Photoshop_file.ps</h5>
+                                        <p class="mb-0"><small>684.8 kb</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-xl-2">
+                                <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
+                                    <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/avi.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
+                                    <div class="file-man-title">
+                                        <h5 class="mb-0 text-overflow">Avifile.avi</h5>
+                                        <p class="mb-0"><small>5.9 mb</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-xl-2">
+                                <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
+                                    <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/cad.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
+                                    <div class="file-man-title">
+                                        <h5 class="mb-0 text-overflow">Cadfile.cad</h5>
+                                        <p class="mb-0"><small>95.8 mb</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-xl-2">
+                                <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
+                                    <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/txt.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
+                                    <div class="file-man-title">
+                                        <h5 class="mb-0 text-overflow">Mytextfile.txt</h5>
+                                        <p class="mb-0"><small>568.8 kb</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-xl-2">
+                                <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
+                                    <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/eps.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
+                                    <div class="file-man-title">
+                                        <h5 class="mb-0 text-overflow">Epsfile.eps</h5>
+                                        <p class="mb-0"><small>568.8 kb</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-xl-2">
+                                <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
+                                    <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/dll.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
+                                    <div class="file-man-title">
+                                        <h5 class="mb-0 text-overflow">Project_file.dll</h5>
+                                        <p class="mb-0"><small>684.3 kb</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-xl-2">
+                                <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
+                                    <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/sql.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
+                                    <div class="file-man-title">
+                                        <h5 class="mb-0 text-overflow">Website_file.sql</h5>
+                                        <p class="mb-0"><small>457.8 kb</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-xl-2">
+                                <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
+                                    <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/zip.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
+                                    <div class="file-man-title">
+                                        <h5 class="mb-0 text-overflow">invoice_project.pdf</h5>
+                                        <p class="mb-0"><small>568.8 kb</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-xl-2">
+                                <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
+                                    <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/ps.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
+                                    <div class="file-man-title">
+                                        <h5 class="mb-0 text-overflow">invoice_project.pdf</h5>
+                                        <p class="mb-0"><small>568.8 kb</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-xl-2">
+                                <div class="file-man-box"><a href="" class="file-close"><i class="fa fa-times-circle"></i></a>
+                                    <div class="file-img-box"><img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/png.svg" alt="icon"></div><a href="#" class="file-download"><i class="fa fa-download"></i></a>
+                                    <div class="file-man-title">
+                                        <h5 class="mb-0 text-overflow">invoice_project.pdf</h5>
+                                        <p class="mb-0"><small>568.8 kb</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-3">
+                            <button type="button" class="btn btn-outline-danger w-md waves-effect waves-light"><i class="mdi mdi-refresh"></i> Load More Files</button>
                         </div>
                     </div>
                 </div>
+                <!-- end col -->
             </div>
-            <div class="col-sm-8 tab-content no-bg no-border">
-                <div class="tab-pane active documents documents-panel">
-                    <div class="document success">
-                        <div class="document-body">
-                            <i class="fa fa-file-excel-o text-success"></i>
-                        </div>
-                        <div class="document-footer">
-                            <span class="document-name"> Excel database 2017 </span>
-                            <span class="document-description"> 1.2 MB </span>
-                        </div>
-                    </div>
-                    <div class="document">
-                        <div class="document-body">
-                            <i class="fa fa-file-excel-o text-success"></i>
-                        </div>
-                        <div class="document-footer">
-                            <span class="document-name"> Excel database 2016 </span>
-                            <span class="document-description"> 1.1 MB </span>
-                        </div>
-                    </div>
-                    <div class="document info">
-                        <div class="document-body">
-                            <i class="fa fa-file-word-o text-info"></i>
-                        </div>
-                        <div class="document-footer">
-                            <span class="document-name"> Word file 2017 </span>
-                            <span class="document-description"> 932 KB </span>
-                        </div>
-                    </div>
-                    <div class="document">
-                        <div class="document-body">
-                            <i class="fa fa-file-word-o text-info"></i>
-                        </div>
-                        <div class="document-footer">
-                            <span class="document-name"> Word file 2016 </span>
-                            <span class="document-description"> 426 MB </span>
-                        </div>
-                    </div>
-                    <div class="document warning">
-                        <div class="document-body">
-                            <i class="fa fa-file-powerpoint-o text-warning"></i>
-                        </div>
-                        <div class="document-footer">
-                            <span class="document-name"> Presentation 2017 </span>
-                            <span class="document-description"> 2.7 MB </span>
-                        </div>
-                    </div>
-                    <div class="document">
-                        <div class="document-body">
-                            <i class="fa fa-file-powerpoint-o text-warning"></i>
-                        </div>
-                        <div class="document-footer">
-                            <span class="document-name"> Presentation 2016 </span>
-                            <span class="document-description"> 1.9 MB </span>
-                        </div>
-                    </div>
-                    <div class="document danger">
-                        <div class="document-body">
-                            <i class="fa fa-file-pdf-o text-danger"></i>
-                        </div>
-                        <div class="document-footer">
-                            <span class="document-name"> PDF file 2017 </span>
-                            <span class="document-description"> 5.3 MB </span>
-                        </div>
-                    </div>
-                    <div class="document">
-                        <div class="document-body">
-                            <i class="fa fa-file-pdf-o text-danger"></i>
-                        </div>
-                        <div class="document-footer">
-                            <span class="document-name"> PDF file 2016 </span>
-                            <span class="document-description"> 4.4 MB </span>
-                        </div>
-                    </div>
-                    <div class="document dark">
-                        <div class="document-body">
-                            <i class="fa fa-file-video-o text-dark"></i>
-                        </div>
-                        <div class="document-footer">
-                            <span class="document-name text-dark"> Video file 2017 </span>
-                            <span class="document-description"> 18.2 MB </span>
-                        </div>
-                    </div>
-                    <div class="document">
-                        <div class="document-body">
-                            <i class="fa fa-file-video-o text-dark"></i>
-                        </div>
-                        <div class="document-footer">
-                            <span class="document-name"> Video file 2016 </span>
-                            <span class="document-description"> 23.7 MB </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane documents images-panel">
-                    <div class="document">
-                        <div class="document-body">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
-                        </div>
-                        <div class="document-footer">
-                            <span class="document-name"> Forest.png </span>
-                            <span class="document-description"> 1.2 MB </span>
-                        </div>
-                    </div>
-                    <div class="document">
-                        <div class="document-body">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
-                        </div>
-                        <div class="document-footer">
-                            <span class="document-name"> Developer.png </span>
-                            <span class="document-description"> 2.5 MB </span>
-                        </div>
-                    </div>
-                    <div class="document">
-                        <div class="document-body">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png">
-                        </div>
-                        <div class="document-footer">
-                            <span class="document-name"> Meeting.png </span>
-                            <span class="document-description"> 1.1 MB </span>
-                        </div>
-                    </div>
-                    <div class="document">
-                        <div class="document-body">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png">
-                        </div>
-                        <div class="document-footer">
-                            <span class="document-name"> Hiking.png </span>
-                            <span class="document-description"> 3.5 MB </span>
-                        </div>
-                    </div>
-                    <div class="document">
-                        <div class="document-body">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
-                        </div>
-                        <div class="document-footer">
-                            <span class="document-name"> Developers meeting.png </span>
-                            <span class="document-description"> 862 KB </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- end row -->
         </div>
+        <!-- container -->
     </div>
 </body>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

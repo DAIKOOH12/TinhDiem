@@ -65,7 +65,7 @@ class Site extends CI_Controller
 				$sheetcount = count($sheetdata);
 			}
 			// $this->showArr($data);
-			// $this->Msite->insert_sv_answer($data);
+			$this->Msite->insert_sv_answer($data);
 			// $this->showArr($total_data_files);
 
 			if ($errors > 0) {

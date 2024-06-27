@@ -32,7 +32,7 @@ $(function () {
 
   let url_upload_files = "http://localhost/tinhdiem/index.php/" + "upload_files";
   var url_removePTL = "http://localhost/tinhdiem/index.php/" + "removePTL";
-  var url_state = "http://localhost/tinhdiem/index.php/"+ "state";
+  var url_state = "http://localhost/tinhdiem/index.php/" + "state";
   var url_themdapan = "http://localhost/tinhdiem/index.php/" + "themdapan"
 
   var selectedMon = $("#dsmon").children("option:selected").html();
@@ -46,7 +46,7 @@ $(function () {
     form_1_btns.style.display = "none";
     form_2_btns.style.display = "flex";
 
-    $("#current-mon").html("Môn đang chọn: " + selectedMon);
+    $("#current-mon").html(selectedMon);
     form_2_progessbar.classList.add("active");
   });
 
@@ -152,7 +152,7 @@ $(function () {
     }, 3000);
   }
 
-  form_4_progessbar.addEventListener("", function () {});
+  form_4_progessbar.addEventListener("", function () { });
 
   // btn_done.addEventListener("click", function () {
   // 	modal_wrapper.classList.add("active");
@@ -171,7 +171,7 @@ $(function () {
 
   $(document).on("change", ".upload_file", function (even) {
     var fileToUpload = even.target.files[0];
-    // console.log(fileToUpload);
+    console.log(fileToUpload);
     var mamon = $("#dsmon").children("option:selected").val();
     var made = $(this).siblings(".input-made").val();
     if (made == "" || made == null) {
@@ -189,7 +189,7 @@ $(function () {
         formDataKey.append("made", made);
         formDataKey.append("mamon", mamon);
         $.ajax({
-          url: url_themdapan,
+          url: window.location.href + "/themdapan",
           type: "post",
           data: formDataKey,
           processData: false,
@@ -287,10 +287,10 @@ $(function () {
       // $('#listFiles').append(`<span>${res[i]}</span><i class="fa-solid fa-xmark"></i>`)
       $("#listFiles").append(
         '<li style="min-width: 300px;" class="list-group-item">' +
-          res[i] +
-          '<div class="pull-right"><a href="#" data-file="' +
-          res[i] +
-          '" class="remove_file"><i class="fa-solid fa-xmark"></i></a></div></li>'
+        res[i] +
+        '<div class="pull-right"><a href="#" data-file="' +
+        res[i] +
+        '" class="remove_file"><i class="fa-solid fa-xmark"></i></a></div></li>'
       );
   }
 
@@ -379,10 +379,10 @@ $(function () {
       $.each(data, function (index, element) {
         items.push(
           '<li class="list-group-item"><i class="fa-solid fa-file" style="margin-right: 10px;"></i>' +
-            element +
-            '<div class="pull-right"><a href="#" data-file="' +
-            element +
-            '" class="remove-file"><i class="fa-solid fa-x" style="color: #ff0000;"></i></a></div>'
+          element +
+          '<div class="pull-right"><a href="#" data-file="' +
+          element +
+          '" class="remove-file"><i class="fa-solid fa-x" style="color: #ff0000;"></i></a></div>'
         );
       });
       $(".list-group").html("").html(items.join(""));
@@ -406,12 +406,12 @@ $(function () {
       success: function () {
         $("#dsmon").append(
           "<option value='" +
-            $("#mamon").val() +
-            "'>" +
-            $("#tenmon").val() +
-            " (" +
-            $("#mamon").val() +
-            ")</option>"
+          $("#mamon").val() +
+          "'>" +
+          $("#tenmon").val() +
+          " (" +
+          $("#mamon").val() +
+          ")</option>"
         );
         alert("Thêm thành công");
         $("#mamon").val("");

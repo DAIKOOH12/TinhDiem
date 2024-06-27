@@ -75,7 +75,7 @@
                 <form action="<?php echo site_url('site/spreadsheet_import') ?>" method="post" enctype="multipart/form-data" id="form-upload-dapan">
                     <div class="form_container">
                         <div class="input_wrap">
-                            <h4 id="current-mon"></h4>
+                            <span>Môn đang chọn: </span><b id="current-mon"></b>  
                             <label for="input-made">Nhập mã đề</label>
                             <div class="add-files-group">
                                 <div class="input-group">
@@ -95,7 +95,6 @@
                 <h2>Nhập bộ câu trả lời</h2>
                 <form action="<?php echo site_url("site/upload") ?>" method="post" enctype="multipart/form-data" id="form-upload">
                     <div class="form_container">
-
                         <div class="input_wrap" style="display: flex;justify-content: center;">
                             <label for="file" id="lb-filedapan"><i class="fa-solid fa-file-circle-plus fa-2xl" style="color: white;margin-right: 10px"></i>Chọn file</label>
                         </div>
