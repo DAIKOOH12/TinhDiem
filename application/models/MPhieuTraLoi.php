@@ -51,7 +51,8 @@ class MPhieuTraLoi extends CI_Model
                 if ($sheetcount > 1) {
 
                     for ($i = 8; $i < $sheetcount; $i++) {
-                        if ($sheetdata[$i][0] == "Số bài thi:") {
+                        $soCauHoi = 0;
+                        if ($sheetdata[$i][0] == "Số bài thi:" || $sheetdata[$i][0] == "") {
                             break;
                         }
                         $listDA = "";
@@ -59,6 +60,7 @@ class MPhieuTraLoi extends CI_Model
 
 
                             if ($sheetdata[7][$j] == "Số câu đúng") {
+                                $soCauHoi = $j - 6;
                                 break;
                             }
 
@@ -93,10 +95,11 @@ class MPhieuTraLoi extends CI_Model
                             "sNgaySinh" => $sheetdata[$i][3],
                             "sDapAn" => $listDA,
                             "fk_demon" => $mamon . "-" . $sheetdata[$i][5],
-                            "iSoLuongCau" => 40,
+                            "iSoLuongCau" => $soCauHoi,
                             "iSoCauDung" => $count,
                             "sMaCauDung" => $SoCH,
                             "sMaDe" => $sheetdata[$i][5],
+                            "fDiem" => $count*10/$soCauHoi
                         );
 
                         array_push($data_res, $dataCH);

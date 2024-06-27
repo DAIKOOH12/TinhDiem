@@ -31,10 +31,10 @@ $(function () {
   var shadow = document.querySelector(".shadow");
 
   let url_upload_files =
-    "http://localhost/tinhdiem/index.php/" + "upload_files";
-  var url_removePTL = "http://localhost/tinhdiem/index.php/" + "removePTL";
-  var url_state = "http://localhost/tinhdiem/index.php/" + "state";
-  var url_themdapan = "http://localhost/tinhdiem/index.php/" + "themdapan";
+    baseURL + "upload_files";
+  var url_removePTL = baseURL + "removePTL";
+  var url_state = baseURL + "state";
+  var url_themdapan = baseURL + "themdapan";
 
   var selectedMon = $("#dsmon").children("option:selected").html();
   $("#dsmon").on("change", function (e) {
@@ -122,8 +122,10 @@ $(function () {
     var mamon = $("#dsmon").children("option:selected").val();
     var formDataKey = new FormData();
     formDataKey.append("mamon", mamon);
+    console.log(baseURL);
     $.ajax({
-      url: "http://localhost/tinhdiem/index.php/Caculation/start_cal",
+      // url: "http://localhost/tinhdiem/index.php/Caculation/start_cal",
+      url: baseURL + "/startcal",
       type: "post",
       data: formDataKey,
       processData: false,
