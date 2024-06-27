@@ -100,7 +100,7 @@ class Site extends CI_Controller
 	}
 
 	public function themdapan()
-	{
+	{exit;
 		$this->showArr($_POST);
 		$this->showArr($_FILES);
 		if (!empty($_FILES)) {
