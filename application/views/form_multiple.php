@@ -135,7 +135,7 @@
                                     <input type="file" name="upload_file_key" class="upload_file form-control" placeholder="Enter file" >
                                 </div>
                             </div>
-                            <div class="btn-add-files">
+                            <div class="btn-add-files btn-add_md">
                                 <i class="fa-solid fa-plus fa-xl" style="color: white;"></i>
                                 <span style="color:white;">Thêm mã đề</span>
                             </div>

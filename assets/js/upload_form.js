@@ -30,10 +30,11 @@ $(function () {
   var modal_wrapper = document.querySelector(".modal_wrapper");
   var shadow = document.querySelector(".shadow");
 
-  let url_upload_files = "http://localhost/tinhdiem/index.php/" + "upload_files";
+  let url_upload_files =
+    "http://localhost/tinhdiem/index.php/" + "upload_files";
   var url_removePTL = "http://localhost/tinhdiem/index.php/" + "removePTL";
   var url_state = "http://localhost/tinhdiem/index.php/" + "state";
-  var url_themdapan = "http://localhost/tinhdiem/index.php/" + "themdapan"
+  var url_themdapan = "http://localhost/tinhdiem/index.php/" + "themdapan";
 
   var selectedMon = $("#dsmon").children("option:selected").html();
   $("#dsmon").on("change", function (e) {
@@ -152,7 +153,7 @@ $(function () {
     }, 3000);
   }
 
-  form_4_progessbar.addEventListener("", function () { });
+  form_4_progessbar.addEventListener("", function () {});
 
   // btn_done.addEventListener("click", function () {
   // 	modal_wrapper.classList.add("active");
@@ -162,7 +163,7 @@ $(function () {
   // 	modal_wrapper.classList.remove("active");
   // })
 
-  $(".btn-add-files").on("click", function (e) {
+  $(".btn-add_md").on("click", function (e) {
     // console.log($('add-files-group'));
     $(".add-files-group").append(
       '<div class="input-group"><input type="text" class="input input-made" placeholder="Định dạng file hỗ trợ .xlsx"><input type="file" name="upload_file_key" class="upload_file form-control" placeholder="Enter file"></div>'
@@ -184,19 +185,21 @@ $(function () {
           .append(
             '<i class="fa-solid fa-circle-check fa-2xl" style="color: #009e6f;margin-left:10px;"></i>'
           );
+        $(this).hide();
         var formDataKey = new FormData();
         formDataKey.append("upload_file_key", fileToUpload);
         formDataKey.append("made", made);
         formDataKey.append("mamon", mamon);
         $.ajax({
-          url: window.location.href + "/themdapan",
+          // url: window.location.href + "/themdapan",
+          url: url_themdapan,
           type: "post",
           data: formDataKey,
           processData: false,
           contentType: false,
           success: function () {
-            $(".upload_file").hide();
-            console.log("Thêm thành công");
+            // console.log("Thêm thành công");
+            alert("Thêm thành công");
           },
         });
       }
@@ -230,56 +233,6 @@ $(function () {
         console.error(error);
       },
     });
-
-    // var filesToUpload = inputFile[0].files;
-    // var filesToUpload = inputFile[0].files;
-    // // event.preventDefault();
-    // // make sure there is file(s) to upload
-    // if (filesToUpload.length > 0) {
-    //   // provide the form data
-    //   // that would be sent to sever through ajax
-    //   var formData = new FormData();
-
-    //   for (var i = 0; i < filesToUpload.length; i++) {
-    //     var file = filesToUpload[i];
-
-    //     formData.append("file[]", file, file.name);
-    //   }
-
-    //   // now upload the file using $.ajax
-    //   $.ajax({
-    //     url: uploadURI,
-    //     type: "post",
-    //     data: formData,
-    //     processData: false,
-    //     contentType: false,
-    //     success: function () {
-    //       listFilesOnServer();
-    //       // alert("Thành công");
-    //     },
-    //     // xhr: function () {
-    //     //   var xhr = new XMLHttpRequest();
-    //     //   xhr.upload.addEventListener(
-    //     //     "progress",
-    //     //     function (event) {
-    //     //       if (event.lengthComputable) {
-    //     //         var percentComplete = Math.round(
-    //     //           (event.loaded / event.total) * 100
-    //     //         );
-    //     //         // console.log(percentComplete);
-
-    //     //         $(".progress").show();
-    //     //         progressBar.css({ width: percentComplete + "%" });
-    //     //         progressBar.text(percentComplete + "%");
-    //     //       }
-    //     //     },
-    //     //     false
-    //     //   );
-
-    //     //   return xhr;
-    //     // },
-    //   });
-    // }
   });
 
   function show_listFiles(res) {
@@ -287,10 +240,10 @@ $(function () {
       // $('#listFiles').append(`<span>${res[i]}</span><i class="fa-solid fa-xmark"></i>`)
       $("#listFiles").append(
         '<li style="min-width: 300px;" class="list-group-item">' +
-        res[i] +
-        '<div class="pull-right"><a href="#" data-file="' +
-        res[i] +
-        '" class="remove_file"><i class="fa-solid fa-xmark"></i></a></div></li>'
+          res[i] +
+          '<div class="pull-right"><a href="#" data-file="' +
+          res[i] +
+          '" class="remove_file"><i class="fa-solid fa-xmark"></i></a></div></li>'
       );
   }
 
@@ -379,10 +332,10 @@ $(function () {
       $.each(data, function (index, element) {
         items.push(
           '<li class="list-group-item"><i class="fa-solid fa-file" style="margin-right: 10px;"></i>' +
-          element +
-          '<div class="pull-right"><a href="#" data-file="' +
-          element +
-          '" class="remove-file"><i class="fa-solid fa-x" style="color: #ff0000;"></i></a></div>'
+            element +
+            '<div class="pull-right"><a href="#" data-file="' +
+            element +
+            '" class="remove-file"><i class="fa-solid fa-x" style="color: #ff0000;"></i></a></div>'
         );
       });
       $(".list-group").html("").html(items.join(""));
@@ -394,6 +347,7 @@ $(function () {
     progressBar.text("0%");
     progressBar.css({ width: "0%" });
   });
+
   $("#add-mamon").on("click", function (e) {
     console.log(window.location.href + "/addMonHoc");
     $.ajax({
@@ -406,12 +360,12 @@ $(function () {
       success: function () {
         $("#dsmon").append(
           "<option value='" +
-          $("#mamon").val() +
-          "'>" +
-          $("#tenmon").val() +
-          " (" +
-          $("#mamon").val() +
-          ")</option>"
+            $("#mamon").val() +
+            "'>" +
+            $("#tenmon").val() +
+            " (" +
+            $("#mamon").val() +
+            ")</option>"
         );
         alert("Thêm thành công");
         $("#mamon").val("");

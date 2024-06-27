@@ -35,7 +35,7 @@ class MPhieuTraLoi extends CI_Model
                 // $files = get_filenames("./assets/uploads");
 
 
-                $filePath = 'E:\xampp\htdocs\TinhDiem\assets\uploadSV\\' . $files[$t];
+                $filePath = '.\assets\uploadSV\\' . $files[$t];
                 // echo $filePath;
 
                 $spreadsheet = IOFactory::load($filePath);
@@ -51,47 +51,39 @@ class MPhieuTraLoi extends CI_Model
                 if ($sheetcount > 1) {
 
                     for ($i = 8; $i < $sheetcount; $i++) {
-                        if($sheetdata[$i][0] == "Số bài thi:") {
+                        if ($sheetdata[$i][0] == "Số bài thi:") {
                             break;
                         }
                         $listDA = "";
                         for ($j = 6; $j < count($sheetdata[$i]); $j++) {
 
-                            // file_put_contents('E:\xampp\htdocs\tinhdiem\result.json', $sheetdata[$i][$j]);
-                            
-                            if($sheetdata[7][$j] == "Số câu đúng") {
+
+                            if ($sheetdata[7][$j] == "Số câu đúng") {
                                 break;
                             }
 
-                            // if ($j > 5 )
-                                $listDA .= $sheetdata[$i][$j] . "/";
+                            $listDA .= $sheetdata[$i][$j] . "/";
                         }
-                        // for ($o = 0; $o < count($dataDA); $o++) {
+
                         $SoCH = "";
                         $count = 0;
 
                         $this->db->like("pk_DeMon", $mamon . "-" . $sheetdata[$i][5]);
                         $da = $this->db->get("tblDapAn");
                         $dataDA = $da->result_array();
-                        file_put_contents("E:\\xampp\htdocs\TinhDiem\\result2.json",json_encode($dataDA), false);
+                        file_put_contents("E:\\xampp\htdocs\TinhDiem\\result2.json", json_encode($dataDA), false);
 
-                        // if ($dataDA[0]["pk_DeMon"] == $sheetdata[$i][5]) {
-                            // file_put_contents('E:\xampp\htdocs\TinhDiem\status.txt', json_encode($listDA));
-                            $list1 = explode("/", $dataDA[0]["sDapAn"]);
-                            $list2 = explode("/", $listDA);
-                            $listMCH = explode("/", $dataDA[0]["sMaCauHoi"]);
+                        $list1 = explode("/", $dataDA[0]["sDapAn"]);
+                        $list2 = explode("/", $listDA);
+                        $listMCH = explode("/", $dataDA[0]["sMaCauHoi"]);
 
 
-                            for ($q = 0; $q < count($list1) - 1; $q++) {
-                                if ($list1[$q] == $list2[$q]) {
-                                    $count++;
-                                    $SoCH .= $listMCH[$q] . "/";
-                                }
+                        for ($q = 0; $q < count($list1) - 1; $q++) {
+                            if ($list1[$q] == $list2[$q]) {
+                                $count++;
+                                $SoCH .= $listMCH[$q] . "/";
                             }
-                        // }
-
-
-                        // }
+                        }
 
                         $dataCH = array(
                             "sSBD" => $sheetdata[$i][1],
@@ -100,32 +92,27 @@ class MPhieuTraLoi extends CI_Model
                             "sLop" => $sheetdata[$i][4],
                             "sNgaySinh" => $sheetdata[$i][3],
                             "sDapAn" => $listDA,
-                            "fk_demon" => $mamon. "-" . $sheetdata[$i][5],
+                            "fk_demon" => $mamon . "-" . $sheetdata[$i][5],
                             "iSoLuongCau" => 40,
                             "iSoCauDung" => $count,
                             "sMaCauDung" => $SoCH,
-                            // "sMaDe" => $sheetdata[$i][5],
+                            "sMaDe" => $sheetdata[$i][5],
                         );
 
                         array_push($data_res, $dataCH);
                     }
 
+                    file_put_contents('.\result.json', json_encode($data_res));
 
-                    // $this->data_excel = $data_res;
-                    // session_start();
-                    // $_SESSION['data_result']=$data_res;
-                    // session_write_close();
-                    file_put_contents('E:\xampp\htdocs\tinhdiem\result.json', json_encode($data_res));
-                    // $this->db->insert_batch("tblphieutraloi", $data_res);
-                    // $this->get_excel($data_res);
-                    // $this->import_tblDapAn($dataDA);
-                    // $this->load->model("Msite");
-                    // $this->Msite->insert_tblPhieuTraLoi($data_res);
+                    $data_import  = array_map(function ($item) {
+                        if (isset($item['sMaDe'])) {
+                            unset($item['sMaDe']);
+                        }
+                        return $item;
+                    }, $data_res);
+
+                    $this->db->insert_batch("tblphieutraloi", $data_import);
                 }
-                // echo $sheetcount;
-
-                // Your data processing logic goes here
-
             } catch (Exception $e) {
                 // Handle Exception
                 echo 'Caught exception: ',  $e->getMessage(), "\n";
