@@ -43,5 +43,5 @@
             $("#switch").addClass("switched");
         }
     });
-
+    
 })(jQuery);

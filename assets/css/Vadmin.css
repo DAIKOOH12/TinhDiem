@@ -528,3 +528,33 @@ body.dark .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 body.dark .logo img {
   filter: brightness(100%);
 }
+.main-page{
+  margin-top: 150px;
+  padding: 10px;
+}
+.action{
+  display: flex;
+}
+.btn-details{
+  height: 25px;
+  width: 25px;
+  background-color: #007cd5;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+.btn-delete{
+  height: 25px;
+  width: 25px;
+  background-color: rgb(195, 58, 58);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-details:hover,.btn-delete:hover{
+  cursor: pointer;
+  opacity: 0.7;
+}

@@ -4,8 +4,16 @@ require FCPATH . 'vendor/autoload.php';
 class Cadmin extends CI_Controller{
     public function __construct(){
         parent::__construct();
+        $this->load->model('Madmin');
     }
     public function index(){
-        $this->load->view("Vadmin");
+        $data['dsmon']=$this->Madmin->getDSMon();
+        $this->load->view("Vadmin",$data);
     }
+    public function showArr($arr)
+	{
+		echo "<pre>";
+		print_r($arr);
+		echo "</pre>";
+	}
 }
