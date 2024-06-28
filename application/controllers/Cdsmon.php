@@ -14,6 +14,16 @@ class Cdsmon extends CI_Controller{
         $data['dsmon']=$this->Mdsmon->getDSMon();
         $this->load->view("Vdsmon",$data);
     }
+    public function addMon(){
+        $data['idMon']=$_POST['mamon'];
+        $data['sTenMon']=$_POST['tenmon'];
+        $this->Mdsmon->addMon($data);
+    }
+    public function fixMon(){
+        $data['idMon']=$_POST['mamon'];
+        $data['sTenMon']=$_POST['tenmon'];
+        $this->Mdsmon->fixMon()($data);
+    }
     public function showArr($arr)
 	{
 		echo "<pre>";

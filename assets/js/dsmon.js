@@ -1,6 +1,5 @@
 (function ($) {
     "use strict";
-
     $(function () {
         var header = $(".start-style");
         $(window).scroll(function () {
@@ -15,7 +14,6 @@
     });
 
     //Animation
-
     $(document).ready(function () {
         $('body.hero-anime').removeClass('hero-anime');
     });
@@ -43,7 +41,49 @@
             $("#switch").addClass("switched");
         }
     });
-    $("#button-action").on("click",function(e){
-        console.log("Thực hiện");
-    })
+    $("#addmon").on("click", function (e) {
+        $("#button-action").attr('data-dismiss', 'modal');
+        var stt = $('.ds-mon').length + 1;
+        $("#button-action").on('click', function (e) {
+            $.ajax({
+                url: baseURL + "/themmon",
+                type: 'post',
+                data: {
+                    'mamon': $("#mamon").val(),
+                    'tenmon': $("#tenmon").val(),
+                },
+                success: function (e) {
+                    var xml = "";
+                    xml += ' <tr class="ds-mon">';
+                    xml += '<th scope="row">' + stt + '</th>';
+                    xml += '<td>' + $("#mamon").val() + '</td>';
+                    xml += '<td>' + $("#tenmon").val() + '</td>';
+                    xml += '<td><div class="action"><div class="btn-details"><i class="fa-solid fa-eye" style="color: #ffffff;"></i></div><div class="btn-fix"><i class="fa-solid fa-wrench" style="color: #ffffff;" data-toggle="modal" data-target="#modal_mon" data-whatever="@mdo" id="fixmon"></i></i></div><div class="btn-delete"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></div></div></td>';
+                    xml += '</tr>';
+                    $('#list-mon').append(xml);
+                    $("#mamon").val('');
+                    $("#tenmon").val('');
+                }
+            });
+        })
+    });
+    $(document).on('click', '.btn-fix', function (e) {
+        var mamonfix=$(this).siblings('.idmamon').val();
+        var namemonfix=$(this).siblings('.idmamon').attr('name');
+        $('#tieudemodal').text('Sửa môn thi');
+        $('#mamon').val(mamonfix);
+        $('#tenmon').val(namemonfix);
+        $.ajax({
+            url: baseURL + "/suamon",
+            type: 'post',
+            data: {
+                'mamon': mamonfix,
+                'tenmon': namemonfix,
+            },
+            success: function (e) {
+                alert('Sửa thành công');
+                
+            }
+        });
+    });
 })(jQuery);
