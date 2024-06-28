@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 require FCPATH . 'vendor/autoload.php';
 
-class Madmin extends CI_Model
+class Mdsmon extends CI_Model
 {
     public function __construct()
     {
