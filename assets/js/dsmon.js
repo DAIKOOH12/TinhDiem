@@ -43,6 +43,10 @@
     });
     $("#addmon").on("click", function (e) {
         $("#button-action").attr('data-dismiss', 'modal');
+        $('#tieudemodal').text('Thêm môn thi');
+        $('#mamon').val('');
+        $('#tenmon').val('');
+        $('#mamon').removeAttr('disabled');
         var stt = $('.ds-mon').length + 1;
         $("#button-action").on('click', function (e) {
             $.ajax({
@@ -68,22 +72,36 @@
         })
     });
     $(document).on('click', '.btn-fix', function (e) {
-        var mamonfix=$(this).siblings('.idmamon').val();
-        var namemonfix=$(this).siblings('.idmamon').attr('name');
+        var currentrow = $(this).parents('.action').parents('td').parents('.ds-mon');
+        var mamonfix = $(this).siblings('.idmamon').val();
+        var namemonfix = $(this).siblings('.idmamon').attr('name');
         $('#tieudemodal').text('Sửa môn thi');
-        $('#mamon').val(mamonfix);
-        $('#tenmon').val(namemonfix);
-        $.ajax({
-            url: baseURL + "/suamon",
-            type: 'post',
-            data: {
-                'mamon': mamonfix,
-                'tenmon': namemonfix,
-            },
-            success: function (e) {
-                alert('Sửa thành công');
-                
-            }
+        $('#mamon').attr('disabled', 'disabled');
+        $("#button-action").on('click', function (e) {
+            $('#mamon').val(mamonfix);
+            $('#tenmon').val(namemonfix);
+            var newname = $('#tenmon').val();
+            console.log(mamonfix, namemonfix);
+            $.ajax({
+                url: baseURL + "/suamon",
+                type: 'post',
+                data: {
+                    'mamon': mamonfix,
+                    'tenmon': newname,
+                },
+                success: function (e) {
+                    alert('Thành công');
+                    // currentrow.html('');
+                    // var xml = "";
+                    // xml += ' <tr class="ds-mon">';
+                    // xml += '<th scope="row">' + 1 + '</th>';
+                    // xml += '<td>' + $("#mamon").val() + '</td>';
+                    // xml += '<td>' + newname + '</td>';
+                    // xml += '<td><div class="action"><div class="btn-details"><i class="fa-solid fa-eye" style="color: #ffffff;"></i></div><div class="btn-fix"><i class="fa-solid fa-wrench" style="color: #ffffff;" data-toggle="modal" data-target="#modal_mon" data-whatever="@mdo" id="fixmon"></i></i></div><div class="btn-delete"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></div></div></td>';
+                    // xml += '</tr>';
+                    // currentrow.html(xml);
+                }
+            });
         });
     });
 })(jQuery);

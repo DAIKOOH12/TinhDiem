@@ -20,9 +20,11 @@ class Cdsmon extends CI_Controller{
         $this->Mdsmon->addMon($data);
     }
     public function fixMon(){
-        $data['idMon']=$_POST['mamon'];
+        $mamon=$_POST['mamon'];
         $data['sTenMon']=$_POST['tenmon'];
-        $this->Mdsmon->fixMon()($data);
+        echo $_POST['tenmon'];
+        $msg=$this->Mdsmon->fixMon($mamon,$data);
+        echo $msg;
     }
     public function showArr($arr)
 	{

@@ -1,8 +1,8 @@
 <?php $this->load->view('layouts/header'); ?>
 <div class="main-page">
-    <div class="title-ds-mon" style="display:flex;">
+    <div class="title-ds-mon" style="display:flex;width: 100%;justify-content: space-between;">
         <h2>DANH SÁCH MÔN THI</h2>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_mon" data-whatever="@mdo" id="addmon">Thêm môn thi</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_mon" data-whatever="@mdo" id="addmon" style="margin-right: 50px;">Thêm môn thi</button>
     </div>
     <table class="table" id="data-table">
         <thead>

@@ -11,10 +11,14 @@ class Mdsmon extends CI_Model
     {
         return $this->db->get('tblmon')->result_array();
     }
-    public function addMon($data){
-        $this->db->insert("tblmon",$data);
+    public function addMon($data)
+    {
+        $this->db->insert("tblmon", $data);
     }
-    public function fixMon($data){
-        $this->db->replace('tblmon',$data);
+    public function fixMon($mamon,$data)
+    {
+        $this->db->where('idMon', $mamon);
+        $this->db->update('tblmon',$data);
+        return $this->db->last_query();
     }
 }

@@ -882,3 +882,6 @@ section {
   display: flex;
   justify-content: center;
 }
+#mamon[disabled="disabled"]:hover {
+  cursor: not-allowed;
+}
