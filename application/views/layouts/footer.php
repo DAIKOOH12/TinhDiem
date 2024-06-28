@@ -62,5 +62,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script type="text/javascript">
+    var baseURL = "<?php echo site_url(); ?>";
+</script>
 
 </html>
