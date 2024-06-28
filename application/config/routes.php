@@ -58,6 +58,7 @@ $route['upload_files'] = 'CPhieuTraLoi/upload_files';
 $route['removePTL'] = 'CPhieuTraLoi/removeFile';
 $route['danhsachmon'] = 'Cdsmon';
 $route['quanlymon'] = 'Cdsmon/qlyDsMon';
+$route['quanlyketqua'] = 'CdsKetQua/loadView';
 $route['startcal'] = 'Caculation/start_cal';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
