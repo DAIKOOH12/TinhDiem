@@ -7,6 +7,10 @@ class Cadmin extends CI_Controller{
         $this->load->model('Madmin');
     }
     public function index(){
+        // $data['dsmon']=$this->Madmin->getDSMon();
+        $this->load->view("Vadmin");
+    }
+    public function qlyDsMon(){
         $data['dsmon']=$this->Madmin->getDSMon();
         $this->load->view("Vadmin",$data);
     }

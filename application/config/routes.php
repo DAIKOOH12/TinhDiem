@@ -57,6 +57,7 @@ $route['state'] = 'Caculation/get_status';
 $route['upload_files'] = 'CPhieuTraLoi/upload_files';
 $route['removePTL'] = 'CPhieuTraLoi/removeFile';
 $route['admin'] = 'Cadmin';
+$route['quanlymon'] = 'Cadmin/qlyDsMon';
 $route['startcal'] = 'Caculation/start_cal';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
