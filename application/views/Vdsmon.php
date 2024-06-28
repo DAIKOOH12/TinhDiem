@@ -5,10 +5,10 @@
     <table class="table" id="data-table">
         <thead>
             <tr>
-                <th scope="col">STT</th>
-                <th scope="col">Mã môn</th>
-                <th scope="col">Tên môn</th>
-                <th scope="col">Tác vụ</th>
+                <th>STT</th>
+                <th>Mã môn</th>
+                <th>Tên môn</th>
+                <th>Tác vụ</th>
             </tr>
         </thead>
         <tbody style="height: 150px;overflow: auto;">

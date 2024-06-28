@@ -16,7 +16,9 @@ body {
   overflow-x: hidden;
   transition: all 200ms linear;
 }
-
+td,th {
+  text-align: center !important;
+}
 ::selection {
   color: #fff;
   background-color: #8167a9;
@@ -875,4 +877,8 @@ section {
     margin-left: 0;
   }
 
+}
+.action{
+  display: flex;
+  justify-content: center;
 }
