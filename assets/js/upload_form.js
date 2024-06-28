@@ -31,10 +31,10 @@ $(function () {
   var shadow = document.querySelector(".shadow");
 
   let url_upload_files =
-    baseURL + "upload_files";
-  var url_removePTL = baseURL + "removePTL";
-  var url_state = baseURL + "state";
-  var url_themdapan = baseURL + "themdapan";
+    baseURL + "/upload_files";
+  var url_removePTL = baseURL + "/removePTL";
+  var url_state = baseURL + "/state";
+  var url_themdapan = baseURL + "/themdapan";
 
   var selectedMon = $("#dsmon").children("option:selected").html();
   $("#dsmon").on("change", function (e) {
