@@ -6,5 +6,12 @@ class MdsKetQua extends CI_Model {
     public function __construct()
     {
         parent::__construct();
+        
+    }
+    
+    public function getDeTheoMon($mamon) {
+        $this->db->where('fk_mon', $mamon);
+        $this->db->select("sMaDe");
+        return $this->db->get("tblde")->result_array();
     }
 }
