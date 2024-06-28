@@ -15,6 +15,10 @@ class Caculation extends CI_Controller
 
     public function start_cal()
     {
+        $res = (".\status.txt");
+        if (file_exists($res)) {
+            file_put_contents($res, '');
+        }
         if (isset($_POST['mamon'])) {
             $this->load->model("MPhieuTraLoi");
             $this->MPhieuTraLoi->import($_POST['mamon']);
@@ -121,6 +125,7 @@ class Caculation extends CI_Controller
         $sheet->setCellValue('E1', mb_convert_encoding("Số lượng câu", 'UTF-8'));
         $sheet->setCellValue('F1', mb_convert_encoding("Số câu đúng", 'UTF-8'));
         $sheet->setCellValue('G1', mb_convert_encoding("Các câu đúng", 'UTF-8'));
+        $sheet->setCellValue('H1', mb_convert_encoding("Số điểm", 'UTF-8'));
 
         $sn = 2;
         foreach ($productlist as $prod) {
@@ -136,6 +141,7 @@ class Caculation extends CI_Controller
             $sheet->setCellValue('E' . $sn, $prod["iSoLuongCau"]);
             $sheet->setCellValue('F' . $sn, $prod["iSoCauDung"]);
             $sheet->setCellValue('G' . $sn, $prod["sMaCauDung"]);
+            $sheet->setCellValue('H' . $sn, $prod["fDiem"]);
 
             $sn++;
         }
