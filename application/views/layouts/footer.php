@@ -52,7 +52,6 @@
 </footer>
 <!-- End Footer -->
 </body>
-<script src="<?php echo base_url(); ?>assets/js/upload_form.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jasny-bootstrap.min.js"></script>
 <!-- <script src="<?php echo base_url(); ?>assets/js/custom.js"></script> -->

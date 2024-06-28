@@ -43,5 +43,7 @@
             $("#switch").addClass("switched");
         }
     });
-    
+    $("#button-action").on("click",function(e){
+        console.log("Thực hiện");
+    })
 })(jQuery);

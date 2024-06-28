@@ -150,4 +150,5 @@
         <p>You have successfully completed the process.</p>
     </div>
 </div>
+<script src="<?php echo base_url(); ?>assets/js/upload_form.js"></script>
 <?php $this->load->view('layouts/footer')?>
