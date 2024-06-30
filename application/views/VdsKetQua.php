@@ -13,19 +13,19 @@ $this->load->view("layouts/header");
             <tr>
                 <th>STT</th>
                 <th>Tên môn</th>
-                <th>Mã đề</th>
+                <th>Thời gian</th>
                 <th>Tác vụ</th>
             </tr>
         </thead>
         <tbody style="height: 150px;overflow: auto;">
-            <?php for ($i = 0; $i < count($dsmon); $i++) { ?>
+            <?php for ($i = 0; $i < count($dskq); $i++) { ?>
                 <tr>
                     <th scope="row"><?php echo $i + 1; ?></th>
-                    <td><?php echo $dsmon[$i]['sTenMon']; ?></td>
-                    <td><?php echo $dsmon[$i]['sMaDe']; ?></td>
+                    <td><?php echo $dskq[$i]['idThuMuc']; ?></td>
+                    <td><?php echo $dskq[$i]['dThoiGian']; ?></td>
                     <td>
                         <div class="action">
-                            <div class="btn-download"><a href="<?php echo base_url("assets/uploads/dapan/dapAn3.xlsx"); ?>" download="dapAn3.xlsx"><i class="fa-solid fa-download" style="color: #ffffff;"></i></a></div>
+                            <div class="btn-download"><a href="<?php echo base_url(). $dskq[$i]["sDuongDan"].".xlsx"; ?>" download="<?php echo $dskq[$i]["sTenFile"].".xlsx"; ?>"><i class="fa-solid fa-download" style="color: #ffffff;"></i></a></div>
                             <div class="btn-delete"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></div>
                         </div>
                     </td>

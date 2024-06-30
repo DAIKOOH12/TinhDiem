@@ -20,7 +20,8 @@ class MPhieuTraLoi extends CI_Model
 
     public function import($mamon)
     {
-
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $now = date('Y_m_d-H_i_s');
 
         // file_put_contents("E:\\xampp\htdocs\TinhDiem\check.json", json_encode($dataDA));
 
@@ -114,7 +115,20 @@ class MPhieuTraLoi extends CI_Model
                         return $item;
                     }, $data_res);
 
-                    $this->db->insert_batch("tblphieutraloi", $data_import);
+                    $data_tm = array(
+                        "idThuMuc" => $mamon . "-" . $now,
+                        "fk_idNguoiDung" => "nd1",
+                        "sDuongDan" => "assets/uploads/ketqua/" . $mamon . "-" . $now ,
+                        "sTenFile" => $mamon . "-" . $now,
+                        "dThoiGian" => $now,
+                        "bLoaiThuMuc" => 0
+                    );
+                    
+                    
+                    // $this->db->insert_batch("tblphieutraloi", $data_import);
+                    $this->db->insert("tblThuMuc", $data_tm);
+                    $this->get_excel($data_res, "assets/uploads/ketqua/" . $mamon . "-" . $now);
+                    $this->get_excel($data_res, "assets/uploads/ketqua/" . $mamon . "-" . $now);
                 }
             } catch (Exception $e) {
                 // Handle Exception
@@ -125,5 +139,62 @@ class MPhieuTraLoi extends CI_Model
                 echo 'Caught error: ',  $err->getMessage(), "\n";
             }
         }
+    }
+
+
+    public function get_excel($data_res, $path) {
+        // $array = file_get_contents("E:\\xampp\\htdocs\\TinhDiem\\result.json");
+        // $array = trim($array, "\xEF\xBB\xBF");
+        // $productlist = json_decode($array, true);
+        echo "fdfd";
+        $productlist = $data_res;
+
+        if (!is_array($productlist)) {
+            echo "Lỗi: Dữ liệu JSON không hợp lệ.";
+            exit;
+        }
+
+        // Dọn dẹp output buffer
+        if (ob_get_contents()) ob_end_clean();
+
+        // header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        // header('Content-Disposition: attachment;filename="ketQua.xlsx"');
+        // header('Cache-Control: max-age=0');
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        $sheet->setCellValue('A1', mb_convert_encoding("SBD", 'UTF-8'));
+        $sheet->setCellValue('B1', mb_convert_encoding('Họ Tên', 'UTF-8'));
+        $sheet->setCellValue('C1', mb_convert_encoding("Ngày sinh", 'UTF-8'));
+        $sheet->setCellValue('D1', mb_convert_encoding("Mã đề", "UTF-8"));
+        $sheet->setCellValue('E1', mb_convert_encoding("Tổng số câu", 'UTF-8'));
+        $sheet->setCellValue('F1', mb_convert_encoding("Số câu đúng", 'UTF-8'));
+        $sheet->setCellValue('G1', mb_convert_encoding("Số điểm", 'UTF-8'));
+        $sheet->setCellValue('H1', mb_convert_encoding("Các câu đúng", 'UTF-8'));
+
+        $sn = 2;
+        foreach ($productlist as $prod) {
+            $prod["sSBD"] = mb_convert_encoding($prod["sSBD"], 'UTF-8');
+            $prod["sHoTen"] = mb_convert_encoding($prod["sHoTen"], 'UTF-8');
+            $prod["sNgaySinh"] = mb_convert_encoding($prod["sNgaySinh"], 'UTF-8');
+            $prod["iSoLuongCau"] = mb_convert_encoding($prod["iSoLuongCau"], 'UTF-8');
+
+            $sheet->setCellValue('A' . $sn, $prod["sSBD"]);
+            $sheet->setCellValue('B' . $sn, $prod["sHoTen"]);
+            $sheet->setCellValue('C' . $sn, $prod["sNgaySinh"]);
+            $sheet->setCellValue('D' . $sn, $prod["sMaDe"]);
+            $sheet->setCellValue('E' . $sn, $prod["iSoLuongCau"]);
+            $sheet->setCellValue('F' . $sn, $prod["iSoCauDung"]);
+            $sheet->setCellValue('G' . $sn, $prod["fDiem"]);
+            $sheet->setCellValue('H' . $sn, $prod["sMaCauDung"]);
+
+            $sn++;
+        }
+
+        $writer = new Xlsx($spreadsheet);
+        // $writer->save($path. ".xlsx");
+        $writer->save($path . ".xlsx");
+       
     }
 }

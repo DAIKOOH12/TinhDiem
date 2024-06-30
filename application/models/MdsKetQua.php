@@ -14,4 +14,9 @@ class MdsKetQua extends CI_Model {
         $this->db->select("sMaDe");
         return $this->db->get("tblde")->result_array();
     }
+
+    public function getThuMuc() {
+        $this->db->where("bLoaiThuMuc", 0);
+        return $this->db->get("tblThuMuc")->result_array();
+    }
 }

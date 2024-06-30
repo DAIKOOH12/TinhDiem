@@ -13,17 +13,17 @@
     public function loadView() {
 
         //Lấy danh sách tất cả các môn
-        $data['dsmon']=$this->Mdsmon->getDSMon();
-        foreach($data['dsmon'] as &$i) {
+        // $data['dsmon']=$this->Mdsmon->getDSMon();
+        // foreach($data['dsmon'] as &$i) {
             
-            //lấy danh sách các đề của môn
-            $made = $this->MdsKetQua->getDeTheoMon($i["idMon"]);
-            // file_put_contents("E:\\xampp\htdocs\TinhDiem\\result2.json", json_encode($made));
-            $str_md = implode(", ", array_column($made, "sMaDe"));
-            $i["sMaDe"] = $str_md;
-        }
-        unset($i);
-
+        //     //lấy danh sách các đề của môn
+        //     $made = $this->MdsKetQua->getDeTheoMon($i["idMon"]);
+        //     // file_put_contents("E:\\xampp\htdocs\TinhDiem\\result2.json", json_encode($made));
+        //     $str_md = implode(", ", array_column($made, "sMaDe"));
+        //     $i["sMaDe"] = $str_md;
+        // }
+        // unset($i);
+        $data['dskq']=$this->MdsKetQua->getThuMuc();
         $this->load->view("VdsKetQua",$data);
     }
 
