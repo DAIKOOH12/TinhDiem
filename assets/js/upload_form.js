@@ -30,8 +30,7 @@ $(function () {
   var modal_wrapper = document.querySelector(".modal_wrapper");
   var shadow = document.querySelector(".shadow");
 
-  let url_upload_files =
-    baseURL + "/upload_files";
+  let url_upload_files = baseURL + "/upload_files";
   var url_removePTL = baseURL + "/removePTL";
   var url_state = baseURL + "/state";
   var url_themdapan = baseURL + "/themdapan";
@@ -145,6 +144,7 @@ $(function () {
           // $response == JSON.parse(res);
           if ($res == "Done") {
             console.log("done");
+            $("#form4_title").html("Tải xuống để xem kết quả");
             $(".loader").hide();
             $("#btn_taiXuong").show();
           } else {
@@ -238,15 +238,26 @@ $(function () {
   });
 
   function show_listFiles(res) {
-    for (let i = 0; i < res.length; i++)
-      // $('#listFiles').append(`<span>${res[i]}</span><i class="fa-solid fa-xmark"></i>`)
-      $("#listFiles").append(
+    let items = [];
+    for (let i = 0; i < res.length; i++) {
+      items.push(
         '<li style="min-width: 300px;" class="list-group-item">' +
           res[i] +
           '<div class="pull-right"><a href="#" data-file="' +
           res[i] +
           '" class="remove_file"><i class="fa-solid fa-xmark"></i></a></div></li>'
       );
+    }
+
+    $('#listFiles').html(items.join(""))
+    // $('#listFiles').append(`<span>${res[i]}</span><i class="fa-solid fa-xmark"></i>`)
+    // $("#listFiles").append(
+    // '<li style="min-width: 300px;" class="list-group-item">' +
+    //   res[i] +
+    //   '<div class="pull-right"><a href="#" data-file="' +
+    //   res[i] +
+    //   '" class="remove_file"><i class="fa-solid fa-xmark"></i></a></div></li>'
+    // );
   }
 
   $("body").on("click", ".remove_file", function () {

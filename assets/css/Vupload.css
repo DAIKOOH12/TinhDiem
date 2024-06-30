@@ -275,6 +275,8 @@ body {
 }
 
 .list-group-item {
+	display: flex !important;
+	justify-content: space-between;
 	background-color: rgb(255, 255, 255);
 	padding: 10px;
 	color: black;

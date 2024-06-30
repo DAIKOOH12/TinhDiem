@@ -28,7 +28,7 @@ class CPhieuTraLoi extends CI_Controller
 			$files           = $_FILES;
 
 			$number_of_files = count($_FILES['file']['name']);
-			file_put_contents("E:\\xampp\htdocs\TinhDiem\check.json", $number_of_files);
+			// file_put_contents("E:\\xampp\htdocs\TinhDiem\check.json", $number_of_files);
 
 			$errors = 0;
 

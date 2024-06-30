@@ -67,14 +67,13 @@ class MPhieuTraLoi extends CI_Model
                             $listDA .= $sheetdata[$i][$j] . "/";
                         }
 
-                        $SoCH = "";
+                        $maCauDung = "";
                         $count = 0;
 
                         $this->db->like("pk_DeMon", $mamon . "-" . $sheetdata[$i][5]);
                         $da = $this->db->get("tblDapAn");
                         $dataDA = $da->result_array();
-                        file_put_contents("E:\\xampp\htdocs\TinhDiem\\result2.json", json_encode($dataDA), false);
-
+                        
                         $list1 = explode("/", $dataDA[0]["sDapAn"]);
                         $list2 = explode("/", $listDA);
                         $listMCH = explode("/", $dataDA[0]["sMaCauHoi"]);
@@ -83,9 +82,10 @@ class MPhieuTraLoi extends CI_Model
                         for ($q = 0; $q < count($list1) - 1; $q++) {
                             if ($list1[$q] == $list2[$q]) {
                                 $count++;
-                                $SoCH .= $listMCH[$q] . "/";
+                                $maCauDung .= $listMCH[$q] . "/";
                             }
                         }
+                    
 
                         $dataCH = array(
                             "sSBD" => $sheetdata[$i][1],
@@ -97,7 +97,7 @@ class MPhieuTraLoi extends CI_Model
                             "fk_demon" => $mamon . "-" . $sheetdata[$i][5],
                             "iSoLuongCau" => $soCauHoi,
                             "iSoCauDung" => $count,
-                            "sMaCauDung" => $SoCH,
+                            "sMaCauDung" => $maCauDung,
                             "sMaDe" => $sheetdata[$i][5],
                             "fDiem" => $count*10/$soCauHoi
                         );
