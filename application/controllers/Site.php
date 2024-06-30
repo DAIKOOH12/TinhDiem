@@ -116,11 +116,12 @@ class Site extends CI_Controller
 			}
 			// $file_name=$_FILES();
 			$thumucdapan = "/assets/uploads/dapan/" . $_FILES['upload_file_key']['full_path'];
-			$dapan['idThuMuc'] = $_FILES['upload_file_key']['full_path'] . date('d/m/Y')."-".date('h:i:s');
+			$dapan['idThuMuc'] = $_FILES['upload_file_key']['full_path']. "-" . date('d/m/Y')."-".date('h:i:s');
 			$dapan['fk_idNguoiDung'] = 'nd1';
 			$dapan['sDuongDan'] = $thumucdapan;
 			$dapan['sTenFile'] = $_FILES['upload_file_key']['full_path'];
 			$dapan['dThoiGian'] = date('d/m/Y') . "-" . date('h:i:s');
+			$dapan['bLoaiThuMuc'] = 1;
 			$this->Msite->insert_dapan_to_folder($dapan);
 
 			// $made = $this->input->post('made') . "-" . date('d/m/Y') . "-" . date('h:i:s');
@@ -152,7 +153,7 @@ class Site extends CI_Controller
 			$dsDapAn['pk_DeMon'] = $mamon . "-" . $made;
 			$dsDapAn['fk_idde'] = $made. "-" . date('d/m/Y') . "-" . date('h:i:s');
 			$dsDapAn['fk_idmon'] = $mamon;
-			$dsDapAn['fk_idThuMuc'] = 'tm1';
+			$dsDapAn['fk_idThuMuc'] = $_FILES['upload_file_key']['full_path']. "-" . date('d/m/Y')."-".date('h:i:s');
 			$dsDapAn['sDapAn'] = "";
 			$dsDapAn['sMaCauHoi'] = "";
 			$dsDapAn['iSoLuongCau'] = $sheetcount - 1;
