@@ -24,6 +24,16 @@
         // }
         // unset($i);
         $data['dskq']=$this->MdsKetQua->getThuMuc();
+        foreach($data['dskq'] as &$i) {
+            $mamon = explode('-', $i["idThuMuc"])[0];
+            //lấy danh sách các đề của môn
+            $tenmon = $this->MdsKetQua->getTenMonTheoMa($mamon);
+            // file_put_contents("E:\\xampp\htdocs\TinhDiem\\result2.json", json_encode($made));
+            // $str_md = implode(", ", array_column($made, "sMaDe"));
+            $i["sTenMon"] = array_column($tenmon, "sTenMon")[0];
+            
+        }
+        unset($i);
         $this->load->view("VdsKetQua",$data);
     }
 

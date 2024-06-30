@@ -90,7 +90,7 @@ class MPhieuTraLoi extends CI_Model
 
                         $dataCH = array(
                             "sSBD" => $sheetdata[$i][1],
-                            "fk_idThuMuc" => "tm1",
+                            "fk_idThuMuc" => $mamon . "-" . $now,
                             "sHoTen" => $sheetdata[$i][2],
                             "sLop" => $sheetdata[$i][4],
                             "sNgaySinh" => $sheetdata[$i][3],
@@ -125,10 +125,10 @@ class MPhieuTraLoi extends CI_Model
                     );
                     
                     
-                    // $this->db->insert_batch("tblphieutraloi", $data_import);
                     $this->db->insert("tblThuMuc", $data_tm);
+                    $this->db->insert_batch("tblphieutraloi", $data_import);
                     $this->get_excel($data_res, "assets/uploads/ketqua/" . $mamon . "-" . $now);
-                    $this->get_excel($data_res, "assets/uploads/ketqua/" . $mamon . "-" . $now);
+                    // $this->get_excel($data_res, "assets/uploads/ketqua/" . $mamon . "-" . $now);
                 }
             } catch (Exception $e) {
                 // Handle Exception

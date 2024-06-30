@@ -21,7 +21,7 @@ $this->load->view("layouts/header");
             <?php for ($i = 0; $i < count($dskq); $i++) { ?>
                 <tr>
                     <th scope="row"><?php echo $i + 1; ?></th>
-                    <td><?php echo $dskq[$i]['idThuMuc']; ?></td>
+                    <td><?php echo $dskq[$i]['sTenMon']; ?></td>
                     <td><?php echo $dskq[$i]['dThoiGian']; ?></td>
                     <td>
                         <div class="action">
