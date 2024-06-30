@@ -48,7 +48,7 @@
         $('#tenmon').val('');
         $('#mamon').removeAttr('disabled');
         var stt = $('.ds-mon').length + 1;
-        $("#button-action").on('click', function (e) {
+        $("#button-action").off('click').on('click', function (e) {
             $.ajax({
                 url: baseURL + "/themmon",
                 type: 'post',
@@ -60,8 +60,8 @@
                     var xml = "";
                     xml += ' <tr class="ds-mon">';
                     xml += '<th scope="row">' + stt + '</th>';
-                    xml += '<td>' + $("#mamon").val() + '</td>';
-                    xml += '<td>' + $("#tenmon").val() + '</td>';
+                    xml += '<td class="idmon">' + $("#mamon").val() + '</td>';
+                    xml += '<td class="namemon">' + $("#tenmon").val() + '</td>';
                     xml += '<td><div class="action"><div class="btn-details"><i class="fa-solid fa-eye" style="color: #ffffff;"></i></div><div class="btn-fix"><i class="fa-solid fa-wrench" style="color: #ffffff;" data-toggle="modal" data-target="#modal_mon" data-whatever="@mdo" id="fixmon"></i></i></div><div class="btn-delete"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></div></div></td>';
                     xml += '</tr>';
                     $('#list-mon').append(xml);
@@ -71,15 +71,17 @@
             });
         })
     });
+
     $(document).on('click', '.btn-fix', function (e) {
         var currentrow = $(this).parents('.action').parents('td').parents('.ds-mon');
-        var mamonfix = $(this).siblings('.idmamon').val();
-        var namemonfix = $(this).siblings('.idmamon').attr('name');
+        var mamonfix = $(this).parents('.action').parents('td').siblings('.idmon').text();
+        var namemonfix = $(this).parents('.action').parents('td').siblings('.namemon').text();
         $('#tieudemodal').text('Sửa môn thi');
         $('#mamon').attr('disabled', 'disabled');
-        $("#button-action").on('click', function (e) {
-            $('#mamon').val(mamonfix);
-            $('#tenmon').val(namemonfix);
+        $('#mamon').val(mamonfix);
+        $('#tenmon').val(namemonfix);
+        console.log(mamonfix, namemonfix);
+        $("#button-action").off('click').on('click', function (e) {
             var newname = $('#tenmon').val();
             console.log(mamonfix, namemonfix);
             $.ajax({
@@ -91,17 +93,37 @@
                 },
                 success: function (e) {
                     alert('Thành công');
-                    // currentrow.html('');
-                    // var xml = "";
-                    // xml += ' <tr class="ds-mon">';
-                    // xml += '<th scope="row">' + 1 + '</th>';
-                    // xml += '<td>' + $("#mamon").val() + '</td>';
-                    // xml += '<td>' + newname + '</td>';
-                    // xml += '<td><div class="action"><div class="btn-details"><i class="fa-solid fa-eye" style="color: #ffffff;"></i></div><div class="btn-fix"><i class="fa-solid fa-wrench" style="color: #ffffff;" data-toggle="modal" data-target="#modal_mon" data-whatever="@mdo" id="fixmon"></i></i></div><div class="btn-delete"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></div></div></td>';
-                    // xml += '</tr>';
-                    // currentrow.html(xml);
+                    $('#namemon').text(newname);
+                    currentrow.html('');
+                    var xml = "";
+                    xml += '<th scope="row">' + 1 + '</th>';
+                    xml += '<td class="idmon">' + mamonfix + '</td>';
+                    xml += '<td class="namemon">' + newname + '</td>';
+                    xml += '<td><div class="action"><div class="btn-details"><i class="fa-solid fa-eye" style="color: #ffffff;"></i></div><div class="btn-fix"><i class="fa-solid fa-wrench" style="color: #ffffff;" data-toggle="modal" data-target="#modal_mon" data-whatever="@mdo" id="fixmon"></i></i></div><div class="btn-delete"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></div></div></td>';
+                    currentrow.html(xml);
                 }
             });
         });
+    });
+    $(document).on('click', '.btn-delete', function (e) {
+        if (confirm('Bạn có chắc muốn xóa môn này?')) {
+            var currentrow = $(this).parents('.action').parents('td').parents('.ds-mon');
+            var mamonfix = $(this).parents('.action').parents('td').siblings('.idmon').text();
+            console.log(mamonfix);
+            $.ajax({
+                url: baseURL + "/xoamon",
+                type: 'post',
+                data: {
+                    'mamon': mamonfix
+                },
+                success: function (e) {
+                    alert("Xóa thành công");
+                }
+            });
+            currentrow.remove();
+        }
+        else {
+            console.log('Đã hủy');
+        }
     });
 })(jQuery);

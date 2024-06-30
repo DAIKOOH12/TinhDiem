@@ -16,9 +16,6 @@ body {
   overflow-x: hidden;
   transition: all 200ms linear;
 }
-td,th {
-  text-align: center !important;
-}
 ::selection {
   color: #fff;
   background-color: #8167a9;
@@ -631,6 +628,10 @@ body.dark .logo img {
 .main-page {
   margin-top: 150px;
   padding: 10px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .action {
@@ -880,8 +881,10 @@ section {
 }
 .action{
   display: flex;
-  justify-content: center;
 }
 #mamon[disabled="disabled"]:hover {
   cursor: not-allowed;
+}
+.table{
+  width: 80% !important;
 }

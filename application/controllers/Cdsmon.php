@@ -26,6 +26,10 @@ class Cdsmon extends CI_Controller{
         $msg=$this->Mdsmon->fixMon($mamon,$data);
         echo $msg;
     }
+    public function delMon(){
+        $mamon=$_POST['mamon'];
+        $this->Mdsmon->delmon($mamon);
+    }
     public function showArr($arr)
 	{
 		echo "<pre>";

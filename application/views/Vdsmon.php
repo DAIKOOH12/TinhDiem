@@ -1,8 +1,8 @@
 <?php $this->load->view('layouts/header'); ?>
 <div class="main-page">
-    <div class="title-ds-mon" style="display:flex;width: 100%;justify-content: space-between;">
+    <div class="title-ds-mon" style="display:flex;width: 80%;justify-content: space-between;">
         <h2>DANH SÁCH MÔN THI</h2>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_mon" data-whatever="@mdo" id="addmon" style="margin-right: 50px;">Thêm môn thi</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_mon" data-whatever="@mdo" id="addmon">Thêm môn thi</button>
     </div>
     <table class="table" id="data-table">
         <thead>
@@ -17,14 +17,13 @@
             <?php for ($i = 0; $i < count($dsmon); $i++) { ?>
                 <tr class="ds-mon">
                     <th scope="row"><?php echo $i + 1; ?></th>
-                    <td><?php echo $dsmon[$i]['idMon']; ?></td>
-                    <td><?php echo $dsmon[$i]['sTenMon']; ?></td>
+                    <td class="idmon"><?php echo $dsmon[$i]['idMon']; ?></td>
+                    <td class="namemon"><?php echo $dsmon[$i]['sTenMon']; ?></td>
                     <td>
                         <div class="action">
                             <div class="btn-details"><i class="fa-solid fa-eye" style="color: #ffffff;"></i></div>
                             <div class="btn-fix"><i class="fa-solid fa-wrench" style="color: #ffffff;" data-toggle="modal" data-target="#modal_mon" data-whatever="@mdo"></i></i></div>
                             <div class="btn-delete"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></div>
-                            <input type="hidden" value="<?php echo $dsmon[$i]['idMon']; ?>" class="idmamon" name="<?php echo $dsmon[$i]['sTenMon']; ?>">
                         </div>
                     </td>
                 </tr>

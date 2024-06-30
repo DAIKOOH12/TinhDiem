@@ -21,4 +21,8 @@ class Mdsmon extends CI_Model
         $this->db->update('tblmon',$data);
         return $this->db->last_query();
     }
+    public function delmon($id){
+        $this->db->where('idMon',$id);
+        $this->db->delete('tblmon');
+    }
 }
