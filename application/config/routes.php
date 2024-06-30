@@ -63,5 +63,6 @@ $route['quanlymon'] = 'Cdsmon/qlyDsMon';
 $route['themmon'] = 'Cdsmon/addMon';
 $route['suamon'] = 'Cdsmon/fixMon';
 $route['xoamon'] = 'Cdsmon/delMon';
+$route['quanlyde'] = 'Cdsde';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

@@ -37,7 +37,7 @@
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="color: #0069b8 !important;">Quản lý danh sách</a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="<?php echo site_url('/quanlymon'); ?>">Danh sách môn thi</a>
-                                        <a class="dropdown-item" href="#">Danh sách bộ đáp án</a>
+                                        <a class="dropdown-item" href="<?php echo site_url('/quanlyde')?>">Danh sách bộ đáp án</a>
                                         <a class="dropdown-item" href="<?php echo site_url('/quanlyketqua')?>">Danh sách kết quả chấm thi</a>
                                     </div>
                                 </li>
