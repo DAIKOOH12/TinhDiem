@@ -22,6 +22,15 @@ class Caculation extends CI_Controller
         if (isset($_POST['mamon'])) {
             $this->load->model("MPhieuTraLoi");
             $this->MPhieuTraLoi->import($_POST['mamon']);
+
+            //xóa file sinh vien
+            $this->load->helper('file');
+            $files = get_filenames("./assets/uploadSV");
+            for ($t = 0; $t < count($files); $t++) {
+                unlink( './assets/uploadSV/' . $files[$t]);
+            }
+
+                
             file_put_contents(".\status.txt", "Done");
             exit;
         }
@@ -96,9 +105,9 @@ class Caculation extends CI_Controller
 
     public function get_excel()
     {
-        require 'vendor/autoload.php'; // Đảm bảo bạn đã cài đặt PhpSpreadsheet qua Composer
+        require 'vendor/autoload.php';
 
-        // Đảm bảo rằng không có BOM trong dữ liệu JSON
+
         $array = file_get_contents("E:\\xampp\\htdocs\\TinhDiem\\result.json");
         $array = trim($array, "\xEF\xBB\xBF");
         $productlist = json_decode($array, true);

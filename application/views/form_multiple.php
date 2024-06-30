@@ -84,7 +84,7 @@
                         <label for="file" id="lb-filedapan"><i class="fa-solid fa-file-circle-plus fa-2xl" style="color: white;margin-right: 10px"></i>Chọn file</label>
                     </div>
                     <div class="input_wrap" style="display: flex;justify-content: center;">
-                        <input type="checkbox" name="cbSenđEmail" id="cbSendEmail"><span>Nhận thông báo qua email</span>
+                        <!-- <input type="checkbox" name="cbSenđEmail" id="cbSendEmail"><span>Nhận thông báo qua email</span> -->
                         <input type="file" name="file[]" multiple id="file" placeholder="Định dạng file hỗ trợ: .xlsx" style="display: none;">
                         <!-- <button class="btn btn-primary" id="upload-btn"><i class="fa-solid fa-file-arrow-up" style="color: #ffffff;margin-right: 10px;"></i>Tải lên</button> -->
                     </div>
@@ -107,7 +107,7 @@
             </form>
         </div>
         <div class="form_4 data_info" style="display: none;">
-            <h2>Đang xử lí.....</h2>
+            <h2 id="form4_title">Đang xử lí.....</h2>
             <div class="input_wrap" style="display: flex;justify-content: center;">
                 <div class="loader"></div>
                 <form action="<?php echo site_url("Caculation/get_excel") ?>" method="post" id="form-TaiXuong">
