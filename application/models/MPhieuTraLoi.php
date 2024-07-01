@@ -22,6 +22,7 @@ class MPhieuTraLoi extends CI_Model
     {
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $now = date('Y_m_d-H_i_s');
+        $now_VN = date('d/m/Y-H:i:s');
 
         // file_put_contents("E:\\xampp\htdocs\TinhDiem\check.json", json_encode($dataDA));
 
@@ -120,7 +121,7 @@ class MPhieuTraLoi extends CI_Model
                         "fk_idNguoiDung" => "nd1",
                         "sDuongDan" => "assets/uploads/ketqua/" . $mamon . "-" . $now ,
                         "sTenFile" => $mamon . "-" . $now,
-                        "dThoiGian" => $now,
+                        "dThoiGian" => $now_VN,
                         "bLoaiThuMuc" => 0
                     );
                     
