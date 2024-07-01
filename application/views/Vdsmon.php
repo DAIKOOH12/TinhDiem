@@ -21,7 +21,7 @@
                     <td class="namemon"><?php echo $dsmon[$i]['sTenMon']; ?></td>
                     <td>
                         <div class="action">
-                            <div class="btn-details"><i class="fa-solid fa-eye" style="color: #ffffff;"></i></div>
+                            <div class="btn-details"><a href="./quanlyde?id=<?php echo $dsmon[$i]['idMon']; ?>"><i class="fa-solid fa-eye" style="color: #ffffff;"></i></a></div>
                             <div class="btn-fix"><i class="fa-solid fa-wrench" style="color: #ffffff;" data-toggle="modal" data-target="#modal_mon" data-whatever="@mdo"></i></i></div>
                             <div class="btn-delete"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></div>
                         </div>
