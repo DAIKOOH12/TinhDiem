@@ -37,8 +37,5 @@
         $this->load->view("VdsKetQua",$data);
     }
 
-    public function download($dd){
-        
-    }
-    
+
  }
