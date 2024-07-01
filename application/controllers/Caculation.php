@@ -108,7 +108,7 @@ class Caculation extends CI_Controller
         require 'vendor/autoload.php';
 
 
-        $array = file_get_contents("E:\\xampp\\htdocs\\TinhDiem\\result.json");
+        $array = file_get_contents("./result.json");
         $array = trim($array, "\xEF\xBB\xBF");
         $productlist = json_decode($array, true);
 
