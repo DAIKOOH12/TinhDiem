@@ -26,36 +26,8 @@
         </ul>
     </div>
     <div class="form_wrap">
+
         <div class="form_1 data_info">
-            <h3>Nhập thông tin môn thi</h3>
-            <form action="<?php echo site_url('site/addMonHoc') ?>" method="post" enctype="multipart/form-data" id="form-upload-key">
-                <div class="form_container">
-                    <div class="input_wrap">
-                        <label for="email">Danh sách môn đã có</label>
-                        <select name="" id="dsmon">
-                            <?php for ($i = 0; $i < count($dsmon); $i++) { ?>
-                                <option value="<?php echo $dsmon[$i]['idMon'] ?>"><?php echo $dsmon[$i]['sTenMon'] . " (" . $dsmon[$i]['idMon'] . ")"; ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                    <div class="input_wrap">
-                        <label for="mamon">Nhập mã môn</label>
-                        <input type="text" name="mamon" class="input" id="mamon">
-                    </div>
-                    <div class="input_wrap">
-                        <label for="tenmon">Nhập tên môn</label>
-                        <input type="text" name="tenmon" class="input" id="tenmon">
-                    </div>
-                    <div class="input_wrap">
-                        <div class="btn-add-files" id="add-mamon">
-                            <i class="fa-solid fa-plus fa-xl" style="color: white;"></i>
-                            <span style="color:white;">Thêm môn</span>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="form_2 data_info" style="display: none;">
             <h3 style="text-align: center;">Nhập đáp án</h3>
             <form action="<?php echo site_url('site/spreadsheet_import') ?>" method="post" enctype="multipart/form-data" id="form-upload-dapan">
                 <div class="form_container">
@@ -76,7 +48,7 @@
                 </div>
             </form>
         </div>
-        <div class="form_3 data_info" style="display: none;">
+        <div class="form_2 data_info" style="display: none;">
             <h2>Nhập bộ câu trả lời</h2>
             <form action="<?php echo site_url("site/upload") ?>" method="post" enctype="multipart/form-data" id="form-upload">
                 <div class="form_container">
@@ -105,6 +77,11 @@
                     </ul>
                 </div>
             </form>
+        </div>
+        <div class="form_3 data_info" style="display: none;">
+            <div class="input_wrap" style="display: flex;justify-content: center;">
+                <h4>Bắt đầu thực hiện tính toán?</h4>
+            </div>
         </div>
         <div class="form_4 data_info" style="display: none;">
             <h2 id="form4_title">Đang xử lí.....</h2>
@@ -151,4 +128,4 @@
     </div>
 </div>
 <script src="<?php echo base_url(); ?>assets/js/upload_form.js"></script>
-<?php $this->load->view('layouts/footer')?>
+<?php $this->load->view('layouts/footer') ?>

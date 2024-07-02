@@ -40,6 +40,7 @@ $(function () {
     selectedMon = $(this).children("option:selected").html();
   });
   form_1_next_btn.addEventListener("click", function () {
+    console.log("Chuyển 1 sang 2");
     form_1.style.display = "none";
     form_2.style.display = "block";
 
