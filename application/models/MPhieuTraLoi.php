@@ -198,4 +198,10 @@ class MPhieuTraLoi extends CI_Model
         $writer->save($path . ".xlsx");
        
     }
+
+    public function import_tblMon($data) {
+        $this->db->insert("tblMon", $data);
+    }
+
+
 }

@@ -2,7 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 require FCPATH . 'vendor/autoload.php';
 
-
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
@@ -15,24 +15,83 @@ class Caculation extends CI_Controller
 
     public function start_cal()
     {
-        $res = (".\status.txt");
-        if (file_exists($res)) {
-            file_put_contents($res, '');
-        }
-        if (isset($_POST['mamon'])) {
-            $this->load->model("MPhieuTraLoi");
-            $this->MPhieuTraLoi->import($_POST['mamon']);
+        // $res = (".\status.txt");
+        // if (file_exists($res)) {
+        //     file_put_contents($res, '');
+        // }
+        // if (isset($_POST['mamon'])) {
+        //     $this->load->model("MPhieuTraLoi");
+        //     $this->MPhieuTraLoi->import($_POST['mamon']);
 
-            //xóa file sinh vien
-            $this->load->helper('file');
-            $files = get_filenames("./assets/uploadSV");
-            for ($t = 0; $t < count($files); $t++) {
-                unlink( './assets/uploadSV/' . $files[$t]);
-            }
+        //     //xóa file sinh vien
+        //     $this->load->helper('file');
+        //     $files = get_filenames("./assets/uploadSV");
+        //     for ($t = 0; $t < count($files); $t++) {
+        //         unlink( './assets/uploadSV/' . $files[$t]);
+        //     }
 
                 
-            file_put_contents(".\status.txt", "Done");
-            exit;
+        //     file_put_contents(".\status.txt", "Done");
+        //     exit;
+        // }
+
+
+        
+        $this->LayThongTin();
+    }
+
+    public function LayThongTin() {
+        $this->load->helper('file');
+        $files = get_filenames("./assets/uploadSV");
+
+        $data_res = array();
+
+        for ($i = 0; $i < count($files); $i++) {
+            try {
+                // $this->load->helper('file');
+                // $files = get_filenames("./assets/uploads");
+
+
+                $filePath = '.\assets\uploadSV\\' . $files[$i];
+                // echo $filePath;
+
+                $spreadsheet = IOFactory::load($filePath);
+                $sheetdata = $spreadsheet->getActiveSheet()->toArray();
+                $sheetcount = count($sheetdata);
+
+                if($sheetcount > 1) {
+                    $ma_tenMon = trim(explode(":", $sheetdata[3][0])[1]);
+                    $mon = explode("_", $ma_tenMon)[1];
+                    $trungTam = $sheetdata[4][0];
+                    preg_match('/Phòng số:\s*(\S+)/', $sheetdata[5][0], $phongThi);
+                    preg_match('/Ngày thi:\s*(\d{2}\/\d{2}\/\d{4})/', $sheetdata[5][0], $ngayThi);
+                    $thongTin = array(
+                        "tenMon" => $mon,
+                        "trungTam" => $trungTam,
+                        "phongThi" => $phongThi[1],
+                        "ngayThi" => $ngayThi[1],
+                    );
+                    $array_tblmon = array(
+                        "idMon" => explode("_", $ma_tenMon)[0],
+                        "sTenMon" => explode("_", $ma_tenMon)[1]
+                    );
+
+                    $this->load->model("MPhieuTraLoi");
+                    $this->MPhieuTraLoi->import_tblMon($array_tblmon);
+                    // for($j = 4; $j<$sheetcount; $j++) {
+
+                        file_put_contents("./checkTenMon.json", json_encode($thongTin));
+                    // }
+                }
+            }
+            catch (Exception $e) {
+                // Handle Exception
+                echo 'Caught exception: ',  $e->getMessage(), "\n";
+                log_message('debug', $e->getMessage());
+            } catch (Error $err) {
+                // Handle Error
+                echo 'Caught error: ',  $err->getMessage(), "\n";
+            }
         }
     }
 
