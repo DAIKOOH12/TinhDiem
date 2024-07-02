@@ -1,0 +1,13 @@
+- Thay đổi quy trình xử lí:
+	b1: Nhập thông tin đáp án (mã đề) * ko quan tâm tên môn
+	b2: Nhập file kết quả thi của sinh viên
+	b3: Xử lí và xuất dữ lieu tổng hợp theo môn, chi tiết từng phòng thi, môn thi theo đợt nhập vào
+- Thêm cột PI 
+- Thêm các cột CLO và số lượng câu đúng trong CLO đó
+- Lấy thông tin môn trong file kết quả của thí sinh (môn thi, phòng thi, địa điểm, ngày thi) cột A4,5,6
+- Kiểm tra phần mềm trộn đề xuất dữ lieu dạng file word hay excel
+- Các mã đề sẽ không trùng nhau nên sẽ xác dịnh được môn
+- Phần nhập đáp án: Kiểm tra đáp án đã tồn tại, cần nhập mã đề
+- Ý tưởng xây dung chức năng đánh giá chat lượng đề thi (độ khó, tin cậy,....) thông qua dữ lieu bài làm của thí sinh theo công thức phòng khảo thí gửi sau.
+- Xây dung báo cáo thống kê
+-> Viết báo cáo (2 cột: ý tưởng | Cách thực hiện)
