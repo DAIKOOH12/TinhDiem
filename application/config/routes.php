@@ -53,6 +53,7 @@ $route['default_controller'] = 'Site';
 $route['site'] = 'Site';
 $route['themmon'] = 'Site/addMonHoc';
 $route['themdapan'] = 'Site/themdapan';
+$route['xoadapan'] = 'Site/xoaDapAn';
 $route['state'] = 'Caculation/get_status';
 $route['upload_files'] = 'CPhieuTraLoi/upload_files';
 $route['removePTL'] = 'CPhieuTraLoi/removeFile';

@@ -26,13 +26,11 @@
         </ul>
     </div>
     <div class="form_wrap">
-
         <div class="form_1 data_info">
             <h3 style="text-align: center;">Nhập đáp án</h3>
             <form action="<?php echo site_url('site/spreadsheet_import') ?>" method="post" enctype="multipart/form-data" id="form-upload-dapan">
                 <div class="form_container">
                     <div class="input_wrap">
-                        <span>Môn đang chọn: </span><b id="current-mon"></b>
                         <label for="input-made">Nhập mã đề</label>
                         <div class="add-files-group">
                             <div class="input-group">
@@ -44,6 +42,13 @@
                             <i class="fa-solid fa-plus fa-xl" style="color: white;"></i>
                             <span style="color:white;">Thêm mã đề</span>
                         </div>
+                    </div>
+                    <div class="input_wrap" style="display: flex;justify-content: center;flex-wrap: wrap;" id="list-dapan">
+                        <h5>Các file đã thêm</h5>
+                        <!-- <div class="list-file-dapan">
+                            <div class="file-items">DapAn.xlsx</div>
+                            <div class="btn-del-dapan"><i class="fa-solid fa-trash delete-dapan" style="color: #eb0000;"></i></div>
+                        </div> -->
                     </div>
                 </div>
             </form>

@@ -40,7 +40,6 @@ $(function () {
     selectedMon = $(this).children("option:selected").html();
   });
   form_1_next_btn.addEventListener("click", function () {
-    console.log("Chuyển 1 sang 2");
     form_1.style.display = "none";
     form_2.style.display = "block";
 
@@ -156,7 +155,7 @@ $(function () {
     }, 3000);
   }
 
-  form_4_progessbar.addEventListener("", function () {});
+  form_4_progessbar.addEventListener("", function () { });
 
   // btn_done.addEventListener("click", function () {
   // 	modal_wrapper.classList.add("active");
@@ -175,7 +174,7 @@ $(function () {
 
   $(document).on("change", ".upload_file", function (even) {
     var fileToUpload = even.target.files[0];
-    console.log(fileToUpload);
+    // console.log(fileToUpload);
     var mamon = $("#dsmon").children("option:selected").val();
     var made = $(this).siblings(".input-made").val();
     if (made == "" || made == null) {
@@ -200,9 +199,12 @@ $(function () {
           data: formDataKey,
           processData: false,
           contentType: false,
-          success: function () {
-            // console.log("Thêm thành công");
-            alert("Thêm thành công");
+          success: function (data) {
+            data = JSON.parse(data);
+            console.log(data[0]);
+            xml = "";
+            xml += '<div class="list-file-dapan"><div class="file-items">' + data[0] + '</div><div class="btn-del-dapan"><i class="fa-solid fa-trash delete-dapan" style="color: #eb0000;"></i></div></div>';
+            $("#list-dapan").append(xml);
           },
         });
       }
@@ -212,6 +214,21 @@ $(function () {
     }
   });
 
+  $(document).off('click').on('click', '.delete-dapan', function (e) {
+    var filename = $(this).parents('.btn-del-dapan').siblings('.file-items').text();
+    var currentfile=$(this).parents('.btn-del-dapan').parents('.list-file-dapan');
+    console.log(currentfile);
+    $.ajax({
+      url: baseURL + "/xoadapan",
+      type: 'post',
+      data: {
+        'namefile': filename
+      },
+      success: function (data) {
+        currentfile.html('');
+      }
+    })
+  })
   $("#file").on("change", function (event) {
     let files = this.files;
     let formData = new FormData();
@@ -243,10 +260,10 @@ $(function () {
     for (let i = 0; i < res.length; i++) {
       items.push(
         '<li style="min-width: 300px;" class="list-group-item">' +
-          res[i] +
-          '<div class="pull-right"><a href="#" data-file="' +
-          res[i] +
-          '" class="remove_file"><i class="fa-solid fa-xmark"></i></a></div></li>'
+        res[i] +
+        '<div class="pull-right"><a href="#" data-file="' +
+        res[i] +
+        '" class="remove_file"><i class="fa-solid fa-xmark"></i></a></div></li>'
       );
     }
 
@@ -346,10 +363,10 @@ $(function () {
       $.each(data, function (index, element) {
         items.push(
           '<li class="list-group-item"><i class="fa-solid fa-file" style="margin-right: 10px;"></i>' +
-            element +
-            '<div class="pull-right"><a href="#" data-file="' +
-            element +
-            '" class="remove-file"><i class="fa-solid fa-x" style="color: #ff0000;"></i></a></div>'
+          element +
+          '<div class="pull-right"><a href="#" data-file="' +
+          element +
+          '" class="remove-file"><i class="fa-solid fa-x" style="color: #ff0000;"></i></a></div>'
         );
       });
       $(".list-group").html("").html(items.join(""));
@@ -374,12 +391,12 @@ $(function () {
       success: function () {
         $("#dsmon").append(
           "<option value='" +
-            $("#mamon").val() +
-            "'>" +
-            $("#tenmon").val() +
-            " (" +
-            $("#mamon").val() +
-            ")</option>"
+          $("#mamon").val() +
+          "'>" +
+          $("#tenmon").val() +
+          " (" +
+          $("#mamon").val() +
+          ")</option>"
         );
         alert("Thêm thành công");
         $("#mamon").val("");

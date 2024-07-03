@@ -101,8 +101,8 @@ class Site extends CI_Controller
 
 	public function themdapan()
 	{
-		$this->showArr($_POST);
-		$this->showArr($_FILES);
+		// $this->showArr($_POST);
+		// $this->showArr($_FILES);
 		if (!empty($_FILES)) {
 			$errors = 0;
 			$config1['upload_path'] = "./assets/uploads/dapan";
@@ -122,7 +122,7 @@ class Site extends CI_Controller
 			$dapan['sTenFile'] = $_FILES['upload_file_key']['full_path'];
 			$dapan['dThoiGian'] = date('d/m/Y') . "-" . date('h:i:s');
 			$dapan['bLoaiThuMuc'] = 1;
-			$this->Msite->insert_dapan_to_folder($dapan);
+			// $this->Msite->insert_dapan_to_folder($dapan);
 
 			// $made = $this->input->post('made') . "-" . date('d/m/Y') . "-" . date('h:i:s');
 			$made = $this->input->post('made');
@@ -132,7 +132,7 @@ class Site extends CI_Controller
 			$newDe['fk_mon'] = $mamon;
 			$newDe['dThoiGianTao'] = date('d/m/Y') . "-" . date('h:i:s');
 			$newDe['sTrangThai'] = "active";
-			$this->Msite->insert_de($newDe);
+			// $this->Msite->insert_de($newDe);
 
 
 
@@ -169,9 +169,18 @@ class Site extends CI_Controller
 				}
 
 				// $this->showArr($dsDapAn);
-				$this->Msite->insert_dapan($dsDapAn);
+				// $this->Msite->insert_dapan($dsDapAn);
 			}
 		}
+		$this->load->helper('file');
+		$dapan=get_filenames("./assets/uploads/dapan/");
+		// $this->showArr($dapan);
+		echo json_encode($dapan);
+		exit;
+	}
+	public function xoaDapAn(){
+		$filename=$this->input->post('namefile');
+		unlink("./assets/uploads/dapan/" . $filename);
 	}
 	public function showArr($arr)
 	{

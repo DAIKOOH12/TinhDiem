@@ -330,9 +330,11 @@ body {
 	margin-bottom: 10px;
 
 }
-.input-group *{
+
+.input-group * {
 	width: 50% !important;
 }
+
 #lb-filedapan {
 	padding: 20px;
 	background-color: #004C8E;
@@ -373,5 +375,19 @@ body {
 	font-size: 14px;
 	border-radius: 3px;
 	transition: 0.5s ease;
+	cursor: pointer;
+}
+
+.list-file-dapan {
+	width: 300px;
+	background-color: rgb(213, 213, 213);
+}
+
+.list-file-dapan {
+	display: flex;
+	justify-content: space-around;
+}
+
+.delete-dapan:hover {
 	cursor: pointer;
 }
