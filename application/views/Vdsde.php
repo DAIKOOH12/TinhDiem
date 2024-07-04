@@ -2,7 +2,7 @@
 <div class="main-page">
     <div class="title-ds-mon" style="display:flex;width: 80%;justify-content: space-between;">
         <h2>BỘ ĐÁP ÁN</h2>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_mon" data-whatever="@mdo" id="addmon">Thêm môn thi</button>
+        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_mon" data-whatever="@mdo" id="addmon">Thêm môn thi</button> -->
     </div>
     <table class="table" id="data-table">
         <thead>

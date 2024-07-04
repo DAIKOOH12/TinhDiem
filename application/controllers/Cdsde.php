@@ -15,7 +15,6 @@ class Cdsde extends CI_Controller
         } else {
             $data['dsde'] = $this->Mdsde->getDSDe();
         }
-        // $this->showArr($data);
         $this->load->view('Vdsde', $data);
     }
     public function showArr($arr)

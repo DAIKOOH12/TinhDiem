@@ -128,11 +128,11 @@ class Site extends CI_Controller
 			$made = $this->input->post('made');
 			$mamon = $this->input->post('mamon');
 			$newDe['idDe'] = $made. "-" . date('d/m/Y') . "-" . date('h:i:s');
-			$newDe['sMaDe'] = $this->input->post('made');
-			$newDe['fk_mon'] = $mamon;
+			// $newDe['sMaDe'] = $this->input->post('made');
+			$newDe['fk_idMon'] = '7E23942';
 			$newDe['dThoiGianTao'] = date('d/m/Y') . "-" . date('h:i:s');
 			$newDe['sTrangThai'] = "active";
-			// $this->Msite->insert_de($newDe);
+			$this->Msite->insert_de($newDe);
 
 
 
