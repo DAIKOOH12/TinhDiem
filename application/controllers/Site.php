@@ -173,7 +173,7 @@ class Site extends CI_Controller
 			}
 		}
 		$this->load->helper('file');
-		$dapan=get_filenames("./assets/uploads/dapan/");
+		$dapan=basename("./assets/uploads/dapan/".$_FILES['upload_file_key']['name']);
 		// $this->showArr($dapan);
 		echo json_encode($dapan);
 		exit;

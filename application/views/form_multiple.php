@@ -43,13 +43,13 @@
                             <span style="color:white;">Thêm mã đề</span>
                         </div>
                     </div>
-                    <div class="input_wrap" style="display: flex;justify-content: center;flex-wrap: wrap;" id="list-dapan">
+                    <!-- <div class="input_wrap" style="display: flex;justify-content: center;flex-wrap: wrap;" id="list-dapan">
                         <h5>Các file đã thêm</h5>
-                        <!-- <div class="list-file-dapan">
+                        <div class="list-file-dapan">
                             <div class="file-items">DapAn.xlsx</div>
                             <div class="btn-del-dapan"><i class="fa-solid fa-trash delete-dapan" style="color: #eb0000;"></i></div>
-                        </div> -->
-                    </div>
+                        </div>
+                    </div> -->
                 </div>
             </form>
         </div>

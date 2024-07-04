@@ -177,16 +177,18 @@ $(function () {
     // console.log(fileToUpload);
     var mamon = $("#dsmon").children("option:selected").val();
     var made = $(this).siblings(".input-made").val();
+    var currentrowfile = $(this).parents(".input-group");
+    var inputfile = $(this);
     if (made == "" || made == null) {
       alert("Bạn chưa nhập mã đề");
       $(this).val("");
     } else {
       if (fileToUpload != "undefined") {
-        $(this)
-          .parents(".input-group")
-          .append(
-            '<i class="fa-solid fa-circle-check fa-2xl" style="color: #009e6f;margin-left:10px;"></i>'
-          );
+        // $(this)
+        //   .parents(".input-group")
+        //   .append(
+        //     '<i class="fa-solid fa-circle-check fa-2xl" style="color: #009e6f;margin-left:10px;"></i>'
+        //   );
         $(this).hide();
         var formDataKey = new FormData();
         formDataKey.append("upload_file_key", fileToUpload);
@@ -201,10 +203,8 @@ $(function () {
           contentType: false,
           success: function (data) {
             data = JSON.parse(data);
-            console.log(data[0]);
-            xml = "";
-            xml += '<div class="list-file-dapan"><div class="file-items">' + data[0] + '</div><div class="btn-del-dapan"><i class="fa-solid fa-trash delete-dapan" style="color: #eb0000;"></i></div></div>';
-            $("#list-dapan").append(xml);
+            console.log(data);
+            currentrowfile.append(' <div class="list-file-dapan"><div class="file-items">' + data + '</div><div class="btn-del-dapan"><i class="fa-solid fa-trash delete-dapan" style="color: #eb0000;"></i></div></div>');
           },
         });
       }
@@ -216,7 +216,7 @@ $(function () {
 
   $(document).off('click').on('click', '.delete-dapan', function (e) {
     var filename = $(this).parents('.btn-del-dapan').siblings('.file-items').text();
-    var currentfile=$(this).parents('.btn-del-dapan').parents('.list-file-dapan');
+    var currentfile = $(this).parents('.btn-del-dapan').parents('.list-file-dapan');
     console.log(currentfile);
     $.ajax({
       url: baseURL + "/xoadapan",
