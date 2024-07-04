@@ -324,15 +324,19 @@ body {
 
 .input-group {
 	display: flex;
-	width: 100%;
+	width: 100% !important;
 	align-items: center !important;
 	flex-wrap: nowrap !important;
 	margin-bottom: 10px;
 
 }
 
-.input-group * {
+.input-group input {
 	width: 50% !important;
+}
+
+.input-group i:hover {
+	cursor: pointer;
 }
 
 #lb-filedapan {

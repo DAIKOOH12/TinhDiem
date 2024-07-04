@@ -200,7 +200,15 @@ class MPhieuTraLoi extends CI_Model
     }
 
     public function import_tblMon($data) {
-        $this->db->insert("tblMon", $data);
+        $this->db->replace("tblMon", $data);
+    }
+
+    public function import_tblDe($data) {
+        $this->db->insert("tblDe", $data);
+    }
+
+    public function import_tblDapAn($data) {
+        $this->db->insert_batch("tblDapAn", $data);
     }
 
 
