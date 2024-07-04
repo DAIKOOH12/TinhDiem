@@ -116,7 +116,7 @@ class Site extends CI_Controller
 			}
 			// $file_name=$_FILES();
 			$thumucdapan = "/assets/uploads/dapan/" . $_FILES['upload_file_key']['full_path'];
-			$dapan['idThuMuc'] = $_FILES['upload_file_key']['full_path']. "-" . date('d/m/Y')."-".date('h:i:s');
+			$dapan['idThuMuc'] = $_FILES['upload_file_key']['full_path'] . "-" . date('d/m/Y') . "-" . date('h:i:s');
 			$dapan['fk_idNguoiDung'] = 'nd1';
 			$dapan['sDuongDan'] = $thumucdapan;
 			$dapan['sTenFile'] = $_FILES['upload_file_key']['full_path'];
@@ -127,9 +127,9 @@ class Site extends CI_Controller
 			// $made = $this->input->post('made') . "-" . date('d/m/Y') . "-" . date('h:i:s');
 			$made = $this->input->post('made');
 			$mamon = $this->input->post('mamon');
-			$newDe['idDe'] = $made. "-" . date('d/m/Y') . "-" . date('h:i:s');
-			// $newDe['sMaDe'] = $this->input->post('made');
-			$newDe['fk_idMon'] = '7E23942';
+			$newDe['idDe'] = $made . "-" . date('d/m/Y') . "-" . date('h:i:s');
+			$newDe['sMaDe'] = $this->input->post('made');
+			$newDe['fk_mon'] = $mamon;
 			$newDe['dThoiGianTao'] = date('d/m/Y') . "-" . date('h:i:s');
 			$newDe['sTrangThai'] = "active";
 			$this->Msite->insert_de($newDe);
@@ -151,9 +151,9 @@ class Site extends CI_Controller
 			$sheetcount = count($sheetdata);
 			// $dsDapAn['pk_DeMon'] = $mamon . "-" . $made . "-" . date('d/m/Y') . "-" . date('h:i:sa');
 			$dsDapAn['pk_DeMon'] = $mamon . "-" . $made;
-			$dsDapAn['fk_idde'] = $made. "-" . date('d/m/Y') . "-" . date('h:i:s');
+			$dsDapAn['fk_idde'] = $made . "-" . date('d/m/Y') . "-" . date('h:i:s');
 			$dsDapAn['fk_idmon'] = $mamon;
-			$dsDapAn['fk_idThuMuc'] = $_FILES['upload_file_key']['full_path']. "-" . date('d/m/Y')."-".date('h:i:s');
+			$dsDapAn['fk_idThuMuc'] = $_FILES['upload_file_key']['full_path'] . "-" . date('d/m/Y') . "-" . date('h:i:s');
 			$dsDapAn['sDapAn'] = "";
 			$dsDapAn['sMaCauHoi'] = "";
 			$dsDapAn['iSoLuongCau'] = $sheetcount - 1;
@@ -173,13 +173,14 @@ class Site extends CI_Controller
 			}
 		}
 		$this->load->helper('file');
-		$dapan=basename("./assets/uploads/dapan/".$_FILES['upload_file_key']['name']);
+		$dapan = get_filenames("./assets/uploads/dapan/");
 		// $this->showArr($dapan);
 		echo json_encode($dapan);
 		exit;
 	}
-	public function xoaDapAn(){
-		$filename=$this->input->post('namefile');
+	public function xoaDapAn()
+	{
+		$filename = $this->input->post('namefile');
 		unlink("./assets/uploads/dapan/" . $filename);
 	}
 	public function showArr($arr)
@@ -187,5 +188,47 @@ class Site extends CI_Controller
 		echo "<pre>";
 		print_r($arr);
 		echo "</pre>";
+	}
+
+
+	public function themDe()
+	{
+		if (!empty($_FILES)) {
+			$config['upload_path'] = "./assets/uploadDe";
+			$config['allowed_types'] = 'xlsx';
+
+			$this->load->library('upload');
+			$number_of_files = count($_FILES['file']['name']);
+
+			$files           = $_FILES;
+			$errors = 0;
+			$maDe = $this->input->post('maDe');
+			
+			for ($i = 0; $i < $number_of_files; $i++) {
+				$_FILES['file']['name'] = $files['file']['name'][$i];
+				$_FILES['file']['type'] = $files['file']['type'][$i];
+				$_FILES['file']['tmp_name'] =  $files['file']['tmp_name'][$i];
+				$_FILES['file']['error'] = $files['file']['error'][$i];
+				$_FILES['file']['size'] = $files['file']['size'][$i];
+
+				$config['file_name'] = $maDe;
+				// we have to initialize before upload
+				$this->upload->initialize($config);
+
+				if (!$this->upload->do_upload("file")) {
+					$errors++;
+				}
+				else {
+					// Lấy thông tin file đã upload
+					// $upload_data = $this->upload->data();
+	
+					// // Tạo tên file mới
+					// $new_filename = $maDe . '-' . $i . '.xlsx'; // Ví dụ: maDe_0.xlsx, maDe_1.xlsx,...
+	
+					// // Di chuyển file đã upload vào thư mục đích với tên mới
+					// rename($upload_data['full_path'], $config['upload_path'] . '/' . $new_filename);
+				}
+			}
+		}
 	}
 }

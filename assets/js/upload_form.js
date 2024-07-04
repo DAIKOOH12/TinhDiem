@@ -155,7 +155,7 @@ $(function () {
     }, 3000);
   }
 
-  form_4_progessbar.addEventListener("", function () { });
+  form_4_progessbar.addEventListener("", function () {});
 
   // btn_done.addEventListener("click", function () {
   // 	modal_wrapper.classList.add("active");
@@ -168,67 +168,116 @@ $(function () {
   $(".btn-add_md").on("click", function (e) {
     // console.log($('add-files-group'));
     $(".add-files-group").append(
-      '<div class="input-group"><input type="text" class="input input-made" placeholder="Định dạng file hỗ trợ .xlsx"><input type="file" name="upload_file_key" class="upload_file form-control" placeholder="Enter file"></div>'
+      `<div class="input-group">
+                                <input type="text" class="input input-made" placeholder="Định dạng hỗ trợ .xlsx">
+                                <input type="file" name="upload_file_key" class="upload_file form-control" placeholder="Enter file">
+                                <span class="btn_removeDA"><i style="margin-left: 10px;" class="fa-solid fa-xmark"></i></span>
+                            </div>`
     );
   });
 
-  $(document).on("change", ".upload_file", function (even) {
-    var fileToUpload = even.target.files[0];
-    // console.log(fileToUpload);
-    var mamon = $("#dsmon").children("option:selected").val();
-    var made = $(this).siblings(".input-made").val();
-    var currentrowfile = $(this).parents(".input-group");
-    var inputfile = $(this);
-    if (made == "" || made == null) {
-      alert("Bạn chưa nhập mã đề");
-      $(this).val("");
-    } else {
-      if (fileToUpload != "undefined") {
-        // $(this)
-        //   .parents(".input-group")
-        //   .append(
-        //     '<i class="fa-solid fa-circle-check fa-2xl" style="color: #009e6f;margin-left:10px;"></i>'
-        //   );
-        $(this).hide();
-        var formDataKey = new FormData();
-        formDataKey.append("upload_file_key", fileToUpload);
-        formDataKey.append("made", made);
-        formDataKey.append("mamon", mamon);
-        $.ajax({
-          // url: window.location.href + "/themdapan",
-          url: url_themdapan,
-          type: "post",
-          data: formDataKey,
-          processData: false,
-          contentType: false,
-          success: function (data) {
-            data = JSON.parse(data);
-            console.log(data);
-            currentrowfile.append(' <div class="list-file-dapan"><div class="file-items">' + data + '</div><div class="btn-del-dapan"><i class="fa-solid fa-trash delete-dapan" style="color: #eb0000;"></i></div></div>');
-          },
-        });
-      }
-    }
-    if (fileToUpload == null) {
-      alert("Chưa thêm file hoặc sai định dạng");
-    }
+  $("body").on("click", ".btn_removeDA", function () {
+    let divFileGroup = $(this).closest(".add-files-group")[0];
+    console.log(divFileGroup);
+    console.log($(this).parent()[0]);
+    $(this).closest(".input-group").remove();
+    // divFileGroup.remove($(this).parent()[0])
   });
 
-  $(document).off('click').on('click', '.delete-dapan', function (e) {
-    var filename = $(this).parents('.btn-del-dapan').siblings('.file-items').text();
-    var currentfile = $(this).parents('.btn-del-dapan').parents('.list-file-dapan');
-    console.log(currentfile);
+  $(document).on("change", ".upload_file", function (even) {
+    let files = this.files;
+    let formData = new FormData();
+    let maDeValue = $(this).closest(".input-group").find(".input-made").val();
+    for (let i = 0; i < files.length; i++) {
+      formData.append("file[]", files[i]); // Đưa từng file vào formData với tên là "file[]"
+    }
+    formData.append("maDe", maDeValue);
+    // console.log(maDeValue);
     $.ajax({
-      url: baseURL + "/xoadapan",
-      type: 'post',
-      data: {
-        'namefile': filename
+      url: baseURL + "/Site/themDe",
+      type: "POST",
+      data: formData,
+      processData: false, // Không xử lý dữ liệu
+      contentType: false, // Không đặt header Content-Type
+      success: function (res) {
+        console.log(res);
+        let respon = JSON.parse(res);
+        console.log(respon);
+        // show_listFiles(respon);
       },
-      success: function (data) {
-        currentfile.html('');
-      }
-    })
-  })
+      error: function (xhr, status, error) {
+        // Xử lý lỗi (nếu có)
+        console.error(error);
+      },
+    });
+  });
+
+  // $(document).on("change", ".upload_file", function (even) {
+  //   var fileToUpload = even.target.files[0];
+  //   // console.log(fileToUpload);
+  //   var mamon = $("#dsmon").children("option:selected").val();
+  //   var made = $(this).siblings(".input-made").val();
+  //   if (made == "" || made == null) {
+  //     alert("Bạn chưa nhập mã đề");
+  //     $(this).val("");
+  //   } else {
+  //     if (fileToUpload != "undefined") {
+  //       $(this)
+  //         .parents(".input-group")
+  //         .append(
+  //           '<i class="fa-solid fa-circle-check fa-2xl" style="color: #009e6f;margin-left:10px;"></i>'
+  //         );
+  //       $(this).hide();
+  //       var formDataKey = new FormData();
+  //       formDataKey.append("upload_file_key", fileToUpload);
+  //       formDataKey.append("made", made);
+  //       formDataKey.append("mamon", mamon);
+  //       $.ajax({
+  //         url: url_themdapan,
+  //         type: "post",
+  //         data: formDataKey,
+  //         processData: false,
+  //         contentType: false,
+  //         success: function (data) {
+  //           data = JSON.parse(data);
+  //           console.log(data[0]);
+  //           xml = "";
+  //           xml +=
+  //             '<div class="list-file-dapan"><div class="file-items">' +
+  //             data[0] +
+  //             '</div><div class="btn-del-dapan"><i class="fa-solid fa-trash delete-dapan" style="color: #eb0000;"></i></div></div>';
+  //           $("#list-dapan").append(xml);
+  //         },
+  //       });
+  //     }
+  //   }
+  //   if (fileToUpload == null) {
+  //     alert("Chưa thêm file hoặc sai định dạng");
+  //   }
+  // });
+
+  $(document)
+    .off("click")
+    .on("click", ".delete-dapan", function (e) {
+      var filename = $(this)
+        .parents(".btn-del-dapan")
+        .siblings(".file-items")
+        .text();
+      var currentfile = $(this)
+        .parents(".btn-del-dapan")
+        .parents(".list-file-dapan");
+      console.log(currentfile);
+      $.ajax({
+        url: baseURL + "/xoadapan",
+        type: "post",
+        data: {
+          namefile: filename,
+        },
+        success: function (data) {
+          currentfile.html("");
+        },
+      });
+    });
   $("#file").on("change", function (event) {
     let files = this.files;
     let formData = new FormData();
@@ -260,14 +309,14 @@ $(function () {
     for (let i = 0; i < res.length; i++) {
       items.push(
         '<li style="min-width: 300px;" class="list-group-item">' +
-        res[i] +
-        '<div class="pull-right"><a href="#" data-file="' +
-        res[i] +
-        '" class="remove_file"><i class="fa-solid fa-xmark"></i></a></div></li>'
+          res[i] +
+          '<div class="pull-right"><a href="#" data-file="' +
+          res[i] +
+          '" class="remove_file"><i class="fa-solid fa-xmark"></i></a></div></li>'
       );
     }
 
-    $('#listFiles').html(items.join(""))
+    $("#listFiles").html(items.join(""));
     // $('#listFiles').append(`<span>${res[i]}</span><i class="fa-solid fa-xmark"></i>`)
     // $("#listFiles").append(
     // '<li style="min-width: 300px;" class="list-group-item">' +
@@ -363,10 +412,10 @@ $(function () {
       $.each(data, function (index, element) {
         items.push(
           '<li class="list-group-item"><i class="fa-solid fa-file" style="margin-right: 10px;"></i>' +
-          element +
-          '<div class="pull-right"><a href="#" data-file="' +
-          element +
-          '" class="remove-file"><i class="fa-solid fa-x" style="color: #ff0000;"></i></a></div>'
+            element +
+            '<div class="pull-right"><a href="#" data-file="' +
+            element +
+            '" class="remove-file"><i class="fa-solid fa-x" style="color: #ff0000;"></i></a></div>'
         );
       });
       $(".list-group").html("").html(items.join(""));
@@ -391,12 +440,12 @@ $(function () {
       success: function () {
         $("#dsmon").append(
           "<option value='" +
-          $("#mamon").val() +
-          "'>" +
-          $("#tenmon").val() +
-          " (" +
-          $("#mamon").val() +
-          ")</option>"
+            $("#mamon").val() +
+            "'>" +
+            $("#tenmon").val() +
+            " (" +
+            $("#mamon").val() +
+            ")</option>"
         );
         alert("Thêm thành công");
         $("#mamon").val("");

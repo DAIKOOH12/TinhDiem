@@ -36,6 +36,7 @@
                             <div class="input-group">
                                 <input type="text" class="input input-made" placeholder="Định dạng hỗ trợ .xlsx">
                                 <input type="file" name="upload_file_key" class="upload_file form-control" placeholder="Enter file">
+                                <span class="btn_removeDA"><i style="margin-left: 10px;" class="fa-solid fa-xmark"></i></span>
                             </div>
                         </div>
                         <div class="btn-add-files btn-add_md">

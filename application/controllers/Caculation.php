@@ -30,17 +30,18 @@ class Caculation extends CI_Controller
         //         unlink( './assets/uploadSV/' . $files[$t]);
         //     }
 
-                
+
         //     file_put_contents(".\status.txt", "Done");
         //     exit;
         // }
 
 
-        
+
         $this->LayThongTin();
     }
 
-    public function LayThongTin() {
+    public function LayThongTin()
+    {
         $this->load->helper('file');
         $files = get_filenames("./assets/uploadSV");
 
@@ -59,7 +60,9 @@ class Caculation extends CI_Controller
                 $sheetdata = $spreadsheet->getActiveSheet()->toArray();
                 $sheetcount = count($sheetdata);
 
-                if($sheetcount > 1) {
+                if ($sheetcount > 1) {
+
+                    //Lấy thông tin về tên môn, mã môn, ngày thi, phòng thi
                     $ma_tenMon = trim(explode(":", $sheetdata[3][0])[1]);
                     $mon = explode("_", $ma_tenMon)[1];
                     $trungTam = $sheetdata[4][0];
@@ -76,15 +79,63 @@ class Caculation extends CI_Controller
                         "sTenMon" => explode("_", $ma_tenMon)[1]
                     );
 
+
+
+                    //import vào db
                     $this->load->model("MPhieuTraLoi");
                     $this->MPhieuTraLoi->import_tblMon($array_tblmon);
-                    // for($j = 4; $j<$sheetcount; $j++) {
 
-                        file_put_contents("./checkTenMon.json", json_encode($thongTin));
+                    if ($i == (count($files) - 1)) {
+                         $idmon = explode("_", $ma_tenMon)[0];
+                        $this->data_DA($idmon);
+                    }
+                       
+
+
+                    //Lấy thông tin thí sinh: 
+                    // for ($i = 8; $i < $sheetcount; $i++) {
+                    //     $soCauHoi = 0;
+                    //     if ($sheetdata[$i][0] == "Số bài thi:" || $sheetdata[$i][0] == "") {
+                    //         break;
+                    //     }
+                    //     $listDA = "";
+                    //     for ($j = 6; $j < count($sheetdata[$i]); $j++) {
+
+
+                    //         if ($sheetdata[7][$j] == "Số câu đúng") {
+                    //             $soCauHoi = $j - 6;
+                    //             break;
+                    //         }
+
+                    //         $listDA .= $sheetdata[$i][$j] . "/";
+                    //     }
+
+                    //     $maCauDung = "";
+                    //     $count = 0;
+
+
+
+
+                    //     $dataCH = array(
+                    //         "sSBD" => $sheetdata[$i][1],
+                    //         "fk_idThuMuc" => $mamon . "-" . $now,
+                    //         "sHoTen" => $sheetdata[$i][2],
+                    //         "sLop" => $sheetdata[$i][4],
+                    //         "sNgaySinh" => $sheetdata[$i][3],
+                    //         "sDapAn" => $listDA,
+                    //         "fk_demon" => $mamon . "-" . $sheetdata[$i][5],
+                    //         "iSoLuongCau" => $soCauHoi,
+                    //         "iSoCauDung" => $count,
+                    //         "sMaCauDung" => $maCauDung,
+                    //         "sMaDe" => $sheetdata[$i][5],
+                    //         "fDiem" => $count*10/$soCauHoi
+                    //     );
+
+                    //     array_push($data_res, $dataCH);
                     // }
+
                 }
-            }
-            catch (Exception $e) {
+            } catch (Exception $e) {
                 // Handle Exception
                 echo 'Caught exception: ',  $e->getMessage(), "\n";
                 log_message('debug', $e->getMessage());
@@ -93,6 +144,93 @@ class Caculation extends CI_Controller
                 echo 'Caught error: ',  $err->getMessage(), "\n";
             }
         }
+    }
+
+    public function data_DA($idMon)
+    {
+        $this->load->helper('file');
+        $files = get_filenames("./assets/uploadDe");
+
+        $data_files = array();
+
+        for ($i = 0; $i < count($files); $i++) {
+            try {
+                // $this->load->helper('file');
+                // $files = get_filenames("./assets/uploads");
+
+
+                $filePath = ".\assets\uploadDe\\" . $files[$i];
+
+                $idDe = explode(".", $files[$i])[0];
+                $this->data_De($idMon, $idDe);
+                // echo $filePath;
+
+                $spreadsheet = IOFactory::load($filePath);
+                $sheetdata = $spreadsheet->getActiveSheet()->toArray();
+                $sheetcount = count($sheetdata);
+
+                $sDapAn = "";
+                $sCauHoi = "";
+                $sPI = "";
+                $CLO = "";
+                if ($sheetcount > 1) {
+                    for ($j = 1; $j < $sheetcount; $j++) {
+                        if ($sPI == "") {
+                            $sDapAn .= $sheetdata[$j][1];
+                            $sCauHoi .= $sheetdata[$j][3];
+                            $sPI .= $sheetdata[$j][4];
+                            $CLO = explode(".", $sheetdata[$j][4])[0];
+                        } else {
+                            $sDapAn .= "/" . $sheetdata[$j][1];
+                            $sCauHoi .= "/" . $sheetdata[$j][3];
+                            if (explode(".", $sheetdata[$j][4])[0] != $CLO) {
+                                $CLO = explode(".", $sheetdata[$j][4])[0];
+                                $sPI .= "-" . $sheetdata[$j][4];
+                            } else {
+                                $sPI .= "/" . $sheetdata[$j][4];
+                            }
+                        }
+                    }
+
+                    $data_file = array(
+                        "idDapAn" => "fdf",
+                        "fk_idde" => $idDe,
+                        "fk_idThuMuc" => "tm1",
+                        "sDapAn" => $sDapAn,
+                        "sMaCauHoi" => $sCauHoi,
+                        "iSoLuongCau" => $sheetcount - 1,
+                        "sCLO" => $sPI
+                    );
+
+                    array_push($data_files, $data_file);
+                }
+            } catch (Exception $e) {
+                // Handle Exception
+                echo 'Caught exception: ',  $e->getMessage(), "\n";
+                log_message('debug', $e->getMessage());
+            } catch (Error $err) {
+                // Handle Error
+                echo 'Caught error: ',  $err->getMessage(), "\n";
+            }
+        }
+        file_put_contents("./result.json", json_encode($data_files));
+        $this->load->model("MPhieuTraLoi");
+        $this->MPhieuTraLoi->import_tblDapAn($data_files);
+    }
+
+    public function data_De($idMon, $idDe) {
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        
+        $now_VN = date('d/m/Y-H:i:s');
+        $data = array(
+            "idDe" => $idDe,
+            "fk_idMon" => $idMon,
+            "dThoiGianTao" => $now_VN,
+            "sTrangThai" => "active",
+        );
+
+        $this->load->model("MPhieuTraLoi");
+        $this->MPhieuTraLoi->import_tblDe($data);
     }
 
 
