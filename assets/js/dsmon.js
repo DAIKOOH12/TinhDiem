@@ -64,9 +64,15 @@
                     xml += '<td class="namemon">' + $("#tenmon").val() + '</td>';
                     xml += '<td><div class="action"><div class="btn-details"><i class="fa-solid fa-eye" style="color: #ffffff;"></i></div><div class="btn-fix"><i class="fa-solid fa-wrench" style="color: #ffffff;" data-toggle="modal" data-target="#modal_mon" data-whatever="@mdo" id="fixmon"></i></i></div><div class="btn-delete"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></div></div></td>';
                     xml += '</tr>';
+                    toastr.options.timeOut = 2000; // 1.5s 
+                    toastr.success('Thêm môn thành công');
                     $('#list-mon').append(xml);
                     $("#mamon").val('');
                     $("#tenmon").val('');
+                },
+                error: function (e) {
+                    toastr.options.timeOut = 2000; // 1.5s 
+                    toastr.error('Mã môn đã tồn tại');
                 }
             });
         })
@@ -92,8 +98,9 @@
                     'tenmon': newname,
                 },
                 success: function (e) {
-                    alert('Thành công');
                     $('#namemon').text(newname);
+                    toastr.options.timeOut = 1500; // 1.5s 
+                    toastr.info('Cập nhật thành công');
                     currentrow.html('');
                     var xml = "";
                     xml += '<th scope="row">' + 1 + '</th>';
@@ -117,7 +124,8 @@
                     'mamon': mamonfix
                 },
                 success: function (e) {
-                    alert("Xóa thành công");
+                    toastr.options.timeOut = 1500; // 1.5s 
+                    toastr.success('Xóa môn thành công');
                 }
             });
             currentrow.remove();

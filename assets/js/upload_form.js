@@ -447,7 +447,6 @@ $(function () {
             $("#mamon").val() +
             ")</option>"
         );
-        alert("Thêm thành công");
         $("#mamon").val("");
         $("#tenmon").val("");
       },

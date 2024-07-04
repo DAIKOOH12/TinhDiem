@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Itim|Lobster|Montserrat:500|Noto+Serif|Nunito|Patrick+Hand|Roboto+Mono:100,100i,300,300i,400,400i,500,500i,700,700i|Roboto+Slab|Saira" rel="stylesheet">
+    <!-- <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
     <title>Document</title>
 </head>
 
@@ -32,14 +35,14 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ml-auto py-4 py-md-0">
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                                    <a class="nav-link" href="<?php echo site_url('/site');?>">Trang chủ</a>
+                                    <a class="nav-link" href="<?php echo site_url('/site'); ?>">Trang chủ</a>
                                 </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" style="color: #0069b8 !important;">Quản lý danh sách</a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="<?php echo site_url('/quanlymon'); ?>">Danh sách môn thi</a>
-                                        <a class="dropdown-item" href="<?php echo site_url('/quanlyde')?>">Danh sách bộ đáp án</a>
-                                        <a class="dropdown-item" href="<?php echo site_url('/quanlyketqua')?>">Danh sách kết quả chấm thi</a>
+                                        <a class="dropdown-item" href="<?php echo site_url('/quanlyde') ?>">Danh sách bộ đáp án</a>
+                                        <a class="dropdown-item" href="<?php echo site_url('/quanlyketqua') ?>">Danh sách kết quả chấm thi</a>
                                     </div>
                                 </li>
                                 <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
