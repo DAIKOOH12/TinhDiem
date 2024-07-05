@@ -20,7 +20,7 @@
                 <?php for ($i = 0; $i < count($dsde); $i++) { ?>
                     <tr class="ds-mon">
                         <th scope="row"><?php echo $i + 1; ?></th>
-                        <td class="idde"><?php echo $dsde[$i]['sMaDe']; ?></td>
+                        <td class="idde"><?php echo $dsde[$i]['fk_idde']; ?></td>
                         <td><?php echo $dsde[$i]['sTenMon']; ?></td>
                         <td><?php echo $dsde[$i]['dThoiGianTao']; ?></td>
                         <td><?php echo $dsde[$i]['iSoLuongCau']; ?></td>
