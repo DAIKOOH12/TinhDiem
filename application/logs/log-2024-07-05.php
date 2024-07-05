@@ -1252,3 +1252,4 @@ ERROR - 2024-07-05 09:20:26 --> Severity: Warning --> Trying to access array off
 ERROR - 2024-07-05 09:20:26 --> Severity: 8192 --> explode(): Passing null to parameter #2 ($string) of type string is deprecated E:\xampp\htdocs\TinhDiem\application\controllers\Caculation.php 174
 ERROR - 2024-07-05 08:08:21 --> Severity: 8192 --> str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated E:\xampp\htdocs\TinhDiem\system\core\Output.php 447
 ERROR - 2024-07-05 08:08:29 --> Severity: 8192 --> str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated E:\xampp\htdocs\TinhDiem\system\core\Output.php 447
+ERROR - 2024-07-05 08:55:03 --> Severity: 8192 --> str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated E:\xampp\htdocs\TinhDiem\system\core\Output.php 447

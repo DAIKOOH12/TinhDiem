@@ -202,16 +202,16 @@ class MPhieuTraLoi extends CI_Model
     public function import_tblMon($data)
     {
         if (!empty($data)) {
-            $sql = "INSERT IGNORE INTO tblMon (idMon, sTenMon) VALUES ('" . $data["idMon"] ."', '" . $data["sTenMon"]. "')";
+            $sql = "INSERT IGNORE INTO tblMon (idMon, sTenMon) VALUES ('" . $data["idMon"] . "', '" . $data["sTenMon"] . "')";
             $values = [];
-    
+
             // foreach ($data as $row) {
             //     // Sửa lỗi cú pháp: đảm bảo đóng ngoặc đúng chỗ
             //     $values[] = "('" . ($row['idMon']) . "', '" . ($row['sTenMon']) . "')";
             // }
-    
+
             // $sql .= implode(", ", $values);
-            
+
             // Kiểm tra kết quả thực thi câu lệnh SQL
             $this->db->query($sql);
             // if ($this->db->query($sql)) {
@@ -222,7 +222,6 @@ class MPhieuTraLoi extends CI_Model
             //     return false;
             // }
         }
-        
     }
 
     public function import_tblDe($data)
@@ -237,7 +236,11 @@ class MPhieuTraLoi extends CI_Model
 
     public function getDapAn($idDe, $idMon)
     {
-        $this->db->where("idDapAn", $idDe . "-" . $idMon);
+        $this->db->select('*');
+        $this->db->from('tbldapan as d');
+        $this->db->join('tblDe as e', 'd.fk_idde = e.idDe');
+        $this->db->where('e.sTrangThai', 'active');
+        $this->db->where("e.idDapAn", $idDe . "-" . $idMon);
         $da = $this->db->get("tblDapAn");
         return $da->result_array();
     }
