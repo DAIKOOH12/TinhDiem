@@ -20,34 +20,29 @@
             <a href="#">Contact</a>
         </p>
 
-        <p class="footer-company-name">Company Name © 2015</p>
+        <p class="footer-company-name">©2017 Trường Đại học Mở Hà Nội</p>
     </div>
 
     <div class="footer-center">
 
-        <div>
-            <i class="fa fa-map-marker"></i>
-            <p><span>444 S. Cedros Ave</span> Solana Beach, California</p>
+        <div style="display: flex;align-items:center;color:white;font-weight: normal;">
+            <div class="icon"><i class="fa fa-map-marker"></i></div>
+            <span>Nhà B101, Đường Nguyễn Hiền Phường Bách Khoa, Quận Hai Bà Trưng, Hà Nội.</span>
         </div>
 
-        <div>
-            <i class="fa fa-phone"></i>
-            <p>+1.555.555.5555</p>
+        <div style="display: flex;align-items:center;color:white;font-weight: normal;">
+            <div class="icon"><i class="fa fa-phone"></i></div>
+            <span>024 3.8682.605 – 024 3.6231.693</span>
         </div>
 
-        <div>
-            <i class="fa fa-envelope"></i>
-            <p><a href="mailto:support@company.com">support@company.com</a></p>
+        <div style="display: flex;align-items:center;color:white;font-weight: normal;">
+            <div class="icon"><i class="fa fa-envelope"></i></div>
+            <span>mhn@hou.edu.vn</span>
         </div>
-
     </div>
 
     <div class="footer-right">
 
-        <p class="footer-company-about">
-            <span>About the company</span>
-            Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
-        </p>
     </div>
 </footer>
 <!-- End Footer -->
