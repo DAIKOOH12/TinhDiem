@@ -2126,3 +2126,5 @@ ERROR - 2024-07-05 09:01:59 --> Severity: 8192 --> str_replace(): Passing null t
 ERROR - 2024-07-05 09:02:14 --> Severity: 8192 --> str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated D:\xampp\htdocs\upload_ajax\system\core\Output.php 447
 ERROR - 2024-07-05 09:02:22 --> Severity: 8192 --> str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated D:\xampp\htdocs\upload_ajax\system\core\Output.php 447
 ERROR - 2024-07-05 09:02:29 --> Severity: 8192 --> str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated D:\xampp\htdocs\upload_ajax\system\core\Output.php 447
+ERROR - 2024-07-05 09:16:26 --> Severity: error --> Exception: Unknown database 'clo' D:\xampp\htdocs\upload_ajax\system\database\drivers\mysqli\mysqli_driver.php 135
+ERROR - 2024-07-05 09:18:56 --> Severity: 8192 --> str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated D:\xampp\htdocs\upload_ajax\system\core\Output.php 447

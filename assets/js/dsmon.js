@@ -18,6 +18,7 @@
         $('body.hero-anime').removeClass('hero-anime');
         $("#data-table").DataTable({
             pageLength: 5,
+            lengthMenu: [[5, 10, 25, 100], [5, 10, 20, 100]],
             columnDefs: [
                 { targets: [0, 1, 3], className: "text-left" },
             ]
