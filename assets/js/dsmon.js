@@ -17,8 +17,9 @@
     $(document).ready(function () {
         $('body.hero-anime').removeClass('hero-anime');
         $("#data-table").DataTable({
+            pageLength: 5,
             columnDefs: [
-                { targets: [0,1,3], className: "text-left" },
+                { targets: [0, 1, 3], className: "text-left" },
             ]
         });
     });
@@ -87,12 +88,12 @@
         var currentrow = $(this).parents('.action').parents('td').parents('.ds-mon');
         var mamonfix = $(this).parents('.action').parents('td').siblings('.idmon').text();
         var namemonfix = $(this).parents('.action').parents('td').siblings('.namemon').text();
-        var stt=$(this).parents('.action').parents('td').siblings('.stt').text();
+        var stt = $(this).parents('.action').parents('td').siblings('.stt').text();
         $('#tieudemodal').text('Sửa môn thi');
         $('#mamon').attr('disabled', 'disabled');
         $('#mamon').val(mamonfix);
         $('#tenmon').val(namemonfix);
-        console.log(mamonfix, namemonfix,stt);
+        console.log(mamonfix, namemonfix, stt);
         $("#button-action").off('click').on('click', function (e) {
             var newname = $('#tenmon').val();
             console.log(mamonfix, namemonfix);
