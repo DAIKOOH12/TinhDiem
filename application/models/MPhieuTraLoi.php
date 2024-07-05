@@ -240,8 +240,8 @@ class MPhieuTraLoi extends CI_Model
         $this->db->from('tbldapan as d');
         $this->db->join('tblDe as e', 'd.fk_idde = e.idDe');
         $this->db->where('e.sTrangThai', 'active');
-        $this->db->where("e.idDapAn", $idDe . "-" . $idMon);
-        $da = $this->db->get("tblDapAn");
+        $this->db->where("d.idDapAn", $idDe . "-" . $idMon);
+        $da = $this->db->get();
         return $da->result_array();
     }
 }
