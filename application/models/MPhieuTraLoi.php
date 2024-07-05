@@ -75,7 +75,7 @@ class MPhieuTraLoi extends CI_Model
                         $this->db->like("pk_DeMon", $mamon . "-" . $sheetdata[$i][5]);
                         $da = $this->db->get("tblDapAn");
                         $dataDA = $da->result_array();
-                        
+
                         $list1 = explode("/", $dataDA[0]["sDapAn"]);
                         $list2 = explode("/", $listDA);
                         $listMCH = explode("/", $dataDA[0]["sMaCauHoi"]);
@@ -87,7 +87,7 @@ class MPhieuTraLoi extends CI_Model
                                 $maCauDung .= $listMCH[$q] . "/";
                             }
                         }
-                    
+
 
                         $dataCH = array(
                             "sSBD" => $sheetdata[$i][1],
@@ -101,7 +101,7 @@ class MPhieuTraLoi extends CI_Model
                             "iSoCauDung" => $count,
                             "sMaCauDung" => $maCauDung,
                             "sMaDe" => $sheetdata[$i][5],
-                            "fDiem" => $count*10/$soCauHoi
+                            "fDiem" => $count * 10 / $soCauHoi
                         );
 
                         array_push($data_res, $dataCH);
@@ -119,13 +119,13 @@ class MPhieuTraLoi extends CI_Model
                     $data_tm = array(
                         "idThuMuc" => $mamon . "-" . $now,
                         "fk_idNguoiDung" => "nd1",
-                        "sDuongDan" => "assets/uploads/ketqua/" . $mamon . "-" . $now ,
+                        "sDuongDan" => "assets/uploads/ketqua/" . $mamon . "-" . $now,
                         "sTenFile" => $mamon . "-" . $now,
                         "dThoiGian" => $now_VN,
                         "bLoaiThuMuc" => 0
                     );
-                    
-                    
+
+
                     $this->db->insert("tblThuMuc", $data_tm);
                     $this->db->insert_batch("tblphieutraloi", $data_import);
                     $this->get_excel($data_res, "assets/uploads/ketqua/" . $mamon . "-" . $now);
@@ -143,7 +143,8 @@ class MPhieuTraLoi extends CI_Model
     }
 
 
-    public function get_excel($data_res, $path) {
+    public function get_excel($data_res, $path)
+    {
         // $array = file_get_contents("E:\\xampp\\htdocs\\TinhDiem\\result.json");
         // $array = trim($array, "\xEF\xBB\xBF");
         // $productlist = json_decode($array, true);
@@ -196,20 +197,48 @@ class MPhieuTraLoi extends CI_Model
         $writer = new Xlsx($spreadsheet);
         // $writer->save($path. ".xlsx");
         $writer->save($path . ".xlsx");
-       
     }
 
-    public function import_tblMon($data) {
-        $this->db->replace("tblMon", $data);
+    public function import_tblMon($data)
+    {
+        if (!empty($data)) {
+            $sql = "INSERT IGNORE INTO tblMon (idMon, sTenMon) VALUES ('" . $data["idMon"] ."', '" . $data["sTenMon"]. "')";
+            $values = [];
+    
+            // foreach ($data as $row) {
+            //     // Sửa lỗi cú pháp: đảm bảo đóng ngoặc đúng chỗ
+            //     $values[] = "('" . ($row['idMon']) . "', '" . ($row['sTenMon']) . "')";
+            // }
+    
+            // $sql .= implode(", ", $values);
+            
+            // Kiểm tra kết quả thực thi câu lệnh SQL
+            $this->db->query($sql);
+            // if ($this->db->query($sql)) {
+            //     return true;
+            // } else {
+            //     // Ghi log thông báo lỗi
+            //     log_message('error', 'Error inserting data: ' . $this->db->error());
+            //     return false;
+            // }
+        }
+        
     }
 
-    public function import_tblDe($data) {
+    public function import_tblDe($data)
+    {
         $this->db->insert("tblDe", $data);
     }
 
-    public function import_tblDapAn($data) {
+    public function import_tblDapAn($data)
+    {
         $this->db->insert_batch("tblDapAn", $data);
     }
 
-
+    public function getDapAn($idDe, $idMon)
+    {
+        $this->db->where("idDapAn", $idDe . "-" . $idMon);
+        $da = $this->db->get("tblDapAn");
+        return $da->result_array();
+    }
 }
