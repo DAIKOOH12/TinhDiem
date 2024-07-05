@@ -34,11 +34,18 @@ $this->load->view("layouts/header");
     </table>
 </div>
 <script>
+    var year = new Date().getFullYear();
     $("#mindate").datepicker({
         dateFormat: 'dd/mm/yy',
+        yearRange: "2008:" + year,
+        changeMonth: true,
+        changeYear: true
     });
     $("#maxdate").datepicker({
         dateFormat: 'dd/mm/yy',
+        yearRange: "2008:" + year,
+        changeMonth: true,
+        changeYear: true
     });
 </script>
 <?php
