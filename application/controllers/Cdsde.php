@@ -7,6 +7,7 @@ class Cdsde extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Mdsde');
+        $this->load->library('pagination');
     }
     public function index()
     {

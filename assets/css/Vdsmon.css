@@ -885,6 +885,6 @@ section {
 #mamon[disabled="disabled"]:hover {
   cursor: not-allowed;
 }
-.table{
-  width: 80% !important;
+.table,#data-table_wrapper{
+  min-width: 80% !important;
 }

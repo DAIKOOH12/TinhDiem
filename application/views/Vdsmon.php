@@ -16,7 +16,7 @@
         <tbody style="height: 150px;overflow: auto;" id="list-mon">
             <?php for ($i = 0; $i < count($dsmon); $i++) { ?>
                 <tr class="ds-mon">
-                    <th scope="row"><?php echo $i + 1; ?></th>
+                    <th scope="row" class="stt"><?php echo $i + 1; ?></th>
                     <td class="idmon"><?php echo $dsmon[$i]['idMon']; ?></td>
                     <td class="namemon"><?php echo $dsmon[$i]['sTenMon']; ?></td>
                     <td>

@@ -16,6 +16,11 @@
     //Animation
     $(document).ready(function () {
         $('body.hero-anime').removeClass('hero-anime');
+        $("#data-table").DataTable({
+            columnDefs: [
+                { targets: [0,1,3], className: "text-left" },
+            ]
+        });
     });
 
     //Menu On Hover
@@ -82,11 +87,12 @@
         var currentrow = $(this).parents('.action').parents('td').parents('.ds-mon');
         var mamonfix = $(this).parents('.action').parents('td').siblings('.idmon').text();
         var namemonfix = $(this).parents('.action').parents('td').siblings('.namemon').text();
+        var stt=$(this).parents('.action').parents('td').siblings('.stt').text();
         $('#tieudemodal').text('Sửa môn thi');
         $('#mamon').attr('disabled', 'disabled');
         $('#mamon').val(mamonfix);
         $('#tenmon').val(namemonfix);
-        console.log(mamonfix, namemonfix);
+        console.log(mamonfix, namemonfix,stt);
         $("#button-action").off('click').on('click', function (e) {
             var newname = $('#tenmon').val();
             console.log(mamonfix, namemonfix);
@@ -103,7 +109,7 @@
                     toastr.info('Cập nhật thành công');
                     currentrow.html('');
                     var xml = "";
-                    xml += '<th scope="row">' + 1 + '</th>';
+                    xml += '<th scope="row">' + stt + '</th>';
                     xml += '<td class="idmon">' + mamonfix + '</td>';
                     xml += '<td class="namemon">' + newname + '</td>';
                     xml += '<td><div class="action"><div class="btn-details"><i class="fa-solid fa-eye" style="color: #ffffff;"></i></div><div class="btn-fix"><i class="fa-solid fa-wrench" style="color: #ffffff;" data-toggle="modal" data-target="#modal_mon" data-whatever="@mdo" id="fixmon"></i></i></div><div class="btn-delete"><i class="fa-solid fa-trash" style="color: #ffffff;"></i></div></div></td>';
