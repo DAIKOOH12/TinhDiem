@@ -2126,3 +2126,9 @@ ERROR - 2024-07-05 09:01:59 --> Severity: 8192 --> str_replace(): Passing null t
 ERROR - 2024-07-05 09:02:14 --> Severity: 8192 --> str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated D:\xampp\htdocs\upload_ajax\system\core\Output.php 447
 ERROR - 2024-07-05 09:02:22 --> Severity: 8192 --> str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated D:\xampp\htdocs\upload_ajax\system\core\Output.php 447
 ERROR - 2024-07-05 09:02:29 --> Severity: 8192 --> str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated D:\xampp\htdocs\upload_ajax\system\core\Output.php 447
+ERROR - 2024-07-05 09:17:22 --> Severity: 8192 --> str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated E:\xampp\htdocs\TinhDiem\system\core\Output.php 447
+ERROR - 2024-07-05 09:17:33 --> Severity: 8192 --> str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated E:\xampp\htdocs\TinhDiem\system\core\Output.php 447
+ERROR - 2024-07-05 09:17:47 --> Severity: Warning --> file_get_contents(.\result.json): Failed to open stream: No such file or directory E:\xampp\htdocs\TinhDiem\application\controllers\Caculation.php 289
+ERROR - 2024-07-05 09:18:39 --> Severity: Warning --> file_get_contents(.\result.json): Failed to open stream: No such file or directory E:\xampp\htdocs\TinhDiem\application\controllers\Caculation.php 289
+ERROR - 2024-07-05 09:18:46 --> Severity: 8192 --> str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated E:\xampp\htdocs\TinhDiem\system\core\Output.php 447
+ERROR - 2024-07-05 09:19:01 --> Severity: Warning --> file_get_contents(.\result.json): Failed to open stream: No such file or directory E:\xampp\htdocs\TinhDiem\application\controllers\Caculation.php 289
