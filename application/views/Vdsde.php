@@ -26,7 +26,7 @@
                         <td><?php echo $dsde[$i]['iSoLuongCau']; ?></td>
                         <td>
                             <label class="switch">
-                                <input type="checkbox">
+                                <input type="checkbox" class="active-btn" value="<?php echo $dsde[$i]['sTrangThai'];?>">
                                 <span class="slider round"></span>
                             </label>
                         </td>

@@ -20,4 +20,9 @@ class Mdsde extends CI_Model{
         $this->db->where("tblde.fk_idMon",$id);
         return $this->db->get()->result_array();
     }
+    public function changeStateDe($id,$state){
+        $this->db->where('idDe', $id);
+        $this->db->update('tblde',$state);
+        return $this->db->last_query();
+    }
 }
