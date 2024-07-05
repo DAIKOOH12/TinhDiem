@@ -171,7 +171,7 @@ class Caculation extends CI_Controller
                             "sMaDe" => $sheetdata[$e][5],
                             "fDiem" => $count * 10 / $soCauHoi,
                             "sPI" => $maPI,
-                            "iSoCauCLO" => count(explode("-", $dataDA[0]["sCLO"]))
+                            "iSoCauCLO" => $dataDA[0]["sCLO"]
                         );
 
                         array_push($data_res, $dataCH);
@@ -315,7 +315,9 @@ class Caculation extends CI_Controller
         $sheet->setCellValue('F1', mb_convert_encoding("Số câu đúng", 'UTF-8'));
         $sheet->setCellValue('G1', mb_convert_encoding("Số điểm", 'UTF-8'));
         $sheet->setCellValue('H1', mb_convert_encoding("Các câu đúng", 'UTF-8'));
-        for($i = 0; $i <$productlist[0]["iSoCauCLO"]; $i ++) {
+
+        $tachCLO = explode("-", $productlist[0]["iSoCauCLO"]);
+        for($i = 0; $i <count($tachCLO); $i ++) {
             $sheet->setCellValue(chr(105 + $i).'1', mb_convert_encoding("CLO ".$i + 1, 'UTF-8'));
         }
 
@@ -324,7 +326,7 @@ class Caculation extends CI_Controller
             $listPI = explode("/", $prod["sPI"]);
 
             $mang = array();
-            for($i = 0; $i <$productlist[0]["iSoCauCLO"]; $i ++) {
+            for($i = 0; $i <count($tachCLO); $i ++) {
                 $count = 0;
                 for($j = 0 ; $j < count($listPI)-1 ; $j++) {
                     $mang2 = array("fff" => explode(".", $listPI[$j])[0]);
@@ -333,8 +335,8 @@ class Caculation extends CI_Controller
                     }
                     
                 }
-                array_push($mang, $mang2);
-                $sheet->setCellValue(chr(105 + $i). $sn, mb_convert_encoding($count, 'UTF-8'));
+                $demCauCLO = count(explode("/", $tachCLO[$i]));
+                $sheet->setCellValue(chr(105 + $i). $sn, mb_convert_encoding($count . "/". $demCauCLO, 'UTF-8'));
             }
             file_put_contents("./checkPI.json", json_encode($listPI));
 
