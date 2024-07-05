@@ -16,3 +16,6 @@
 body {
   height: 100%;
 }
+.ui-datepicker{
+  top:100px !important;
+}
