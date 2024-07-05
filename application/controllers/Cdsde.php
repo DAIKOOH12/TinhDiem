@@ -16,7 +16,13 @@ class Cdsde extends CI_Controller
         } else {
             $data['dsde'] = $this->Mdsde->getDSDe();
         }
+        // $this->showArr($data);
         $this->load->view('Vdsde', $data);
+    }
+    public function changeStateDe(){
+        $made=$this->input->post('idde');
+        $data['sTrangThai']=$this->input->post('state');
+        $this->Mdsde->changeStateDe($made,$data);
     }
     public function showArr($arr)
     {
