@@ -11,11 +11,12 @@ class Caculation extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model("MPhieuTraLoi");
     }
 
     public function start_cal()
     {
-        // $res = (".\status.txt");
+        $res = (".\status.txt");
         // if (file_exists($res)) {
         //     file_put_contents($res, '');
         // }
@@ -37,11 +38,30 @@ class Caculation extends CI_Controller
 
 
 
+        if (file_exists($res)) {
+            file_put_contents($res, '');
+        }
         $this->LayThongTin();
+
+        $this->load->helper('file');
+        $fileSV = get_filenames("./assets/uploadSV");
+        for ($t = 0; $t < count($fileSV); $t++) {
+            unlink('./assets/uploadSV/' . $fileSV[$t]);
+        }
+        $fileDE = get_filenames("./assets/uploadDe");
+        for ($t = 0; $t < count($fileDE); $t++) {
+            unlink('./assets/uploadDe/' . $fileDE[$t]);
+        }
+
+        file_put_contents(".\status.txt", "Done");
+        exit;
     }
 
     public function LayThongTin()
     {
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $now_VN = date('d/m/Y-H:i:s');
+
         $this->load->helper('file');
         $files = get_filenames("./assets/uploadSV");
 
@@ -59,6 +79,7 @@ class Caculation extends CI_Controller
                 $spreadsheet = IOFactory::load($filePath);
                 $sheetdata = $spreadsheet->getActiveSheet()->toArray();
                 $sheetcount = count($sheetdata);
+
 
                 if ($sheetcount > 1) {
 
@@ -82,58 +103,82 @@ class Caculation extends CI_Controller
 
 
                     //import vào db
-                    $this->load->model("MPhieuTraLoi");
-                    $this->MPhieuTraLoi->import_tblMon($array_tblmon);
 
+                    $this->MPhieuTraLoi->import_tblMon($array_tblmon);
+                    file_put_contents("./status.txt", ($array_tblmon));
+
+                    $idmon = explode("_", $ma_tenMon)[0];
                     if ($i == (count($files) - 1)) {
-                         $idmon = explode("_", $ma_tenMon)[0];
                         $this->data_DA($idmon);
                     }
-                       
+
+
 
 
                     //Lấy thông tin thí sinh: 
-                    // for ($i = 8; $i < $sheetcount; $i++) {
-                    //     $soCauHoi = 0;
-                    //     if ($sheetdata[$i][0] == "Số bài thi:" || $sheetdata[$i][0] == "") {
-                    //         break;
-                    //     }
-                    //     $listDA = "";
-                    //     for ($j = 6; $j < count($sheetdata[$i]); $j++) {
+                    for ($e = 8; $e < $sheetcount; $e++) {
+                        $soCauHoi = 0;
+                        if ($sheetdata[$e][0] == "Số bài thi:" || $sheetdata[$e][0] == "") {
+                            break;
+                        }
+                        $listDA = "";
+                        for ($j = 6; $j < count($sheetdata[$e]); $j++) {
 
 
-                    //         if ($sheetdata[7][$j] == "Số câu đúng") {
-                    //             $soCauHoi = $j - 6;
-                    //             break;
-                    //         }
+                            if ($sheetdata[7][$j] == "Số câu đúng") {
+                                $soCauHoi = $j - 6;
+                                break;
+                            }
 
-                    //         $listDA .= $sheetdata[$i][$j] . "/";
-                    //     }
+                            $listDA .= $sheetdata[$e][$j] . "/";
+                        }
 
-                    //     $maCauDung = "";
-                    //     $count = 0;
+                        $maCauDung = "";
+                        $count = 0;
+                        $maPI = "";
 
 
 
+                        $dataDA = $this->MPhieuTraLoi->getDapAn($sheetdata[$e][5], $idmon);
+                        file_put_contents('./result2.json', json_encode($dataDA));
 
-                    //     $dataCH = array(
-                    //         "sSBD" => $sheetdata[$i][1],
-                    //         "fk_idThuMuc" => $mamon . "-" . $now,
-                    //         "sHoTen" => $sheetdata[$i][2],
-                    //         "sLop" => $sheetdata[$i][4],
-                    //         "sNgaySinh" => $sheetdata[$i][3],
-                    //         "sDapAn" => $listDA,
-                    //         "fk_demon" => $mamon . "-" . $sheetdata[$i][5],
-                    //         "iSoLuongCau" => $soCauHoi,
-                    //         "iSoCauDung" => $count,
-                    //         "sMaCauDung" => $maCauDung,
-                    //         "sMaDe" => $sheetdata[$i][5],
-                    //         "fDiem" => $count*10/$soCauHoi
-                    //     );
+                        $list1 = explode("/", $dataDA[0]["sDapAn"]);
+                        $list2 = explode("/", $listDA);
+                        $listMCH = explode("/", $dataDA[0]["sMaCauHoi"]);
+                        $listPI = explode("/", str_replace("-", "/", $dataDA[0]["sCLO"]));;
 
-                    //     array_push($data_res, $dataCH);
-                    // }
 
+                        for ($q = 0; $q < count($list1) - 1; $q++) {
+                            if ($list1[$q] == $list2[$q]) {
+                                $count++;
+                                $maCauDung .= $listMCH[$q] . "/";
+                                $maPI .= $listPI[$q] . "/";
+                            }
+                        }
+
+
+                        $dataCH = array(
+                            "sSBD" => $sheetdata[$e][1],
+                            "fk_idThuMuc" => "tm1",
+                            "sHoTen" => $sheetdata[$e][2],
+                            "sLop" => $sheetdata[$e][4],
+                            "sNgaySinh" => $sheetdata[$e][3],
+                            "sDapAn" => $listDA,
+                            "fk_idDapAn" => $sheetdata[$e][5] . "-" . $idmon,
+                            "iSoLuongCau" => $soCauHoi,
+                            "iSoCauDung" => $count,
+                            "sMaCauDung" => $maCauDung,
+                            "sMaDe" => $sheetdata[$e][5],
+                            "fDiem" => $count * 10 / $soCauHoi,
+                            "sPI" => $maPI,
+                            "iSoCauCLO" => count(explode("-", $dataDA[0]["sCLO"]))
+                        );
+
+                        array_push($data_res, $dataCH);
+                    }
+                    file_put_contents("./result.json", json_encode($data_res));
+                    // $this->get_excel($data_res, );
+                    // file_put_contents("./result.json", "fdfdf");
                 }
             } catch (Exception $e) {
                 // Handle Exception
@@ -152,6 +197,9 @@ class Caculation extends CI_Controller
         $files = get_filenames("./assets/uploadDe");
 
         $data_files = array();
+
+        if (count($files) == 0)
+            return;
 
         for ($i = 0; $i < count($files); $i++) {
             try {
@@ -193,7 +241,7 @@ class Caculation extends CI_Controller
                     }
 
                     $data_file = array(
-                        "idDapAn" => "fdf",
+                        "idDapAn" => $idDe . "-" . $idMon,
                         "fk_idde" => $idDe,
                         "fk_idThuMuc" => "tm1",
                         "sDapAn" => $sDapAn,
@@ -203,6 +251,8 @@ class Caculation extends CI_Controller
                     );
 
                     array_push($data_files, $data_file);
+                } else {
+                    return;
                 }
             } catch (Exception $e) {
                 // Handle Exception
@@ -214,13 +264,14 @@ class Caculation extends CI_Controller
             }
         }
         file_put_contents("./result.json", json_encode($data_files));
-        $this->load->model("MPhieuTraLoi");
+        // $this->load->model("MPhieuTraLoi");
         $this->MPhieuTraLoi->import_tblDapAn($data_files);
     }
 
-    public function data_De($idMon, $idDe) {
+    public function data_De($idMon, $idDe)
+    {
         date_default_timezone_set('Asia/Ho_Chi_Minh');
-        
+
         $now_VN = date('d/m/Y-H:i:s');
         $data = array(
             "idDe" => $idDe,
@@ -231,6 +282,84 @@ class Caculation extends CI_Controller
 
         $this->load->model("MPhieuTraLoi");
         $this->MPhieuTraLoi->import_tblDe($data);
+    }
+
+    public function get_excel()
+    {
+        $array = file_get_contents(".\\result.json");
+        $array = trim($array, "\xEF\xBB\xBF");
+        $productlist = json_decode($array, true);
+        // echo "fdfd";
+        // $productlist = $data_res;
+
+        if (!is_array($productlist)) {
+            echo "Lỗi: Dữ liệu JSON không hợp lệ.";
+            exit;
+        }
+
+        // Dọn dẹp output buffer
+        if (ob_get_contents()) ob_end_clean();
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="ketQua.xlsx"');
+        header('Cache-Control: max-age=0');
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+
+        $sheet->setCellValue('A1', mb_convert_encoding("SBD", 'UTF-8'));
+        $sheet->setCellValue('B1', mb_convert_encoding('Họ Tên', 'UTF-8'));
+        $sheet->setCellValue('C1', mb_convert_encoding("Ngày sinh", 'UTF-8'));
+        $sheet->setCellValue('D1', mb_convert_encoding("Mã đề", "UTF-8"));
+        $sheet->setCellValue('E1', mb_convert_encoding("Tổng số câu", 'UTF-8'));
+        $sheet->setCellValue('F1', mb_convert_encoding("Số câu đúng", 'UTF-8'));
+        $sheet->setCellValue('G1', mb_convert_encoding("Số điểm", 'UTF-8'));
+        $sheet->setCellValue('H1', mb_convert_encoding("Các câu đúng", 'UTF-8'));
+        for($i = 0; $i <$productlist[0]["iSoCauCLO"]; $i ++) {
+            $sheet->setCellValue(chr(105 + $i).'1', mb_convert_encoding("CLO ".$i + 1, 'UTF-8'));
+        }
+
+        $sn = 2;
+        foreach ($productlist as $prod) {
+            $listPI = explode("/", $prod["sPI"]);
+
+            $mang = array();
+            for($i = 0; $i <$productlist[0]["iSoCauCLO"]; $i ++) {
+                $count = 0;
+                for($j = 0 ; $j < count($listPI)-1 ; $j++) {
+                    $mang2 = array("fff" => explode(".", $listPI[$j])[0]);
+                    if(explode(".", $listPI[$j])[0] == (String)($i + 1)) {
+                        $count ++;
+                    }
+                    
+                }
+                array_push($mang, $mang2);
+                $sheet->setCellValue(chr(105 + $i). $sn, mb_convert_encoding($count, 'UTF-8'));
+            }
+            file_put_contents("./checkPI.json", json_encode($listPI));
+
+            $prod["sSBD"] = mb_convert_encoding($prod["sSBD"], 'UTF-8');
+            $prod["sHoTen"] = mb_convert_encoding($prod["sHoTen"], 'UTF-8');
+            $prod["sNgaySinh"] = mb_convert_encoding($prod["sNgaySinh"], 'UTF-8');
+            $prod["iSoLuongCau"] = mb_convert_encoding($prod["iSoLuongCau"], 'UTF-8');
+
+            $sheet->setCellValue('A' . $sn, $prod["sSBD"]);
+            $sheet->setCellValue('B' . $sn, $prod["sHoTen"]);
+            $sheet->setCellValue('C' . $sn, $prod["sNgaySinh"]);
+            $sheet->setCellValue('D' . $sn, $prod["sMaDe"]);
+            $sheet->setCellValue('E' . $sn, $prod["iSoLuongCau"]);
+            $sheet->setCellValue('F' . $sn, $prod["iSoCauDung"]);
+            $sheet->setCellValue('G' . $sn, $prod["fDiem"]);
+            $sheet->setCellValue('H' . $sn, $prod["sMaCauDung"]);
+
+            $sn++;
+        }
+
+        $writer = new Xlsx($spreadsheet);
+        $writer->save("php://output");
+        exit;
+        // $writer->save($path. ".xlsx");
+        // $writer->save($path . ".xlsx");
     }
 
 
@@ -300,60 +429,4 @@ class Caculation extends CI_Controller
     //     exit;
     // }
 
-    public function get_excel()
-    {
-        require 'vendor/autoload.php';
-
-
-        $array = file_get_contents("./result.json");
-        $array = trim($array, "\xEF\xBB\xBF");
-        $productlist = json_decode($array, true);
-
-        if (!is_array($productlist)) {
-            echo "Lỗi: Dữ liệu JSON không hợp lệ.";
-            exit;
-        }
-
-        // Dọn dẹp output buffer
-        if (ob_get_contents()) ob_end_clean();
-
-        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment;filename="ketQua.xlsx"');
-        header('Cache-Control: max-age=0');
-
-        $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-
-        $sheet->setCellValue('A1', mb_convert_encoding("SBD", 'UTF-8'));
-        $sheet->setCellValue('B1', mb_convert_encoding('Họ Tên', 'UTF-8'));
-        $sheet->setCellValue('C1', mb_convert_encoding("Ngày sinh", 'UTF-8'));
-        $sheet->setCellValue('D1', mb_convert_encoding("Mã đề", "UTF-8"));
-        $sheet->setCellValue('E1', mb_convert_encoding("Tổng số câu", 'UTF-8'));
-        $sheet->setCellValue('F1', mb_convert_encoding("Số câu đúng", 'UTF-8'));
-        $sheet->setCellValue('G1', mb_convert_encoding("Số điểm", 'UTF-8'));
-        $sheet->setCellValue('H1', mb_convert_encoding("Các câu đúng", 'UTF-8'));
-
-        $sn = 2;
-        foreach ($productlist as $prod) {
-            $prod["sSBD"] = mb_convert_encoding($prod["sSBD"], 'UTF-8');
-            $prod["sHoTen"] = mb_convert_encoding($prod["sHoTen"], 'UTF-8');
-            $prod["sNgaySinh"] = mb_convert_encoding($prod["sNgaySinh"], 'UTF-8');
-            $prod["iSoLuongCau"] = mb_convert_encoding($prod["iSoLuongCau"], 'UTF-8');
-
-            $sheet->setCellValue('A' . $sn, $prod["sSBD"]);
-            $sheet->setCellValue('B' . $sn, $prod["sHoTen"]);
-            $sheet->setCellValue('C' . $sn, $prod["sNgaySinh"]);
-            $sheet->setCellValue('D' . $sn, $prod["sMaDe"]);
-            $sheet->setCellValue('E' . $sn, $prod["iSoLuongCau"]);
-            $sheet->setCellValue('F' . $sn, $prod["iSoCauDung"]);
-            $sheet->setCellValue('G' . $sn, $prod["fDiem"]);
-            $sheet->setCellValue('H' . $sn, $prod["sMaCauDung"]);
-
-            $sn++;
-        }
-
-        $writer = new Xlsx($spreadsheet);
-        $writer->save("php://output");
-        exit;
-    }
 }
